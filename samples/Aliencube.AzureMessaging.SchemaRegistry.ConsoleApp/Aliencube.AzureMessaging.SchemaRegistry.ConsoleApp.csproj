@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net461;netcoreapp2.1</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>..\..\AllRulesDefault.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <Import Project="..\..\editorconfig.props" Condition="Exists('..\..\editorconfig.props')" />
+  <Import Project="..\..\Microsoft.CodeAnalysis.FxCopAnalyzers.props" Condition="Exists('..\..\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" />
+
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.6.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Aliencube.AzureMessaging.SchemaRegistry.Sinks.FileSystem\Aliencube.AzureMessaging.SchemaRegistry.Sinks.FileSystem.csproj" />
+  </ItemGroup>
+
+</Project>
