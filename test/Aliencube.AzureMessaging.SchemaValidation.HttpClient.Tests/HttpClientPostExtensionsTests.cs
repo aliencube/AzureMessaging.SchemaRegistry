@@ -142,7 +142,6 @@ namespace Aliencube.AzureMessaging.SchemaValidation.HttpClient.Tests
             var requestUri = "http://localhost";
             var payload = "{ \"hello\": \"world\" }";
 
-            var exception = new SchemaValidationException();
             var validator = new Mock<ISchemaValidator>();
             validator.Setup(p => p.ValidateAsync(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(true);
 
@@ -259,19 +258,19 @@ namespace Aliencube.AzureMessaging.SchemaValidation.HttpClient.Tests
             }
         }
 
-        [TestMethod]
-        public async Task Given_Validation_Result_With_CancellationToken_When_PostAsync_Invoked_Then_It_Should_Return_Result()
+        [DataTestMethod]
+        [DataRow(HttpStatusCode.OK)]
+        public async Task Given_Validation_Result_With_CancellationToken_When_PostAsync_Invoked_Then_It_Should_Return_Result(HttpStatusCode statusCode)
         {
             var requestUri = "http://localhost";
             var payload = "{ \"hello\": \"world\" }";
 
-            var exception = new SchemaValidationException();
             var validator = new Mock<ISchemaValidator>();
             validator.Setup(p => p.ValidateAsync(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(true);
 
             var path = "default.json";
 
-            using (var response = this._fixture.CreateHttpResponseMessage(HttpStatusCode.OK, payload))
+            using (var response = this._fixture.CreateHttpResponseMessage(statusCode, payload))
             using (var handler = this._fixture.CreateFakeHttpMessageHandler(response))
             using (var httpClient = this._fixture.CreateHttpClient(handler))
             using (var content = this._fixture.CreateHttpContent())

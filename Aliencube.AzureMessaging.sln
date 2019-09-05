@@ -29,9 +29,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aliencube.AzureMessaging.Sc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aliencube.AzureMessaging.Tests.Fakes", "test\Aliencube.AzureMessaging.Tests.Fakes\Aliencube.AzureMessaging.Tests.Fakes.csproj", "{E67CC654-38D5-4CBB-9543-8FD8420AF011}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aliencube.AzureMessaging.SchemaValidation.HttpClient", "src\Aliencube.AzureMessaging.SchemaValidation.HttpClient\Aliencube.AzureMessaging.SchemaValidation.HttpClient.csproj", "{23F8056A-6CA0-4712-B807-144F2891886A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aliencube.AzureMessaging.SchemaValidation.HttpClient", "src\Aliencube.AzureMessaging.SchemaValidation.HttpClient\Aliencube.AzureMessaging.SchemaValidation.HttpClient.csproj", "{23F8056A-6CA0-4712-B807-144F2891886A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aliencube.AzureMessaging.SchemaValidation.HttpClient.Tests", "test\Aliencube.AzureMessaging.SchemaValidation.HttpClient.Tests\Aliencube.AzureMessaging.SchemaValidation.HttpClient.Tests.csproj", "{6BA0107A-8E44-4D18-8BA7-7CD9B110206C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aliencube.AzureMessaging.SchemaValidation.HttpClient.Tests", "test\Aliencube.AzureMessaging.SchemaValidation.HttpClient.Tests\Aliencube.AzureMessaging.SchemaValidation.HttpClient.Tests.csproj", "{6BA0107A-8E44-4D18-8BA7-7CD9B110206C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aliencube.AzureMessaging.SchemaRegistry.FunctionAppV1", "samples\Aliencube.AzureMessaging.SchemaRegistry.FunctionAppV1\Aliencube.AzureMessaging.SchemaRegistry.FunctionAppV1.csproj", "{0F58D9CF-4DF0-40F1-8413-8EBDC1596772}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,10 @@ Global
 		{6BA0107A-8E44-4D18-8BA7-7CD9B110206C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BA0107A-8E44-4D18-8BA7-7CD9B110206C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BA0107A-8E44-4D18-8BA7-7CD9B110206C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F58D9CF-4DF0-40F1-8413-8EBDC1596772}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F58D9CF-4DF0-40F1-8413-8EBDC1596772}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F58D9CF-4DF0-40F1-8413-8EBDC1596772}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F58D9CF-4DF0-40F1-8413-8EBDC1596772}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,6 +110,7 @@ Global
 		{E67CC654-38D5-4CBB-9543-8FD8420AF011} = {3A18B81C-8FD8-476D-A0CB-9EFFBB579C6E}
 		{23F8056A-6CA0-4712-B807-144F2891886A} = {2DAA3E7B-EDA2-4A05-A94D-888A5F5D8EC4}
 		{6BA0107A-8E44-4D18-8BA7-7CD9B110206C} = {3A18B81C-8FD8-476D-A0CB-9EFFBB579C6E}
+		{0F58D9CF-4DF0-40F1-8413-8EBDC1596772} = {B4CE4C0C-D639-45F0-8676-1502F08C617F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6583D7A0-435E-4EF0-8A60-67815D3843BE}

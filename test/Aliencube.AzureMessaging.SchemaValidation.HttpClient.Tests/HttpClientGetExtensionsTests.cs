@@ -134,7 +134,6 @@ namespace Aliencube.AzureMessaging.SchemaValidation.HttpClient.Tests
             var requestUri = "http://localhost";
             var payload = "{ \"hello\": \"world\" }";
 
-            var exception = new SchemaValidationException();
             var validator = new Mock<ISchemaValidator>();
             validator.Setup(p => p.ValidateAsync(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(true);
 
@@ -247,7 +246,6 @@ namespace Aliencube.AzureMessaging.SchemaValidation.HttpClient.Tests
             var requestUri = "http://localhost";
             var payload = "{ \"hello\": \"world\" }";
 
-            var exception = new SchemaValidationException();
             var validator = new Mock<ISchemaValidator>();
             validator.Setup(p => p.ValidateAsync(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(true);
 
@@ -358,7 +356,6 @@ namespace Aliencube.AzureMessaging.SchemaValidation.HttpClient.Tests
             var requestUri = "http://localhost";
             var payload = "{ \"hello\": \"world\" }";
 
-            var exception = new SchemaValidationException();
             var validator = new Mock<ISchemaValidator>();
             validator.Setup(p => p.ValidateAsync(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(true);
 
@@ -471,7 +468,6 @@ namespace Aliencube.AzureMessaging.SchemaValidation.HttpClient.Tests
             var requestUri = "http://localhost";
             var payload = "{ \"hello\": \"world\" }";
 
-            var exception = new SchemaValidationException();
             var validator = new Mock<ISchemaValidator>();
             validator.Setup(p => p.ValidateAsync(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(true);
 
@@ -584,7 +580,6 @@ namespace Aliencube.AzureMessaging.SchemaValidation.HttpClient.Tests
             var requestUri = "http://localhost";
             var payload = "{ \"hello\": \"world\" }";
 
-            var exception = new SchemaValidationException();
             var validator = new Mock<ISchemaValidator>();
             validator.Setup(p => p.ValidateAsync(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(true);
 
