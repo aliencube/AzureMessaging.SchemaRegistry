@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
-using Aliencube.AzureMessaging.SchemaRegistry.Extensions;
+using Aliencube.AzureMessaging.SchemaRegistry.Sinks.Extensions;
 using Aliencube.AzureMessaging.SchemaRegistry.Sinks.Wrappers;
 
 namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks

@@ -6,7 +6,7 @@ using FluentAssertions;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Aliencube.AzureMessaging.SchemaRegistry.Tests.Sinks
+namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Tests
 {
     [TestClass]
     public class ISchemaSinkTests

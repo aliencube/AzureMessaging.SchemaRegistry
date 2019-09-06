@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 
-using Aliencube.AzureMessaging.SchemaRegistry.Extensions;
+using Aliencube.AzureMessaging.SchemaRegistry.Sinks.Extensions;
 
 using NJsonSchema;
 using NJsonSchema.Generation;

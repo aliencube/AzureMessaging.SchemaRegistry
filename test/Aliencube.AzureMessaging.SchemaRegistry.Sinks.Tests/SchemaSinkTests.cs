@@ -9,7 +9,7 @@ using FluentAssertions;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Aliencube.AzureMessaging.SchemaRegistry.Tests.Sinks
+namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Tests
 {
     [TestClass]
     [SuppressMessage("Usage", "CA1806:Do not ignore method results")]

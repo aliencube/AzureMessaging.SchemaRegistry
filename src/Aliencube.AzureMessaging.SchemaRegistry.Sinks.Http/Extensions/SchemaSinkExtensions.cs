@@ -1,7 +1,7 @@
 using System.Net.Http;
 using System.Runtime.CompilerServices;
 
-using Aliencube.AzureMessaging.SchemaRegistry.Extensions;
+using Aliencube.AzureMessaging.SchemaRegistry.Sinks.Extensions;
 
 [assembly: InternalsVisibleTo("Aliencube.AzureMessaging.SchemaRegistry.Sinks.Http.Tests")]
 

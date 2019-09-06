@@ -4,8 +4,8 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-using Aliencube.AzureMessaging.SchemaRegistry.Extensions;
 using Aliencube.AzureMessaging.SchemaRegistry.Sinks;
+using Aliencube.AzureMessaging.SchemaRegistry.Sinks.Extensions;
 
 using FluentAssertions;
 

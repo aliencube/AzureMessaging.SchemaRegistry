@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
-using Aliencube.AzureMessaging.SchemaRegistry.Extensions;
+using Aliencube.AzureMessaging.SchemaRegistry.Sinks.Extensions;
 using Aliencube.AzureMessaging.SchemaValidation.HttpClient.Tests.Fixture;
 
 using FluentAssertions;

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 
-using Aliencube.AzureMessaging.SchemaRegistry.Extensions;
 using Aliencube.AzureMessaging.SchemaRegistry.Sinks;
+using Aliencube.AzureMessaging.SchemaRegistry.Sinks.Extensions;
 
 using NJsonSchema.Validation;
 

@@ -1,13 +1,13 @@
 using System;
 using System.Reflection;
 
-using Aliencube.AzureMessaging.SchemaRegistry.Extensions;
+using Aliencube.AzureMessaging.SchemaRegistry.Sinks.Extensions;
 
 using FluentAssertions;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Aliencube.AzureMessaging.SchemaRegistry.Tests.Extensions
+namespace Aliencube.AzureMessaging.SchemaRegistry.Extensions.Tests
 {
     [TestClass]
     public class GenericExtensionsTests

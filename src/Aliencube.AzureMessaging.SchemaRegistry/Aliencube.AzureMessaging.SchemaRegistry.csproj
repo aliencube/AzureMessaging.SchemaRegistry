@@ -50,4 +50,8 @@
     <PackageReference Include="NJsonSchema" Version="10.0.23" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Aliencube.AzureMessaging.SchemaRegistry.Sinks\Aliencube.AzureMessaging.SchemaRegistry.Sinks.csproj" />
+  </ItemGroup>
+
 </Project>

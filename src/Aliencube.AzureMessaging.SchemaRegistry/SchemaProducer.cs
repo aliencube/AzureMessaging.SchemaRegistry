@@ -5,8 +5,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
-using Aliencube.AzureMessaging.SchemaRegistry.Extensions;
 using Aliencube.AzureMessaging.SchemaRegistry.Sinks;
+using Aliencube.AzureMessaging.SchemaRegistry.Sinks.Extensions;
 
 namespace Aliencube.AzureMessaging.SchemaRegistry
 {

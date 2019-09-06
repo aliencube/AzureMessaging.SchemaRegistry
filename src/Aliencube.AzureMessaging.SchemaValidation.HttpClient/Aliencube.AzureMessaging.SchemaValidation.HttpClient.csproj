@@ -18,7 +18,7 @@
     <Copyright>Aliencube Community</Copyright>
     <PackageLicenseUrl>https://github.com/aliencube/AzureMessaging.SchemaRegistry/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/aliencube/AzureMessaging.SchemaRegistry</PackageProjectUrl>
-    <PackageIconUrl>https://raw.githubusercontent.com/aliencube/AzureMessaging.SchemaRegistry/master/icons/Aliencube.AzureMessaging.SchemaValidation.png</PackageIconUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/aliencube/AzureMessaging.SchemaRegistry/master/icons/Aliencube.AzureMessaging.SchemaRegistry.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/aliencube/AzureMessaging.SchemaRegistry</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>

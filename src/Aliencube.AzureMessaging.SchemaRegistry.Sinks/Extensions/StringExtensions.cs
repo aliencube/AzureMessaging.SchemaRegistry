@@ -2,17 +2,19 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("Aliencube.AzureMessaging.SchemaRegistry.Sinks.FileSystem")]
-[assembly: InternalsVisibleTo("Aliencube.AzureMessaging.SchemaRegistry.Sinks.Http")]
+[assembly: InternalsVisibleTo("Aliencube.AzureMessaging.SchemaRegistry")]
 [assembly: InternalsVisibleTo("Aliencube.AzureMessaging.SchemaRegistry.Tests")]
+[assembly: InternalsVisibleTo("Aliencube.AzureMessaging.SchemaRegistry.Sinks.Tests")]
+[assembly: InternalsVisibleTo("Aliencube.AzureMessaging.SchemaRegistry.Sinks.FileSystem")]
 [assembly: InternalsVisibleTo("Aliencube.AzureMessaging.SchemaRegistry.Sinks.FileSystem.Tests")]
+[assembly: InternalsVisibleTo("Aliencube.AzureMessaging.SchemaRegistry.Sinks.Http")]
 [assembly: InternalsVisibleTo("Aliencube.AzureMessaging.SchemaRegistry.Sinks.Http.Tests")]
 [assembly: InternalsVisibleTo("Aliencube.AzureMessaging.SchemaValidation")]
-[assembly: InternalsVisibleTo("Aliencube.AzureMessaging.SchemaValidation.HttpClient")]
 [assembly: InternalsVisibleTo("Aliencube.AzureMessaging.SchemaValidation.Tests")]
+[assembly: InternalsVisibleTo("Aliencube.AzureMessaging.SchemaValidation.HttpClient")]
 [assembly: InternalsVisibleTo("Aliencube.AzureMessaging.SchemaValidation.HttpClient.Tests")]
 
-namespace Aliencube.AzureMessaging.SchemaRegistry.Extensions
+namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Extensions
 {
     /// <summary>
     /// This represents the extension entity for string.

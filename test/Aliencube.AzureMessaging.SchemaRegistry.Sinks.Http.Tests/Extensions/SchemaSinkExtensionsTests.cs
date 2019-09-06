@@ -2,7 +2,7 @@ using System;
 using System.Net.Http;
 using System.Reflection;
 
-using Aliencube.AzureMessaging.SchemaRegistry.Extensions;
+using Aliencube.AzureMessaging.SchemaRegistry.Sinks.Extensions;
 using Aliencube.AzureMessaging.SchemaRegistry.Sinks.Http.Extensions;
 using Aliencube.AzureMessaging.Tests.Fakes;
 
