@@ -26,7 +26,7 @@ namespace Aliencube.AzureMessaging.SchemaValidation
         /// </summary>
         /// <param name="payload">JSON payload.</param>
         /// <param name="path">Schema path in the sink.</param>
-        /// <returns>Returns <c>True</c>, if the payload is valid; otherwise throws <see cref="SchemaValidationException"/>.</returns>
+        /// <returns>Returns <c>True</c>, if the payload is valid; otherwise throws <see cref="SchemaNotFoundException"/>, <see cref="SchemaMalformedException"/> or <see cref="SchemaValidationException"/>.</returns>
         Task<bool> ValidateAsync(string payload, string path);
     }
 }
