@@ -23,7 +23,7 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.FunctionAppV1
     {
         [FunctionName(nameof(ServiceBusTopicPublishHttpTrigger))]
         public static async Task<HttpResponseMessage> Run(
-            [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = "servicebus/publish")] HttpRequestMessage req,
+            [HttpTrigger(AuthorizationLevel.Function, "post", Route = "servicebus/publish")] HttpRequestMessage req,
             [ServiceBus("%ServiceBusTopic%", Connection = "AzureServiceBusConnectionString", EntityType = EntityType.Topic)] IAsyncCollector<string> collector,
             ILogger log)
         {
