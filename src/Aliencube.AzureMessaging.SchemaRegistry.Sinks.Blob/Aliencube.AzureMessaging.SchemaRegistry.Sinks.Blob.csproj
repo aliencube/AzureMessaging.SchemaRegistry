@@ -5,15 +5,15 @@
     <IsPackable>true</IsPackable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageId>Aliencube.AzureMessaging.SchemaRegistry.Sinks.Http</PackageId>
+    <PackageId>Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob</PackageId>
     <Owners>Aliencube</Owners>
     <Authors>Justin Yoo</Authors>
     <Company>Aliencube Community</Company>
     <Version>1.0.0</Version>
-    <Title>Aliencube.AzureMessaging.SchemaRegistry.Sinks.Http</Title>
-    <Product>Aliencube.AzureMessaging.SchemaRegistry.Sinks.Http</Product>
-    <Summary>This package enables to handle schemas over HTTP, for Azure messaging services including Azure Storage Queue, Azure Service Bus, Azure Event Hub, Azure Event Grid, etc.</Summary>
-    <Description>This package enables to handle schemas over HTTP, for Azure messaging services including Azure Storage Queue, Azure Service Bus, Azure Event Hub, Azure Event Grid, etc.</Description>
+    <Title>Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob</Title>
+    <Product>Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob</Product>
+    <Summary>This package enables to handle schemas over Azure Blob Storage, for Azure messaging services including Azure Storage Queue, Azure Service Bus, Azure Event Hub, Azure Event Grid, etc.</Summary>
+    <Description>This package enables to handle schemas over Azure Blob Storage, for Azure messaging services including Azure Storage Queue, Azure Service Bus, Azure Event Hub, Azure Event Grid, etc.</Description>
     <PackageTags>Azure-Messaging, Schema-Registry, Azure-Storage-Queue, Azure-Service-Bus, Azure-Event-Hub, Azure-Event-Grid</PackageTags>
     <Copyright>Aliencube Community</Copyright>
     <PackageLicenseUrl>https://github.com/aliencube/AzureMessaging.SchemaRegistry/blob/master/LICENSE</PackageLicenseUrl>
@@ -31,8 +31,14 @@
   <Import Project="..\..\Microsoft.CodeAnalysis.FxCopAnalyzers.props" Condition="Exists('..\..\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" />
 
   <PropertyGroup>
-    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Aliencube.AzureMessaging.SchemaRegistry.Sinks.Http.xml</DocumentationFile>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob.xml</DocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='net461'">
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.4">
@@ -43,10 +49,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Aliencube.AzureMessaging.SchemaRegistry.Sinks\Aliencube.AzureMessaging.SchemaRegistry.Sinks.csproj" />
-  </ItemGroup>
-
-  <ItemGroup Condition="'$(TargetFramework)'=='net461'">
-    <Reference Include="System.Net.Http" />
   </ItemGroup>
 
 </Project>

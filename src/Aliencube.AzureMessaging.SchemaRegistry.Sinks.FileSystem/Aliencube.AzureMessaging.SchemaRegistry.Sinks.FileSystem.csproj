@@ -12,8 +12,8 @@
     <Version>1.0.0</Version>
     <Title>Aliencube.AzureMessaging.SchemaRegistry.Sinks.FileSystem</Title>
     <Product>Aliencube.AzureMessaging.SchemaRegistry.Sinks.FileSystem</Product>
-    <Summary>This package enables to handle schemas for Azure messaging services including Azure Storage Queue, Azure Service Bus, Azure Event Hub, Azure Event Grid, etc.</Summary>
-    <Description>This package enables to handle schemas for Azure messaging services including Azure Storage Queue, Azure Service Bus, Azure Event Hub, Azure Event Grid, etc.</Description>
+    <Summary>This package enables to handle schemas over the file system, for Azure messaging services including Azure Storage Queue, Azure Service Bus, Azure Event Hub, Azure Event Grid, etc.</Summary>
+    <Description>This package enables to handle schemas over the file system, for Azure messaging services including Azure Storage Queue, Azure Service Bus, Azure Event Hub, Azure Event Grid, etc.</Description>
     <PackageTags>Azure-Messaging, Schema-Registry, Azure-Storage-Queue, Azure-Service-Bus, Azure-Event-Hub, Azure-Event-Grid</PackageTags>
     <Copyright>Aliencube Community</Copyright>
     <PackageLicenseUrl>https://github.com/aliencube/AzureMessaging.SchemaRegistry/blob/master/LICENSE</PackageLicenseUrl>
