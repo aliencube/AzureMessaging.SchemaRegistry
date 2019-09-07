@@ -12,6 +12,8 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("Aliencube.AzureMessaging.SchemaValidation.Tests")]
 [assembly: InternalsVisibleTo("Aliencube.AzureMessaging.SchemaValidation.HttpClient")]
 [assembly: InternalsVisibleTo("Aliencube.AzureMessaging.SchemaValidation.HttpClient.Tests")]
+[assembly: InternalsVisibleTo("Aliencube.AzureMessaging.SchemaValidation.ServiceBus")]
+[assembly: InternalsVisibleTo("Aliencube.AzureMessaging.SchemaValidation.ServiceBus.Tests")]
 
 namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Extensions
 {

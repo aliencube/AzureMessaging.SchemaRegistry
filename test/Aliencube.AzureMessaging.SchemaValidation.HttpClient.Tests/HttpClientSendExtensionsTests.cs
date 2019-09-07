@@ -275,8 +275,6 @@ namespace Aliencube.AzureMessaging.SchemaValidation.HttpClient.Tests
             var requestUri = "http://localhost";
             var validator = new Mock<ISchemaValidator>();
 
-            var path = "default.json";
-
             var func = default(Func<Task>);
             using (var httpClient = this._fixture.CreateHttpClient())
             using (var request = this._fixture.CreateHttpRequestMessage(verb, requestUri))
