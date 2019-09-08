@@ -5,6 +5,8 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("Aliencube.AzureMessaging.SchemaRegistry")]
 [assembly: InternalsVisibleTo("Aliencube.AzureMessaging.SchemaRegistry.Tests")]
 [assembly: InternalsVisibleTo("Aliencube.AzureMessaging.SchemaRegistry.Sinks.Tests")]
+[assembly: InternalsVisibleTo("Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob")]
+[assembly: InternalsVisibleTo("Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob.Tests")]
 [assembly: InternalsVisibleTo("Aliencube.AzureMessaging.SchemaRegistry.Sinks.FileSystem")]
 [assembly: InternalsVisibleTo("Aliencube.AzureMessaging.SchemaRegistry.Sinks.FileSystem.Tests")]
 [assembly: InternalsVisibleTo("Aliencube.AzureMessaging.SchemaRegistry.Sinks.Http")]

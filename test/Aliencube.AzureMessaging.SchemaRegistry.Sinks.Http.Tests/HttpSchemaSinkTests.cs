@@ -47,13 +47,6 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Http.Tests
         public void Given_Type_Then_It_Should_Have_Properties()
         {
             typeof(HttpSchemaSink)
-                .Should().HaveProperty<string>("BaseLocation")
-                    .Which.Should().BeReadable()
-                          .And.NotBeWritable()
-                          .And.BeVirtual()
-                          ;
-
-            typeof(HttpSchemaSink)
                 .Should().HaveProperty<Encoding>("Encoding")
                     .Which.Should().BeReadable()
                           .And.BeWritable()

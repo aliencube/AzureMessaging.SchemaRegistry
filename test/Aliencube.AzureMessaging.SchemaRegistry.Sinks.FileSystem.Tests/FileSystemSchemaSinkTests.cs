@@ -44,13 +44,6 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.FileSystem.Tests
         public void Given_Type_Then_It_Should_Have_Properties()
         {
             typeof(FileSystemSchemaSink)
-                .Should().HaveProperty<string>("BaseLocation")
-                    .Which.Should().BeReadable()
-                          .And.NotBeWritable()
-                          .And.BeVirtual()
-                          ;
-
-            typeof(FileSystemSchemaSink)
                 .Should().HaveProperty<IDirectoryWrapper>("Directory")
                     .Which.Should().BeReadable()
                           .And.BeWritable()
