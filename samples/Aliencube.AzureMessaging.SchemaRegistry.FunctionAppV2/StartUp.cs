@@ -13,6 +13,7 @@ using Newtonsoft.Json.Serialization;
 
 namespace Aliencube.AzureMessaging.SchemaRegistry.FunctionAppV2
 {
+    [ExcludeFromCodeCoverage]
     [SuppressMessage("Style", "IDE0022:Use expression body for methods")]
     [SuppressMessage("Design", "CA1062:Validate arguments of public methods")]
     public class StartUp : FunctionsStartup
