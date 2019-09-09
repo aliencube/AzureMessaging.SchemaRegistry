@@ -22,7 +22,6 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.ConsoleApp
         /// Invokes the console app.
         /// </summary>
         /// <param name="args">List of arguments.</param>
-        [SuppressMessage("Style", "IDE0022:Use expression body for methods")]
         public static void Main(string[] args)
         {
             var serialiserSettings = new JsonSerializerSettings()

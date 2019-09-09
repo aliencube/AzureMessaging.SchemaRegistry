@@ -12,6 +12,7 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob
     /// </summary>
     [SuppressMessage("Style", "IDE0021:Use expression body for constructors")]
     [SuppressMessage("Style", "IDE0022:Use expression body for methods")]
+    [SuppressMessage("Design", "CA1062:Validate arguments of public methods")]
     [SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters")]
     public class BlobStorageSchemaSink : SchemaSink, IBlobStorageSchemaSink
     {
@@ -89,8 +90,9 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob
         {
             path.ThrowIfNullOrWhiteSpace();
 
+            var sanitised = this.SanitisePath(path);
             var container = await this.GetBlobContainerAsync().ConfigureAwait(false);
-            var blob = await this.GetBlobAsync(container, path).ConfigureAwait(false);
+            var blob = await this.GetBlobAsync(container, sanitised).ConfigureAwait(false);
 
             var schema = await blob.DownloadTextAsync().ConfigureAwait(false);
 
@@ -103,12 +105,27 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob
             schema.ThrowIfNullOrWhiteSpace();
             path.ThrowIfNullOrWhiteSpace();
 
+            var sanitised = this.SanitisePath(path);
             var container = await this.GetBlobContainerAsync(createIfNotExists: true).ConfigureAwait(false);
-            var blob = await this.GetBlobAsync(container, path, createIfNotExists: true).ConfigureAwait(false);
+            var blob = await this.GetBlobAsync(container, sanitised, createIfNotExists: true).ConfigureAwait(false);
 
             await blob.UploadTextAsync(schema).ConfigureAwait(false);
 
             return true;
+        }
+
+        private string SanitisePath(string path)
+        {
+            if (!path.StartsWithEquivalentOf("http"))
+            {
+                return path;
+            }
+
+            var sanitised = path.Replace($"{this.BaseLocation.TrimEnd('/')}/", string.Empty)
+                                .Replace($"{this.Container.Trim('/')}/", string.Empty)
+                                .Trim('/');
+
+            return sanitised;
         }
 
         private async Task<CloudBlobContainer> GetBlobContainerAsync(bool createIfNotExists = false)
@@ -122,7 +139,8 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob
                 return container;
             }
 
-            if (!await container.ExistsAsync().ConfigureAwait(false))
+            var exists = await container.ExistsAsync().ConfigureAwait(false);
+            if (!exists)
             {
                 throw new BlobContainerNotFoundException();
             }
@@ -140,7 +158,8 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob
                 return blob;
             }
 
-            if (!await blob.ExistsAsync().ConfigureAwait(false))
+            var exists = await blob.ExistsAsync().ConfigureAwait(false);
+            if (!exists)
             {
                 throw new BlobNotFoundException();
             }

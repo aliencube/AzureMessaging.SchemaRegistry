@@ -5,6 +5,7 @@ using FluentAssertions;
 
 #if NETCOREAPP2_1
 using Microsoft.Azure.ServiceBus;
+using Microsoft.Azure.ServiceBus.Core;
 #endif
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -45,11 +46,11 @@ namespace Aliencube.AzureMessaging.SchemaValidation.ServiceBus.Tests
         {
             typeof(ISchemaValidatorPlugin)
                 .Should().HaveMethod("WithValidator", new[] { typeof(ISchemaValidator) })
-                    .Which.Should().Return<ISchemaValidatorPlugin>();
+                    .Which.Should().Return<ServiceBusPlugin>();
 
             typeof(ISchemaValidatorPlugin)
                 .Should().HaveMethod("WithSchemaPathUserPropertyKey", new[] { typeof(string) })
-                    .Which.Should().Return<ISchemaValidatorPlugin>();
+                    .Which.Should().Return<ServiceBusPlugin>();
 
             typeof(ISchemaValidatorPlugin)
                 .Should().HaveMethod("BeforeMessageSend", new[] { typeof(Message) })

@@ -63,7 +63,7 @@ namespace Aliencube.AzureMessaging.SchemaValidation.ServiceBus
         public virtual string SchemaPathUserPropertyKey { get; private set; } = SchemaPathKey;
 
         /// <inheritdoc />
-        public virtual ISchemaValidatorPlugin WithValidator(ISchemaValidator validator)
+        public virtual ServiceBusPlugin WithValidator(ISchemaValidator validator)
         {
             this.Validator = validator.ThrowIfNullOrDefault();
 
@@ -71,7 +71,7 @@ namespace Aliencube.AzureMessaging.SchemaValidation.ServiceBus
         }
 
         /// <inheritdoc />
-        public virtual ISchemaValidatorPlugin WithSchemaPathUserPropertyKey(string schemaPathUserPropertyKey)
+        public virtual ServiceBusPlugin WithSchemaPathUserPropertyKey(string schemaPathUserPropertyKey)
         {
             this.SchemaPathUserPropertyKey = schemaPathUserPropertyKey.ThrowIfNullOrWhiteSpace();
 
@@ -96,17 +96,19 @@ namespace Aliencube.AzureMessaging.SchemaValidation.ServiceBus
 
         private async Task<Message> ValidateAsync(Message message)
         {
-            var body = message.Body;
+            var cloned = message.Clone();
+
+            var body = cloned.Body;
             if (!body.Any())
             {
-                throw new MessageBodyZeroLengthException().WithServiceBusMessage(message);
+                throw new MessageBodyZeroLengthException().WithServiceBusMessage(cloned);
             }
 
-            var payload = Encoding.UTF8.GetString(message.Body);
-            var path = message.UserProperties[this.SchemaPathUserPropertyKey] as string;
+            var payload = Encoding.UTF8.GetString(cloned.Body);
+            var path = cloned.UserProperties[this.SchemaPathUserPropertyKey] as string;
             if (path.IsNullOrWhiteSpace())
             {
-                throw new SchemaPathNotExistException().WithServiceBusMessage(message);
+                throw new SchemaPathNotExistException().WithServiceBusMessage(cloned);
             }
 
             var validated = await this.Validator.ValidateAsync(payload, path).ConfigureAwait(false);

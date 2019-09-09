@@ -20,7 +20,7 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Http.Tests.Extensions
         [TestMethod]
         public void Given_Type_Then_It_Should_Have_Methods()
         {
-            var methods = typeof(SchemaSinkExtensions).GetMethods(BindingFlags.NonPublic | BindingFlags.Static);
+            var methods = typeof(SchemaSinkExtensions).GetMethods(BindingFlags.Public | BindingFlags.Static);
 
             methods
                 .Should().Contain(p => p.Name.IsEquivalentTo("WithHttpClient", StringComparison.CurrentCulture))
