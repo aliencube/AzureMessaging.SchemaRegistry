@@ -75,11 +75,11 @@ namespace Aliencube.AzureMessaging.SchemaValidation.ServiceBus.Tests
         {
             typeof(SchemaValidatorPlugin)
                 .Should().HaveMethod("WithValidator", new[] { typeof(ISchemaValidator) })
-                    .Which.Should().Return<ISchemaValidatorPlugin>();
+                    .Which.Should().Return<ServiceBusPlugin>();
 
             typeof(SchemaValidatorPlugin)
                 .Should().HaveMethod("WithSchemaPathUserPropertyKey", new[] { typeof(string) })
-                    .Which.Should().Return<ISchemaValidatorPlugin>();
+                    .Which.Should().Return<ServiceBusPlugin>();
 
             typeof(SchemaValidatorPlugin)
                 .Should().HaveMethod("BeforeMessageSend", new[] { typeof(Message) })
@@ -153,7 +153,7 @@ namespace Aliencube.AzureMessaging.SchemaValidation.ServiceBus.Tests
 
             var result = instance.WithValidator(validator);
 
-            result.Validator.Should().Be(validator);
+            result.As<ISchemaValidatorPlugin>().Validator.Should().Be(validator);
         }
 
         [TestMethod]
@@ -174,7 +174,7 @@ namespace Aliencube.AzureMessaging.SchemaValidation.ServiceBus.Tests
 
             var result = instance.WithSchemaPathUserPropertyKey(schemaPathUserPropertyKey);
 
-            result.SchemaPathUserPropertyKey.Should().Be(schemaPathUserPropertyKey);
+            result.As<ISchemaValidatorPlugin>().SchemaPathUserPropertyKey.Should().Be(schemaPathUserPropertyKey);
         }
 
         [TestMethod]

@@ -44,13 +44,19 @@ namespace Aliencube.AzureMessaging.SchemaValidation.ServiceBus.Tests
             {
                 var func = default(Func<Task>);
 
-                func = async () => await BrokeredMessageExtensions.ValidateAsync(null, null, null).ConfigureAwait(false);
+                func = async () => await BrokeredMessageExtensions.ValidateAsync((BrokeredMessage)null, null, null).ConfigureAwait(false);
                 func.Should().Throw<ArgumentNullException>();
 
                 func = async () => await BrokeredMessageExtensions.ValidateAsync(message, null, null).ConfigureAwait(false);
                 func.Should().Throw<ArgumentNullException>();
 
                 func = async () => await BrokeredMessageExtensions.ValidateAsync(message, validator.Object, null).ConfigureAwait(false);
+                func.Should().Throw<ArgumentNullException>();
+
+                func = async () => await BrokeredMessageExtensions.ValidateAsync(Task.FromResult(message), null, null).ConfigureAwait(false);
+                func.Should().Throw<ArgumentNullException>();
+
+                func = async () => await BrokeredMessageExtensions.ValidateAsync(Task.FromResult(message), validator.Object, null).ConfigureAwait(false);
                 func.Should().Throw<ArgumentNullException>();
             }
         }
@@ -59,11 +65,19 @@ namespace Aliencube.AzureMessaging.SchemaValidation.ServiceBus.Tests
         public void Given_Null_Body_When_ValidateAsync_Invoked_Then_It_Should_Throw_Exception()
         {
             var validator = new Mock<ISchemaValidator>();
+            var func = default(Func<Task>);
+
             using (var stream = new MemoryStream(Array.Empty<byte>()))
             using (var message = new BrokeredMessage(stream))
             {
-                Func<Task> func = async () => await BrokeredMessageExtensions.ValidateAsync(message, validator.Object).ConfigureAwait(false);
+                func = async () => await BrokeredMessageExtensions.ValidateAsync(message, validator.Object).ConfigureAwait(false);
+                func.Should().Throw<MessageBodyZeroLengthException>();
+            }
 
+            using (var stream = new MemoryStream(Array.Empty<byte>()))
+            using (var message = new BrokeredMessage(stream))
+            {
+                func = async () => await BrokeredMessageExtensions.ValidateAsync(Task.FromResult(message), validator.Object).ConfigureAwait(false);
                 func.Should().Throw<MessageBodyZeroLengthException>();
             }
         }
@@ -72,11 +86,19 @@ namespace Aliencube.AzureMessaging.SchemaValidation.ServiceBus.Tests
         public void Given_Empty_Body_When_ValidateAsync_Invoked_Then_It_Should_Throw_Exception()
         {
             var validator = new Mock<ISchemaValidator>();
+            var func = default(Func<Task>);
+
             using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(string.Empty)))
             using (var message = new BrokeredMessage(stream))
             {
-                Func<Task> func = async () => await BrokeredMessageExtensions.ValidateAsync(message, validator.Object).ConfigureAwait(false);
+                func = async () => await BrokeredMessageExtensions.ValidateAsync(message, validator.Object).ConfigureAwait(false);
+                func.Should().Throw<MessageBodyZeroLengthException>();
+            }
 
+            using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(string.Empty)))
+            using (var message = new BrokeredMessage(stream))
+            {
+                func = async () => await BrokeredMessageExtensions.ValidateAsync(Task.FromResult(message), validator.Object).ConfigureAwait(false);
                 func.Should().Throw<MessageBodyZeroLengthException>();
             }
         }
@@ -86,11 +108,19 @@ namespace Aliencube.AzureMessaging.SchemaValidation.ServiceBus.Tests
         public void Given_Message_Without_SchemaPath_When_ValidateAsync_Invoked_Then_It_Should_Throw_Exception(string body)
         {
             var validator = new Mock<ISchemaValidator>();
+            var func = default(Func<Task>);
+
             using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(body)))
             using (var message = new BrokeredMessage(stream))
             {
-                Func<Task> func = async () => await BrokeredMessageExtensions.ValidateAsync(message, validator.Object).ConfigureAwait(false);
+                func = async () => await BrokeredMessageExtensions.ValidateAsync(message, validator.Object).ConfigureAwait(false);
+                func.Should().Throw<KeyNotFoundException>();
+            }
 
+            using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(body)))
+            using (var message = new BrokeredMessage(stream))
+            {
+                func = async () => await BrokeredMessageExtensions.ValidateAsync(Task.FromResult(message), validator.Object).ConfigureAwait(false);
                 func.Should().Throw<KeyNotFoundException>();
             }
         }
@@ -100,13 +130,23 @@ namespace Aliencube.AzureMessaging.SchemaValidation.ServiceBus.Tests
         public void Given_Message_With_Empty_SchemaPath_When_ValidateAsync_Invoked_Then_It_Should_Throw_Exception(string body)
         {
             var validator = new Mock<ISchemaValidator>();
+            var func = default(Func<Task>);
+
             using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(body)))
             using (var message = new BrokeredMessage(stream))
             {
                 message.Properties.Add("schemaPath", string.Empty);
 
-                Func<Task> func = async () => await BrokeredMessageExtensions.ValidateAsync(message, validator.Object).ConfigureAwait(false);
+                func = async () => await BrokeredMessageExtensions.ValidateAsync(message, validator.Object).ConfigureAwait(false);
+                func.Should().Throw<SchemaPathNotExistException>();
+            }
 
+            using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(body)))
+            using (var message = new BrokeredMessage(stream))
+            {
+                message.Properties.Add("schemaPath", string.Empty);
+
+                func = async () => await BrokeredMessageExtensions.ValidateAsync(Task.FromResult(message), validator.Object).ConfigureAwait(false);
                 func.Should().Throw<SchemaPathNotExistException>();
             }
         }
@@ -119,13 +159,23 @@ namespace Aliencube.AzureMessaging.SchemaValidation.ServiceBus.Tests
             var validator = new Mock<ISchemaValidator>();
             validator.Setup(p => p.ValidateAsync(It.IsAny<string>(), It.IsAny<string>())).ThrowsAsync(exception);
 
+            var func = default(Func<Task>);
+
             using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(body)))
             using (var message = new BrokeredMessage(stream))
             {
                 message.Properties.Add("schemaPath", path);
 
-                Func<Task> func = async () => await BrokeredMessageExtensions.ValidateAsync(message, validator.Object).ConfigureAwait(false);
+                func = async () => await BrokeredMessageExtensions.ValidateAsync(message, validator.Object).ConfigureAwait(false);
+                func.Should().Throw<SchemaValidationException>();
+            }
 
+            using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(body)))
+            using (var message = new BrokeredMessage(stream))
+            {
+                message.Properties.Add("schemaPath", path);
+
+                func = async () => await BrokeredMessageExtensions.ValidateAsync(Task.FromResult(message), validator.Object).ConfigureAwait(false);
                 func.Should().Throw<SchemaValidationException>();
             }
         }
@@ -143,6 +193,16 @@ namespace Aliencube.AzureMessaging.SchemaValidation.ServiceBus.Tests
                 message.Properties.Add("schemaPath", path);
 
                 var result = await BrokeredMessageExtensions.ValidateAsync(message, validator.Object).ConfigureAwait(false);
+
+                result.Should().Be(message);
+            }
+
+            using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(body)))
+            using (var message = new BrokeredMessage(stream))
+            {
+                message.Properties.Add("schemaPath", path);
+
+                var result = await BrokeredMessageExtensions.ValidateAsync(Task.FromResult(message), validator.Object).ConfigureAwait(false);
 
                 result.Should().Be(message);
             }

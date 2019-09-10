@@ -3,6 +3,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Threading.Tasks;
 
+using Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob.Extensions;
+
 using FluentAssertions;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -225,6 +227,32 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob.Tests
                             .ConfigureAwait(false);
         }
 
+        [DataTestMethod]
+        [DataRow("https://localhost", "ipsum", "default.json", "{ \"lorem\": \"ipsum\" }")]
+        public async Task Given_Blob_With_FullPath_When_GetSchemaAsync_Invoked_Then_It_Should_Return_Result(string location, string container, string path, string schema)
+        {
+            var account = CloudStorageAccount.DevelopmentStorageAccount;
+            var blobClient = account.CreateCloudBlobClient();
+            var blobContainer = blobClient.GetContainerReference(container);
+            await blobContainer.CreateIfNotExistsAsync().ConfigureAwait(false);
+
+            var blob = blobContainer.GetBlockBlobReference(path);
+            await blob.UploadTextAsync(schema).ConfigureAwait(false);
+
+            var instance = new BlobStorageSchemaSink(blobClient)
+                               .WithBaseLocation(location)
+                               .WithContainer(container);
+
+            var result = await instance.GetSchemaAsync($"{location}/{container}/{path}").ConfigureAwait(false);
+
+            result.Should().Be(schema);
+
+            await blob.DeleteIfExistsAsync().ConfigureAwait(false);
+            await blobClient.GetContainerReference(container)
+                            .DeleteIfExistsAsync()
+                            .ConfigureAwait(false);
+        }
+
         [TestMethod]
         public void Given_Null_Parameters_When_SetSchemaAsync_Invoked_Then_It_Should_Throw_Exception()
         {
@@ -241,8 +269,8 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob.Tests
         }
 
         [DataTestMethod]
-        [DataRow("ipsum", "{ \"lorem\": \"ipsum\" }", "default.json")]
-        public async Task Given_Blob_When_SetSchemaAsync_Invoked_Then_It_Should_Return_Result(string container, string schema, string path)
+        [DataRow("dolor", "default.json", "{ \"lorem\": \"ipsum\" }")]
+        public async Task Given_Blob_When_SetSchemaAsync_Invoked_Then_It_Should_Return_Result(string container, string path, string schema)
         {
             var account = CloudStorageAccount.DevelopmentStorageAccount;
             var blobClient = account.CreateCloudBlobClient();
@@ -256,6 +284,32 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob.Tests
                                .WithContainer(container);
 
             var result = await instance.SetSchemaAsync(schema, path).ConfigureAwait(false);
+
+            result.Should().BeTrue();
+
+            await blob.DeleteIfExistsAsync().ConfigureAwait(false);
+            await blobClient.GetContainerReference(container)
+                            .DeleteIfExistsAsync()
+                            .ConfigureAwait(false);
+        }
+
+        [DataTestMethod]
+        [DataRow("https://localhost", "sit", "default.json", "{ \"lorem\": \"ipsum\" }")]
+        public async Task Given_Blob_With_FullPath_When_SetSchemaAsync_Invoked_Then_It_Should_Return_Result(string location, string container, string path, string schema)
+        {
+            var account = CloudStorageAccount.DevelopmentStorageAccount;
+            var blobClient = account.CreateCloudBlobClient();
+            var blobContainer = blobClient.GetContainerReference(container);
+            await blobContainer.CreateIfNotExistsAsync().ConfigureAwait(false);
+
+            var blob = blobContainer.GetBlockBlobReference(path);
+            await blob.UploadTextAsync(schema).ConfigureAwait(false);
+
+            var instance = new BlobStorageSchemaSink(blobClient)
+                               .WithBaseLocation(location)
+                               .WithContainer(container);
+
+            var result = await instance.SetSchemaAsync(schema, $"{location}/{container}/{path}").ConfigureAwait(false);
 
             result.Should().BeTrue();
 

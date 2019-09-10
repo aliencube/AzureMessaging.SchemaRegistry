@@ -40,15 +40,15 @@ namespace Aliencube.AzureMessaging.SchemaValidation.ServiceBus
         /// Adds the <see cref="ISchemaValidator"/> instance to the plug-in.
         /// </summary>
         /// <param name="validator"><see cref="ISchemaValidator"/> instance.</param>
-        /// <returns>Returns the <see cref="ISchemaValidatorPlugin"/> instance.</returns>
-        ISchemaValidatorPlugin WithValidator(ISchemaValidator validator);
+        /// <returns>Returns the <see cref="ServiceBusPlugin"/> instance.</returns>
+        ServiceBusPlugin WithValidator(ISchemaValidator validator);
 
         /// <summary>
         /// Adds the user property key in a message to get the schema path.
         /// </summary>
         /// <param name="schemaPathUserPropertyKey">User property key in a message to get the schema path.</param>
-        /// <returns>Returns the <see cref="ISchemaValidatorPlugin"/> instance.</returns>
-        ISchemaValidatorPlugin WithSchemaPathUserPropertyKey(string schemaPathUserPropertyKey);
+        /// <returns>Returns the <see cref="ServiceBusPlugin"/> instance.</returns>
+        ServiceBusPlugin WithSchemaPathUserPropertyKey(string schemaPathUserPropertyKey);
 
         /// <summary>
         /// Performs an operation before the message is sent.

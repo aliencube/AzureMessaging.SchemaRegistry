@@ -13,6 +13,7 @@ using Microsoft.ServiceBus.Messaging;
 namespace Aliencube.AzureMessaging.SchemaValidation.ServiceBus
 {
 #if NET461
+
     /// <summary>
     /// This represents the extension entity for <see cref="BrokeredMessage"/>.
     /// </summary>
@@ -34,8 +35,10 @@ namespace Aliencube.AzureMessaging.SchemaValidation.ServiceBus
             validator.ThrowIfNullOrDefault();
             schemaPathPropertyKey.ThrowIfNullOrWhiteSpace();
 
+            var cloned = message.Clone();
+
             var payload = default(string);
-            using (var stream = message.GetBody<Stream>())
+            using (var stream = cloned.GetBody<Stream>())
             using (var reader = new StreamReader(stream))
             {
                 payload = await reader.ReadToEndAsync().ConfigureAwait(false);
@@ -43,18 +46,32 @@ namespace Aliencube.AzureMessaging.SchemaValidation.ServiceBus
 
             if (payload.IsNullOrWhiteSpace())
             {
-                throw new MessageBodyZeroLengthException().WithServiceBusMessage(message);
+                throw new MessageBodyZeroLengthException().WithServiceBusMessage(cloned);
             }
 
-            var path = message.Properties[schemaPathPropertyKey] as string;
+            var path = cloned.Properties[schemaPathPropertyKey] as string;
             if (path.IsNullOrWhiteSpace())
             {
-                throw new SchemaPathNotExistException().WithServiceBusMessage(message);
+                throw new SchemaPathNotExistException().WithServiceBusMessage(cloned);
             }
 
             var validated = await validator.ValidateAsync(payload, path).ConfigureAwait(false);
 
             return message;
+        }
+
+        /// <summary>
+        /// Validates the message against the schema from the given path.
+        /// </summary>
+        /// <param name="message"><see cref="BrokeredMessage"/> instance.</param>
+        /// <param name="validator"><see cref="ISchemaValidator"/> instance.</param>
+        /// <param name="schemaPathPropertyKey">Property key for the schema path.</param>
+        /// <returns>Returns the <see cref="BrokeredMessage"/> instance, if validated; otherwise throws an exception.</returns>
+        public static async Task<BrokeredMessage> ValidateAsync(this Task<BrokeredMessage> message, ISchemaValidator validator, string schemaPathPropertyKey = "schemaPath")
+        {
+            var instance = await message.ConfigureAwait(false);
+
+            return await instance.ValidateAsync(validator, schemaPathPropertyKey).ConfigureAwait(false);
         }
     }
 
