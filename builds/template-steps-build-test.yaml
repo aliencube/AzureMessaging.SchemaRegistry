@@ -1,9 +1,10 @@
 steps:
 - task: CmdLine@2
   displayName: 'Run Azure Storage Emulator'
-  inputs: |
-    "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe" init /server "(localdb)\MsSqlLocalDb"
-    "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe" start
+  inputs:
+    script: |
+      "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe" init /server "(localdb)\MsSqlLocalDb"
+      "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe" start
 
 - task: UseDotNet@2
   displayName: 'Install .NET Core SDK'
