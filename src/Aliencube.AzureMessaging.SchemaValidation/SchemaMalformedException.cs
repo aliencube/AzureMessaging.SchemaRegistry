@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 
-using Aliencube.AzureMessaging.SchemaRegistry.Sinks;
+using Aliencube.AzureMessaging.SchemaRegistry;
 using Aliencube.AzureMessaging.SchemaRegistry.Sinks.Extensions;
 
 namespace Aliencube.AzureMessaging.SchemaValidation
@@ -64,18 +64,18 @@ namespace Aliencube.AzureMessaging.SchemaValidation
         }
 
         /// <summary>
-        /// Gets the <see cref="ISchemaSink"/> instance.
+        /// Gets the <see cref="ISchemaConsumer"/> instance.
         /// </summary>
-        public ISchemaSink Sink { get; private set; }
+        public virtual ISchemaConsumer Consumer { get; private set; }
 
         /// <summary>
-        /// Adds the <see cref="ISchemaSink"/> instance.
+        /// Adds the <see cref="ISchemaConsumer"/> to the exception.
         /// </summary>
-        /// <param name="sink"><see cref="ISchemaSink"/> instance.</param>
+        /// <param name="consumer"><see cref="ISchemaConsumer"/> instance.</param>
         /// <returns>Returns the <see cref="SchemaMalformedException"/>.</returns>
-        public SchemaMalformedException WithSink(ISchemaSink sink)
+        public virtual SchemaMalformedException WithSchemaConsumer(ISchemaConsumer consumer)
         {
-            this.Sink = sink.ThrowIfNullOrDefault();
+            this.Consumer = consumer.ThrowIfNullOrDefault();
 
             return this;
         }

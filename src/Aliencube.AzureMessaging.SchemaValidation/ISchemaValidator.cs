@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-using Aliencube.AzureMessaging.SchemaRegistry.Sinks;
+using Aliencube.AzureMessaging.SchemaRegistry;
 
 namespace Aliencube.AzureMessaging.SchemaValidation
 {
@@ -10,16 +10,16 @@ namespace Aliencube.AzureMessaging.SchemaValidation
     public interface ISchemaValidator
     {
         /// <summary>
-        /// Gets the <see cref="ISchemaSink"/> instance.
+        /// Gets the <see cref="ISchemaConsumer"/> instance.
         /// </summary>
-        ISchemaSink Sink { get; }
+        ISchemaConsumer Consumer { get; }
 
         /// <summary>
-        /// Adds the <see cref="ISchemaSink"/> to the validator.
+        /// Adds the <see cref="ISchemaConsumer"/> to the validator.
         /// </summary>
-        /// <param name="sink"><see cref="ISchemaSink"/> instance.</param>
+        /// <param name="consumer"><see cref="ISchemaConsumer"/> instance.</param>
         /// <returns>Returns the <see cref="ISchemaValidator"/> instance.</returns>
-        ISchemaValidator WithSink(ISchemaSink sink);
+        ISchemaValidator WithSchemaConsumer(ISchemaConsumer consumer);
 
         /// <summary>
         /// Validates the payload against the schema from the sink.

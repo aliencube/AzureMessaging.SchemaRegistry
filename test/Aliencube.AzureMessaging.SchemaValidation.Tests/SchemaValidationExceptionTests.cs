@@ -4,8 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 
-using Aliencube.AzureMessaging.SchemaRegistry.Sinks;
-using Aliencube.AzureMessaging.Tests.Fakes;
+using Aliencube.AzureMessaging.SchemaRegistry;
 
 using FluentAssertions;
 using FluentAssertions.Common;
@@ -62,7 +61,7 @@ namespace Aliencube.AzureMessaging.SchemaValidation.Tests
         public void Given_Type_Then_It_Should_Have_Properties()
         {
             typeof(SchemaValidationException)
-                .Should().HaveProperty<ISchemaSink>("Sink")
+                .Should().HaveProperty<ISchemaConsumer>("Consumer")
                     .Which.Should().BeReadable()
                         .And.BeWritable()
                         ;
@@ -78,7 +77,7 @@ namespace Aliencube.AzureMessaging.SchemaValidation.Tests
         public void Given_Type_Then_It_Should_Have_Methods()
         {
             typeof(SchemaValidationException)
-                .Should().HaveMethod("WithSink", new[] { typeof(ISchemaSink) })
+                .Should().HaveMethod("WithSchemaConsumer", new[] { typeof(ISchemaConsumer) })
                     .Which.Should().Return<SchemaValidationException>()
                     ;
 
@@ -121,7 +120,7 @@ namespace Aliencube.AzureMessaging.SchemaValidation.Tests
         {
             var ex = new SchemaValidationException();
 
-            ex.Sink.Should().BeNull();
+            ex.Consumer.Should().BeNull();
         }
 
         [TestMethod]
@@ -129,7 +128,7 @@ namespace Aliencube.AzureMessaging.SchemaValidation.Tests
         {
             var ex = new SchemaValidationException();
 
-            Action action = () => ex.WithSink(null);
+            Action action = () => ex.WithSchemaConsumer(null);
 
             action.Should().Throw<ArgumentNullException>();
         }
@@ -137,10 +136,10 @@ namespace Aliencube.AzureMessaging.SchemaValidation.Tests
         [TestMethod]
         public void Given_Sink_When_WithSink_Invoked_Then_It_Should_Return_Result()
         {
-            var sink = new FakeSchemaSink();
+            var consumer = new SchemaConsumer();
 
             var ex = new SchemaValidationException()
-                         .WithSink(sink);
+                         .WithSchemaConsumer(consumer);
 
             ex.Should().BeOfType<SchemaValidationException>();
         }

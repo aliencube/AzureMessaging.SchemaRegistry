@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 using Aliencube.AzureMessaging.SchemaRegistry.Sinks.Extensions;
 
-namespace Aliencube.AzureMessaging.SchemaValidation
+namespace Aliencube.AzureMessaging.SchemaValidation.Extensions
 {
     /// <summary>
     /// This represents the extension entity for <see cref="string"/>.

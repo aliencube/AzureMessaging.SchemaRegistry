@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
-using Aliencube.AzureMessaging.SchemaRegistry.Sinks;
+using Aliencube.AzureMessaging.SchemaRegistry;
 using Aliencube.AzureMessaging.SchemaRegistry.Sinks.Extensions;
 
 using NJsonSchema;
@@ -31,20 +31,20 @@ namespace Aliencube.AzureMessaging.SchemaValidation
         /// <summary>
         /// Initializes a new instance of the <see cref="SchemaValidator"/> class.
         /// </summary>
-        /// <param name="sink"><see cref="ISchemaSink"/> instance.</param>
-        public SchemaValidator(ISchemaSink sink)
+        /// <param name="consumer"><see cref="ISchemaConsumer"/> instance.</param>
+        public SchemaValidator(ISchemaConsumer consumer)
             : this()
         {
-            this.Sink = sink.ThrowIfNullOrDefault();
+            this.Consumer = consumer.ThrowIfNullOrDefault();
         }
 
         /// <inheritdoc />
-        public virtual ISchemaSink Sink { get; private set; }
+        public virtual ISchemaConsumer Consumer { get; private set; }
 
         /// <inheritdoc />
-        public virtual ISchemaValidator WithSink(ISchemaSink sink)
+        public virtual ISchemaValidator WithSchemaConsumer(ISchemaConsumer consumer)
         {
-            this.Sink = sink.ThrowIfNullOrDefault();
+            this.Consumer = consumer.ThrowIfNullOrDefault();
 
             return this;
         }
@@ -55,11 +55,11 @@ namespace Aliencube.AzureMessaging.SchemaValidation
             payload.ThrowIfNullOrWhiteSpace();
             path.ThrowIfNullOrWhiteSpace();
 
-            var schema = await this.Sink.GetSchemaAsync(path).ConfigureAwait(false);
+            var schema = await this.Consumer.ConsumeAsync(path).ConfigureAwait(false);
             if (schema.IsNullOrWhiteSpace())
             {
                 throw new SchemaNotFoundException()
-                          .WithSink(this.Sink);
+                          .WithSchemaConsumer(this.Consumer);
             }
 
             var jschema = default(JsonSchema);
@@ -70,14 +70,14 @@ namespace Aliencube.AzureMessaging.SchemaValidation
             catch (Exception ex)
             {
                 throw new SchemaMalformedException(ex)
-                          .WithSink(this.Sink);
+                          .WithSchemaConsumer(this.Consumer);
             }
 
             var errors = this._validator.Validate(payload, jschema);
             if (errors.Any())
             {
                 throw new SchemaValidationException()
-                          .WithSink(this.Sink)
+                          .WithSchemaConsumer(this.Consumer)
                           .WithValidationErrors(errors.ToList());
             }
 

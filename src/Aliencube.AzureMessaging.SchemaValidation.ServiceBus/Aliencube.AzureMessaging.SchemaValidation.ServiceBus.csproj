@@ -14,7 +14,7 @@
     <Product>Aliencube.AzureMessaging.SchemaValidation.ServiceBus</Product>
     <Summary>This package enables to validate messages against schemas, through Azure ServiceBus SDK.</Summary>
     <Description>This package enables to validate messages against schemas, through Azure ServiceBus SDK.</Description>
-    <PackageTags>Azure-Messaging, Schema-Registry, Schema-Validation, HttpClient, Azure-Service-Bus</PackageTags>
+    <PackageTags>Azure-Messaging, Schema-Registry, Schema-Validation, Schema-Sink, Azure-Service-Bus</PackageTags>
     <Copyright>Aliencube Community</Copyright>
     <PackageLicenseUrl>https://github.com/aliencube/AzureMessaging.SchemaRegistry/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/aliencube/AzureMessaging.SchemaRegistry</PackageProjectUrl>

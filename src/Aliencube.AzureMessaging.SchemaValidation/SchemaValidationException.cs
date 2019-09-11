@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 
-using Aliencube.AzureMessaging.SchemaRegistry.Sinks;
+using Aliencube.AzureMessaging.SchemaRegistry;
 using Aliencube.AzureMessaging.SchemaRegistry.Sinks.Extensions;
 
 using NJsonSchema.Validation;
@@ -57,9 +57,9 @@ namespace Aliencube.AzureMessaging.SchemaValidation
         }
 
         /// <summary>
-        /// Gets the <see cref="ISchemaSink"/> instance.
+        /// Gets the <see cref="ISchemaConsumer"/> instance.
         /// </summary>
-        public ISchemaSink Sink { get; private set; }
+        public virtual ISchemaConsumer Consumer { get; private set; }
 
         /// <summary>
         /// Gets the list of <see cref="ValidationError"/> instances.
@@ -67,13 +67,13 @@ namespace Aliencube.AzureMessaging.SchemaValidation
         public List<ValidationError> ValidationErrors { get; private set; }
 
         /// <summary>
-        /// Adds the <see cref="ISchemaSink"/> instance.
+        /// Adds the <see cref="ISchemaConsumer"/> to the exception.
         /// </summary>
-        /// <param name="sink"><see cref="ISchemaSink"/> instance.</param>
+        /// <param name="consumer"><see cref="ISchemaConsumer"/> instance.</param>
         /// <returns>Returns the <see cref="SchemaValidationException"/>.</returns>
-        public SchemaValidationException WithSink(ISchemaSink sink)
+        public virtual SchemaValidationException WithSchemaConsumer(ISchemaConsumer consumer)
         {
-            this.Sink = sink.ThrowIfNullOrDefault();
+            this.Consumer = consumer.ThrowIfNullOrDefault();
 
             return this;
         }

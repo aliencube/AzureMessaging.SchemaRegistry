@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-using Aliencube.AzureMessaging.SchemaRegistry.Sinks;
+using Aliencube.AzureMessaging.SchemaRegistry;
 
 using FluentAssertions;
 
@@ -15,7 +15,7 @@ namespace Aliencube.AzureMessaging.SchemaValidation.Tests
         public void Given_Type_Then_It_Should_Have_Properties()
         {
             typeof(ISchemaValidator)
-                .Should().HaveProperty<ISchemaSink>("Sink")
+                .Should().HaveProperty<ISchemaConsumer>("Consumer")
                     .Which.Should().BeReadable()
                           .And.NotBeWritable();
         }
@@ -24,7 +24,7 @@ namespace Aliencube.AzureMessaging.SchemaValidation.Tests
         public void Given_Type_Then_It_Should_Have_Methods()
         {
             typeof(ISchemaValidator)
-                .Should().HaveMethod("WithSink", new[] { typeof(ISchemaSink) })
+                .Should().HaveMethod("WithSchemaConsumer", new[] { typeof(ISchemaConsumer) })
                     .Which.Should().Return<ISchemaValidator>();
 
             typeof(ISchemaValidator)

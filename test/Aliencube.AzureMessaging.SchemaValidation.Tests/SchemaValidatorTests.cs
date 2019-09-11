@@ -3,8 +3,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Threading.Tasks;
 
+using Aliencube.AzureMessaging.SchemaRegistry;
 using Aliencube.AzureMessaging.SchemaRegistry.Sinks;
-using Aliencube.AzureMessaging.Tests.Fakes;
 
 using FluentAssertions;
 
@@ -31,7 +31,7 @@ namespace Aliencube.AzureMessaging.SchemaValidation.Tests
         {
             typeof(SchemaValidator)
                 .Should().HaveDefaultConstructor()
-                .And.HaveConstructor(new[] { typeof(ISchemaSink) })
+                .And.HaveConstructor(new[] { typeof(ISchemaConsumer) })
                 ;
         }
 
@@ -39,7 +39,7 @@ namespace Aliencube.AzureMessaging.SchemaValidation.Tests
         public void Given_Type_Then_It_Should_Have_Properties()
         {
             typeof(SchemaValidator)
-                .Should().HaveProperty<ISchemaSink>("Sink")
+                .Should().HaveProperty<ISchemaConsumer>("Consumer")
                     .Which.Should().BeVirtual()
                           .And.BeReadable()
                           .And.BeWritable()
@@ -50,7 +50,7 @@ namespace Aliencube.AzureMessaging.SchemaValidation.Tests
         public void Given_Type_Then_It_Should_Have_Methods()
         {
             typeof(SchemaValidator)
-                .Should().HaveMethod("WithSink", new[] { typeof(ISchemaSink) })
+                .Should().HaveMethod("WithSchemaConsumer", new[] { typeof(ISchemaConsumer) })
                     .Which.Should().BeVirtual()
                         .And.Return<ISchemaValidator>()
                         ;
@@ -67,7 +67,7 @@ namespace Aliencube.AzureMessaging.SchemaValidation.Tests
         {
             var instance = new SchemaValidator();
 
-            instance.Sink.Should().BeNull();
+            instance.Consumer.Should().BeNull();
         }
 
         [TestMethod]
@@ -84,7 +84,7 @@ namespace Aliencube.AzureMessaging.SchemaValidation.Tests
         [TestMethod]
         public void Given_Null_Sink_When_Instantiated_Then_It_Should_Throw_Exception()
         {
-            Action action = () => new SchemaValidator(sink: null);
+            Action action = () => new SchemaValidator(consumer: null);
 
             action.Should().Throw<ArgumentNullException>();
         }
@@ -94,7 +94,7 @@ namespace Aliencube.AzureMessaging.SchemaValidation.Tests
         {
             var instance = new SchemaValidator();
 
-            Action action = () => instance.WithSink(null);
+            Action action = () => instance.WithSchemaConsumer(null);
 
             action.Should().Throw<ArgumentNullException>();
         }
@@ -102,22 +102,21 @@ namespace Aliencube.AzureMessaging.SchemaValidation.Tests
         [TestMethod]
         public void Given_Sink_When_WithSink_Invoked_Then_It_Should_Return_Result()
         {
-            var sink = new FakeSchemaSink();
-            var instance = new SchemaValidator()
-                               .WithSink(sink);
+            var consumer = new SchemaConsumer();
+            var instance = new SchemaValidator();
 
-            var result = instance.WithSink(sink);
+            var result = instance.WithSchemaConsumer(consumer);
 
-            result.Sink.Should().Be(sink);
+            result.Consumer.Should().Be(consumer);
         }
 
         [TestMethod]
         public void Given_Null_Parameters_When_ValidateAsync_Invoked_Then_It_Should_Throw_Exception()
         {
             var payload = "{ \"hello\": \"world\" }";
-            var sink = new Mock<ISchemaSink>();
+            var consumer = new Mock<ISchemaConsumer>();
             var instance = new SchemaValidator()
-                               .WithSink(sink.Object);
+                               .WithSchemaConsumer(consumer.Object);
 
             Func<Task> func = async () => await instance.ValidateAsync(null, null).ConfigureAwait(false);
             func.Should().Throw<ArgumentNullException>();
@@ -130,11 +129,11 @@ namespace Aliencube.AzureMessaging.SchemaValidation.Tests
         [DataRow("{ \"hello\": \"world\" }", "default.json")]
         public void Given_Null_Schema_When_ValidateAsync_Invoked_Then_It_Should_Throw_Exception(string payload, string path)
         {
-            var sink = new Mock<ISchemaSink>();
-            sink.Setup(p => p.GetSchemaAsync(It.IsAny<string>())).ReturnsAsync((string)null);
+            var consumer = new Mock<ISchemaConsumer>();
+            consumer.Setup(p => p.ConsumeAsync(It.IsAny<string>())).ReturnsAsync(default(string));
 
             var instance = new SchemaValidator()
-                               .WithSink(sink.Object);
+                               .WithSchemaConsumer(consumer.Object);
 
             Func<Task> func = async () => await instance.ValidateAsync(payload, path).ConfigureAwait(false);
 
@@ -145,11 +144,11 @@ namespace Aliencube.AzureMessaging.SchemaValidation.Tests
         [DataRow("{ \"hello\": \"world\" }", "lorem-ipsum", "default.json")]
         public void Given_Error_Schema_When_ValidateAsync_Invoked_Then_It_Should_Throw_Exception(string payload, string schema, string path)
         {
-            var sink = new Mock<ISchemaSink>();
-            sink.Setup(p => p.GetSchemaAsync(It.IsAny<string>())).ReturnsAsync(schema);
+            var consumer = new Mock<ISchemaConsumer>();
+            consumer.Setup(p => p.ConsumeAsync(It.IsAny<string>())).ReturnsAsync(schema);
 
             var instance = new SchemaValidator()
-                               .WithSink(sink.Object);
+                               .WithSchemaConsumer(consumer.Object);
 
             Func<Task> func = async () => await instance.ValidateAsync(payload, path).ConfigureAwait(false);
 
@@ -160,11 +159,11 @@ namespace Aliencube.AzureMessaging.SchemaValidation.Tests
         [DataRow("{ \"hello\": \"world\" }", "{ \"type\": \"string\" }", "default.json")]
         public void Given_Validation_Error_When_ValidateAsync_Invoked_Then_It_Should_Throw_Exception(string payload, string schema, string path)
         {
-            var sink = new Mock<ISchemaSink>();
-            sink.Setup(p => p.GetSchemaAsync(It.IsAny<string>())).ReturnsAsync(schema);
+            var consumer = new Mock<ISchemaConsumer>();
+            consumer.Setup(p => p.ConsumeAsync(It.IsAny<string>())).ReturnsAsync(schema);
 
             var instance = new SchemaValidator()
-                               .WithSink(sink.Object);
+                               .WithSchemaConsumer(consumer.Object);
 
             Func<Task> func = async () => await instance.ValidateAsync(payload, path).ConfigureAwait(false);
 
@@ -175,11 +174,11 @@ namespace Aliencube.AzureMessaging.SchemaValidation.Tests
         [DataRow("{ \"hello\": \"world\" }", "{ \"type\": \"object\", \"properties\": { \"hello\": { \"type\": \"string\" } } }", "default.json")]
         public async Task Given_Payload_When_ValidateAsync_Invoked_Then_It_Should_Return_Result(string payload, string schema, string path)
         {
-            var sink = new Mock<ISchemaSink>();
-            sink.Setup(p => p.GetSchemaAsync(It.IsAny<string>())).ReturnsAsync(schema);
+            var consumer = new Mock<ISchemaConsumer>();
+            consumer.Setup(p => p.ConsumeAsync(It.IsAny<string>())).ReturnsAsync(schema);
 
             var instance = new SchemaValidator()
-                               .WithSink(sink.Object);
+                               .WithSchemaConsumer(consumer.Object);
 
             var result = await instance.ValidateAsync(payload, path).ConfigureAwait(false);
 

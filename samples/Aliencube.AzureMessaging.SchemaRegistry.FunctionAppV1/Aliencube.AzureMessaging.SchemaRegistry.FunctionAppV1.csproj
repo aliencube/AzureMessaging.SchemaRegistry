@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Aliencube.AzureMessaging.SchemaRegistry.Sinks.FileSystem\Aliencube.AzureMessaging.SchemaRegistry.Sinks.FileSystem.csproj" />
+    <ProjectReference Include="..\..\src\Aliencube.AzureMessaging.SchemaRegistry\Aliencube.AzureMessaging.SchemaRegistry.csproj" />
     <ProjectReference Include="..\..\src\Aliencube.AzureMessaging.SchemaValidation\Aliencube.AzureMessaging.SchemaValidation.csproj" />
   </ItemGroup>
 
