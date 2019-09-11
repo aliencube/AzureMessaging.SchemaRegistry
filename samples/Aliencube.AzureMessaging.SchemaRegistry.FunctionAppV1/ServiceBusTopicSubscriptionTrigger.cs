@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 
 using Aliencube.AzureMessaging.SchemaRegistry.Sinks;
 using Aliencube.AzureMessaging.SchemaValidation;
+using Aliencube.AzureMessaging.SchemaValidation.Extensions;
 
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
@@ -24,7 +25,8 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.FunctionAppV1
             var location = Utility.GetBasePath();
             var path = "default.json";
             var sink = new FileSystemSchemaSink().WithBaseLocation(location);
-            var validator = new SchemaValidator().WithSink(sink);
+            var consumer = new SchemaConsumer().WithSink(sink);
+            var validator = new SchemaValidator().WithSchemaConsumer(consumer);
 
             var validated = await message.ValidateAsync(validator, path).ConfigureAwait(false);
 

@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
 using Aliencube.AzureMessaging.SchemaValidation;
+using Aliencube.AzureMessaging.SchemaValidation.Extensions;
 
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;

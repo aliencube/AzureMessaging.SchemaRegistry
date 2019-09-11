@@ -3,8 +3,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 
-using Aliencube.AzureMessaging.SchemaRegistry.Sinks;
-using Aliencube.AzureMessaging.Tests.Fakes;
+using Aliencube.AzureMessaging.SchemaRegistry;
 
 using FluentAssertions;
 using FluentAssertions.Common;
@@ -56,7 +55,7 @@ namespace Aliencube.AzureMessaging.SchemaValidation.Tests
         public void Given_Type_Then_It_Should_Have_Properties()
         {
             typeof(SchemaNotFoundException)
-                .Should().HaveProperty<ISchemaSink>("Sink")
+                .Should().HaveProperty<ISchemaConsumer>("Consumer")
                     .Which.Should().BeReadable()
                         .And.BeWritable()
                         ;
@@ -66,7 +65,7 @@ namespace Aliencube.AzureMessaging.SchemaValidation.Tests
         public void Given_Type_Then_It_Should_Have_Methods()
         {
             typeof(SchemaNotFoundException)
-                .Should().HaveMethod("WithSink", new[] { typeof(ISchemaSink) })
+                .Should().HaveMethod("WithSchemaConsumer", new[] { typeof(ISchemaConsumer) })
                     .Which.Should().Return<SchemaNotFoundException>()
                     ;
         }
@@ -104,7 +103,7 @@ namespace Aliencube.AzureMessaging.SchemaValidation.Tests
         {
             var ex = new SchemaNotFoundException();
 
-            ex.Sink.Should().BeNull();
+            ex.Consumer.Should().BeNull();
         }
 
         [TestMethod]
@@ -112,7 +111,7 @@ namespace Aliencube.AzureMessaging.SchemaValidation.Tests
         {
             var ex = new SchemaNotFoundException();
 
-            Action action = () => ex.WithSink(null);
+            Action action = () => ex.WithSchemaConsumer(null);
 
             action.Should().Throw<ArgumentNullException>();
         }
@@ -120,10 +119,10 @@ namespace Aliencube.AzureMessaging.SchemaValidation.Tests
         [TestMethod]
         public void Given_Sink_When_WithSink_Invoked_Then_It_Should_Return_Result()
         {
-            var sink = new FakeSchemaSink();
+            var consumer = new SchemaConsumer();
 
             var ex = new SchemaNotFoundException()
-                         .WithSink(sink);
+                         .WithSchemaConsumer(consumer);
 
             ex.Should().BeOfType<SchemaNotFoundException>();
         }

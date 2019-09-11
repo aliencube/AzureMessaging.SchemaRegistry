@@ -41,6 +41,7 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.FunctionAppV2
             var location = Utility.GetBasePath();
             var sink = new FileSystemSchemaSink(location);
             services.AddSingleton<ISchemaSink, FileSystemSchemaSink>(_ => sink);
+            services.AddSingleton<ISchemaConsumer, SchemaConsumer>();
             services.AddSingleton<ISchemaValidator, SchemaValidator>();
         }
     }

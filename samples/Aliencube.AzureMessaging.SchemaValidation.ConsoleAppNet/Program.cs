@@ -88,15 +88,25 @@ namespace Aliencube.AzureMessaging.SchemaValidation.ConsoleAppNet
             return sink;
         }
 
+        private static ISchemaConsumer GetSchemaConsumer(Options options)
+        {
+            var sink = GetSchemaSink(options);
+
+            var consumer = new SchemaConsumer()
+                               .WithSink(sink);
+
+            return consumer;
+        }
+
         private static async Task RegisterSchemaAsync<T>(Options options)
         {
+            var sink = GetSchemaSink(options);
+
             var builder = new SchemaBuilder()
                               .WithSettings(Settings);
 
             var schema = builder.Build<T>()
                                 .ToJson();
-
-            var sink = GetSchemaSink(options);
 
             var producer = new SchemaProducer()
                                .WithBuilder(builder)
@@ -110,10 +120,10 @@ namespace Aliencube.AzureMessaging.SchemaValidation.ConsoleAppNet
 
         private static async Task SendMessageAsync<T>(Options options, T payload)
         {
-            var sink = GetSchemaSink(options);
+            var consumer = GetSchemaConsumer(options);
 
             var validator = new SchemaValidator()
-                                .WithSink(sink);
+                                .WithSchemaConsumer(consumer);
 
             var factory = MessagingFactory.CreateFromConnectionString(options.ServiceBusConnectionString);
             var serialised = JsonConvert.SerializeObject(payload, Settings.SerializerSettings);
@@ -137,10 +147,10 @@ namespace Aliencube.AzureMessaging.SchemaValidation.ConsoleAppNet
 
         private static async Task ReceiveMessageAsync(Options options)
         {
-            var sink = GetSchemaSink(options);
+            var consumer = GetSchemaConsumer(options);
 
             var validator = new SchemaValidator()
-                                .WithSink(sink);
+                                .WithSchemaConsumer(consumer);
 
             var factory = MessagingFactory.CreateFromConnectionString(options.ServiceBusConnectionString);
 
