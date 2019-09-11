@@ -31,7 +31,6 @@ steps:
     projects: '$(System.DefaultWorkingDirectory)/test/**/*.csproj'
     arguments: '-c $(Configuration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=$(System.DefaultWorkingDirectory)\TestResults\coverage'
     publishTestResult: true
-    testRunTitle: 'Unit Test Results'
 
 - task: PowerShell@2
   displayName: 'Save Test Run Status'
