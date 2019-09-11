@@ -51,7 +51,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aliencube.AzureMessaging.Sc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aliencube.AzureMessaging.SchemaValidation.ConsoleAppNet", "samples\Aliencube.AzureMessaging.SchemaValidation.ConsoleAppNet\Aliencube.AzureMessaging.SchemaValidation.ConsoleAppNet.csproj", "{C30D6830-919E-48A0-8BD1-88C1128E25A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aliencube.AzureMessaging.SchemaValidation.ConsoleAppCore", "samples\Aliencube.AzureMessaging.SchemaValidation.ConsoleAppCore\Aliencube.AzureMessaging.SchemaValidation.ConsoleAppCore.csproj", "{8F37700F-C309-4D33-A2AA-0B5E960B1FB4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aliencube.AzureMessaging.SchemaValidation.ConsoleAppCore", "samples\Aliencube.AzureMessaging.SchemaValidation.ConsoleAppCore\Aliencube.AzureMessaging.SchemaValidation.ConsoleAppCore.csproj", "{8F37700F-C309-4D33-A2AA-0B5E960B1FB4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "builds", "builds", "{5314F90D-6572-4E9E-AEA0-3A637B248F9B}"
+	ProjectSection(SolutionItems) = preProject
+		builds\build-dev-feature-hotfix..yaml = builds\build-dev-feature-hotfix..yaml
+		builds\build-pr.yaml = builds\build-pr.yaml
+		builds\build-release.yaml = builds\build-release.yaml
+		builds\template-job-release.yaml = builds\template-job-release.yaml
+		builds\template-steps-build-test.yaml = builds\template-steps-build-test.yaml
+		builds\template-steps-publish.yaml = builds\template-steps-publish.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
