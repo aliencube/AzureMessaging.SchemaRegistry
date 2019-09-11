@@ -1,0 +1,56 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
+    <IsPackable>true</IsPackable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageId>Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob</PackageId>
+    <Owners>Aliencube</Owners>
+    <Authors>Justin Yoo</Authors>
+    <Company>Aliencube Community</Company>
+    <Version>1.0.0</Version>
+    <Title>Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob</Title>
+    <Product>Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob</Product>
+    <Summary>This package enables to handle schemas over Azure Blob Storage, for Azure messaging services including Azure Storage Queue, Azure Service Bus, Azure Event Hub, Azure Event Grid, etc.</Summary>
+    <Description>This package enables to handle schemas over Azure Blob Storage, for Azure messaging services including Azure Storage Queue, Azure Service Bus, Azure Event Hub, Azure Event Grid, etc.</Description>
+    <PackageTags>Azure-Messaging, Schema-Registry, Schema-Registry-Sink, Schema-Validation, Schema-Validation-Sink, Azure-Blob-Storage, Azure-Storage-Queue, Azure-Service-Bus, Azure-Event-Hub, Azure-Event-Grid</PackageTags>
+    <Copyright>Aliencube Community</Copyright>
+    <PackageLicenseUrl>https://github.com/aliencube/AzureMessaging.SchemaRegistry/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/aliencube/AzureMessaging.SchemaRegistry</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/aliencube/AzureMessaging.SchemaRegistry/master/icons/Aliencube.AzureMessaging.SchemaRegistry.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/aliencube/AzureMessaging.SchemaRegistry</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>..\..\AllRulesDefault.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <Import Project="..\..\editorconfig.props" Condition="Exists('..\..\editorconfig.props')" />
+  <Import Project="..\..\Microsoft.CodeAnalysis.FxCopAnalyzers.props" Condition="Exists('..\..\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" />
+
+  <PropertyGroup>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='net461'">
+    <PackageReference Include="WindowsAzure.Storage" Version="7.2.1" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='netstandard2.0'">
+    <PackageReference Include="WindowsAzure.Storage" Version="9.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Aliencube.AzureMessaging.SchemaRegistry.Sinks\Aliencube.AzureMessaging.SchemaRegistry.Sinks.csproj" />
+  </ItemGroup>
+
+</Project>

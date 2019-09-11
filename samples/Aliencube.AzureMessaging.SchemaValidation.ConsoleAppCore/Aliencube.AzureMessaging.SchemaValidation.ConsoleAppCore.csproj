@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>..\..\AllRulesDefault.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <Import Project="..\..\editorconfig.props" Condition="Exists('..\..\editorconfig.props')" />
+  <Import Project="..\..\Microsoft.CodeAnalysis.FxCopAnalyzers.props" Condition="Exists('..\..\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" />
+
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.6.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob\Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob.csproj" />
+    <ProjectReference Include="..\..\src\Aliencube.AzureMessaging.SchemaRegistry\Aliencube.AzureMessaging.SchemaRegistry.csproj" />
+    <ProjectReference Include="..\..\src\Aliencube.AzureMessaging.SchemaValidation.ServiceBus\Aliencube.AzureMessaging.SchemaValidation.ServiceBus.csproj" />
+  </ItemGroup>
+
+</Project>
