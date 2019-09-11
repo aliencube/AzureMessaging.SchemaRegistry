@@ -4,6 +4,7 @@ steps:
   inputs:
     command: pack
     packagesToPack: '$(System.DefaultWorkingDirectory)/src/**/*.csproj'
+    packDirectory: '$(Build.ArtifactStagingDirectory)'
     nobuild: true
     includesymbols: true
     versioningScheme: byEnvVar
@@ -13,6 +14,6 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifacts'
   inputs:
-    pathToPublish: $(Build.ArtifactStagingDirectory)/drop
+    pathToPublish: '$(Build.ArtifactStagingDirectory)'
     artifactName: drop
-    publishLocation: 'Container'
+    publishLocation: Container
