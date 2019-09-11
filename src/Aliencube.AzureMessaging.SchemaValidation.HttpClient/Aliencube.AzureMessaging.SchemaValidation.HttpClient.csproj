@@ -14,7 +14,7 @@
     <Product>Aliencube.AzureMessaging.SchemaValidation.HttpClient</Product>
     <Summary>This package enables to validate messages against schemas, through HttpClient, for Azure messaging services including Azure Storage Queue, Azure Service Bus, Azure Event Hub, Azure Event Grid, etc.</Summary>
     <Description>This package enables to validate messages against schemas, through HttpClient, for Azure messaging services including Azure Storage Queue, Azure Service Bus, Azure Event Hub, Azure Event Grid, etc.</Description>
-    <PackageTags>Azure-Messaging, Schema-Registry, Schema-Validation, HttpClient, Azure-Storage-Queue, Azure-Service-Bus, Azure-Event-Hub, Azure-Event-Grid</PackageTags>
+    <PackageTags>Azure-Messaging, Schema-Registry, Schema-Validation, Schema-Sink, HttpClient, Azure-Storage-Queue, Azure-Service-Bus, Azure-Event-Hub, Azure-Event-Grid</PackageTags>
     <Copyright>Aliencube Community</Copyright>
     <PackageLicenseUrl>https://github.com/aliencube/AzureMessaging.SchemaRegistry/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/aliencube/AzureMessaging.SchemaRegistry</PackageProjectUrl>

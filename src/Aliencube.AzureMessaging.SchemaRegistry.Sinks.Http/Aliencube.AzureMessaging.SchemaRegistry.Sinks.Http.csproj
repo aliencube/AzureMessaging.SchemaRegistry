@@ -14,7 +14,7 @@
     <Product>Aliencube.AzureMessaging.SchemaRegistry.Sinks.Http</Product>
     <Summary>This package enables to handle schemas over HTTP, for Azure messaging services including Azure Storage Queue, Azure Service Bus, Azure Event Hub, Azure Event Grid, etc.</Summary>
     <Description>This package enables to handle schemas over HTTP, for Azure messaging services including Azure Storage Queue, Azure Service Bus, Azure Event Hub, Azure Event Grid, etc.</Description>
-    <PackageTags>Azure-Messaging, Schema-Registry, Azure-Storage-Queue, Azure-Service-Bus, Azure-Event-Hub, Azure-Event-Grid</PackageTags>
+    <PackageTags>Azure-Messaging, Schema-Registry, Schema-Registry-Sink, Schema-Validation, Schema-Validation-Sink, HttpClient, Azure-Storage-Queue, Azure-Service-Bus, Azure-Event-Hub, Azure-Event-Grid</PackageTags>
     <Copyright>Aliencube Community</Copyright>
     <PackageLicenseUrl>https://github.com/aliencube/AzureMessaging.SchemaRegistry/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/aliencube/AzureMessaging.SchemaRegistry</PackageProjectUrl>

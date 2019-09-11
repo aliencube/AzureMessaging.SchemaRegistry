@@ -1,0 +1,20 @@
+jobs:
+- deployment: WindowsLatest
+  displayName: 'Hosted Windows Latest'
+
+  pool:
+    vmImage: 'windows-latest'
+
+  environment: 'NuGet'
+
+  strategy:
+    runOnce:
+      deploy:
+        steps:
+        - task: NuGetCommand@2
+          displayName: 'Push NuGet Packages'
+          inputs:
+            command: push
+            nuGetFeedType: external
+            publishFeedCredentials: 'nuget.org'
+            verbosityPush: Quiet
