@@ -15,6 +15,7 @@ jobs:
           displayName: 'Push NuGet Packages'
           inputs:
             command: push
+            packagesToPush: '$(Pipeline.Workspace)/drop/*.nupkg;!$(Pipeline.Workspace)/drop/*.symbols.nupkg'
             nuGetFeedType: external
             publishFeedCredentials: 'nuget.org'
             verbosityPush: Quiet
