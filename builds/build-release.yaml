@@ -33,7 +33,7 @@ stages:
 - stage: Release
   displayName: 'Release to NuGet'
 
-  condition: and(succeeded(), eq('$(Release)', 'true'))
+  condition: and(succeeded(), eq('$(ProceedToRelease)', 'true'))
 
   jobs:
   - template: 'template-job-release.yaml'
