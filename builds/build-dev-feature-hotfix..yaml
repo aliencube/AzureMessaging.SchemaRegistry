@@ -6,6 +6,12 @@ trigger:
     - dev
     - feature/*
     - hotfix/*
+  paths:
+    exclude:
+    - builds/*
+    - docs/*
+    - icons/*
+    - images/*
 
 pr: none
 
