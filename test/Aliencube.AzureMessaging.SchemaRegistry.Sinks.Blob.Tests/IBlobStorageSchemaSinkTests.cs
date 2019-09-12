@@ -6,7 +6,6 @@ using Microsoft.WindowsAzure.Storage.Blob;
 namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob.Tests
 {
     [TestClass]
-    [TestCategory(nameof(IBlobStorageSchemaSinkTests))]
     public class IBlobStorageSchemaSinkTests
     {
         [TestMethod]
