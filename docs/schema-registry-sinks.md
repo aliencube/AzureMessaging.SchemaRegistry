@@ -14,3 +14,14 @@ Currently, there are three official sinks available:
 | Package | Download | Version|
 |---|---|---|
 | [Aliencube.AzureMessaging.SchemaRegistry.Sinks](https://www.nuget.org/packages/Aliencube.AzureMessaging.SchemaRegistry.Sinks/) | [![](https://img.shields.io/nuget/dt/Aliencube.AzureMessaging.SchemaRegistry.Sinks.svg)](https://www.nuget.org/packages/Aliencube.AzureMessaging.SchemaRegistry.Sinks/) | [![](https://img.shields.io/nuget/v/Aliencube.AzureMessaging.SchemaRegistry.Sinks.svg)](https://www.nuget.org/packages/Aliencube.AzureMessaging.SchemaRegistry.Sinks/) |
+
+
+## `ISchemaSink` and `SchemaSink` ##
+
+As an interface, and as an abstract class, both `ISchemaSink` and `SchemaSink` declare the following properties and methods:
+
+* `BaseLocation`: 
+* `WithBaseLocation(string location)`:
+* `GetSchemaAsync(string path)`:
+* `SetSchemaAsync(string schema, string path)`:
+
