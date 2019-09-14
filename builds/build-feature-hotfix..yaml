@@ -3,7 +3,6 @@ name: $(Version).$(rev:r)
 trigger:
   branches:
     include:
-    - dev
     - feature/*
     - hotfix/*
   paths:
@@ -12,6 +11,13 @@ trigger:
     - docs/*
     - icons/*
     - images/*
+    - '**/*.props'
+    - '**/*.ruleset'
+    - '**/README.md'
+    - LICENSE
+    - .editorconfig
+    - .formatconfig
+    - .gitignore
 
 pr: none
 
