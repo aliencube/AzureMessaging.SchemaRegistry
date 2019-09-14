@@ -1,6 +1,6 @@
 # Schema Registry #
 
-This is a schema registry library to produce a JSON schema and upload it to a repository, or download the JSON schema from the registry and consume it. Schema registry is accessible through [SchemaSink](./schema-registry-sinks.md).
+This is a schema registry library to produce a JSON schema and upload it to a registry, or download the JSON schema from the registry and consume it. Schema registry is accessible through [SchemaSink](./schema-registry-sinks.md).
 
 
 ## NuGet Package Status ##
