@@ -5,7 +5,7 @@ This provides libraries to enable schema registry features for Azure messaging s
 
 ## Build Status ##
 
-[![Build Status](https://dev.azure.com/aliencube/AzureMessaging.SchemaRegistry/_apis/build/status/dev%2C%20feature%2C%20hotfix?branchName=dev)](https://dev.azure.com/aliencube/AzureMessaging.SchemaRegistry/_build/latest?definitionId=8&branchName=dev)
+[![Build Status](https://dev.azure.com/aliencube/AzureMessaging.SchemaRegistry/_apis/build/status/dev?branchName=dev)](https://dev.azure.com/aliencube/AzureMessaging.SchemaRegistry/_build/latest?definitionId=11&branchName=dev)
 
 
 ## List of NuGet Packages ##
