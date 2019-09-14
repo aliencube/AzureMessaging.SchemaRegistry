@@ -47,16 +47,16 @@ var schema = "{" +
 var path1 = "v1/schema.json";
 
 var sinked1 = await sink.SetSchemaAsync(schema, path1)
-                       .ConfigureAwait(false);
+                        .ConfigureAwait(false);
 
 var schema1 = await sink.GetSchemaAsync(path1)
-                       .ConfigureAwait(false);
+                        .ConfigureAwait(false);
 
 var path2 = "https://my-schema-registry.blob.core.windows.net/schemas/v1/schema.json";
 
 var sinked2 = await sink.SetSchemaAsync(schema, path2)
-                       .ConfigureAwait(false);
+                        .ConfigureAwait(false);
 
 var schema2 = await sink.GetSchemaAsync(path2)
-                       .ConfigureAwait(false);
+                        .ConfigureAwait(false);
 ```
