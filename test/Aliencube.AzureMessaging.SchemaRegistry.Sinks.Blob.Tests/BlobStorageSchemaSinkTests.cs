@@ -14,6 +14,8 @@ using Microsoft.WindowsAzure.Storage.Blob;
 namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob.Tests
 {
     [TestClass]
+    [SuppressMessage("Design", "CA1054:Uri parameters should not be strings")]
+    [SuppressMessage("Design", "CA1062:Validate arguments of public methods")]
     [SuppressMessage("Usage", "CA1806:Do not ignore method results")]
     public class BlobStorageSchemaSinkTests
     {
@@ -121,6 +123,33 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob.Tests
 
             action = () => new BlobStorageSchemaSink(new Uri("http://localhost"), null);
             action.Should().Throw<ArgumentNullException>();
+        }
+
+        [DataTestMethod]
+        [DataRow("http://localhost")]
+        public void Given_Location_When_Instantiated_Then_It_Should_Return_Result(string location)
+        {
+            var instance = default(BlobStorageSchemaSink);
+
+            instance = new BlobStorageSchemaSink(location);
+            instance.BaseLocation.Should().Be(location);
+
+            instance = new BlobStorageSchemaSink(new Uri(location));
+            instance.BaseLocation.Trim('/').Should().Be(location.Trim('/'));
+        }
+
+        [DataTestMethod]
+        [DataRow("http://localhost", "http://lorem-ipsum")]
+        public void Given_Location_With_BlobClient_When_Instantiated_Then_It_Should_Return_Result(string location, string blobUri)
+        {
+            var instance = default(BlobStorageSchemaSink);
+            var blobClient = new CloudBlobClient(new Uri(blobUri));
+
+            instance = new BlobStorageSchemaSink(location, blobClient);
+            instance.BaseLocation.Trim('/').Should().Be(blobUri.Trim('/'));
+
+            instance = new BlobStorageSchemaSink(new Uri(location), blobClient);
+            instance.BaseLocation.Trim('/').Should().Be(blobUri.Trim('/'));
         }
 
         [TestMethod]

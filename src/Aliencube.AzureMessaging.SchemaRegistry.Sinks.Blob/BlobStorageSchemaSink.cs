@@ -54,7 +54,7 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob
         public BlobStorageSchemaSink(CloudBlobClient blobClient)
         {
             this._blobClient = blobClient.ThrowIfNullOrDefault();
-            this.BaseLocation = blobClient.BaseUri.ToString();
+            this.BaseLocation = this._blobClient.BaseUri.ToString();
         }
 
         /// <summary>
@@ -66,6 +66,7 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob
             : base(location)
         {
             this._blobClient = blobClient.ThrowIfNullOrDefault();
+            this.BaseLocation = this._blobClient.BaseUri.ToString();
         }
 
         /// <summary>
@@ -77,6 +78,7 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob
             : base(location.ThrowIfNullOrDefault().ToString())
         {
             this._blobClient = blobClient.ThrowIfNullOrDefault();
+            this.BaseLocation = this._blobClient.BaseUri.ToString();
         }
 
         /// <inheritdoc />
@@ -94,6 +96,7 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob
         public virtual ISchemaSink WithBlobClient(CloudBlobClient blobClient)
         {
             this._blobClient = blobClient.ThrowIfNullOrDefault();
+            this.BaseLocation = this._blobClient.BaseUri.ToString();
 
             return this;
         }
