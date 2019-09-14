@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Aliencube.AzureMessaging.SchemaRegistry.FunctionAppV2
+namespace Aliencube.AzureMessaging.SchemaValidation.FunctionAppV1
 {
     [ExcludeFromCodeCoverage]
     [SuppressMessage("Naming", "CA1716:Identifiers should not match keywords")]

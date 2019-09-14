@@ -29,7 +29,10 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.FileSystem.Tests
         [TestMethod]
         public void Given_Type_Then_It_Should_Implement_Interfaces()
         {
-            typeof(FileSystemSchemaSink).Should().Implement<ISchemaSink>();
+            typeof(FileSystemSchemaSink)
+                .Should().Implement<ISchemaSink>()
+                .And.Implement<IFileSystemSchemaSink>()
+                ;
         }
 
         [TestMethod]

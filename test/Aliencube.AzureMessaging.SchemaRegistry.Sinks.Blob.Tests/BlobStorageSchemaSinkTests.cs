@@ -38,8 +38,10 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob.Tests
             typeof(BlobStorageSchemaSink)
                 .Should().HaveDefaultConstructor()
                 .And.HaveConstructor(new[] { typeof(string) })
+                .And.HaveConstructor(new[] { typeof(Uri) })
                 .And.HaveConstructor(new[] { typeof(CloudBlobClient) })
                 .And.HaveConstructor(new[] { typeof(string), typeof(CloudBlobClient) })
+                .And.HaveConstructor(new[] { typeof(Uri), typeof(CloudBlobClient) })
                 ;
         }
 
@@ -57,6 +59,11 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob.Tests
         [TestMethod]
         public void Given_Type_Then_It_Should_Have_Methods()
         {
+            typeof(BlobStorageSchemaSink)
+                .Should().HaveMethod("WithBaseLocation", new[] { typeof(Uri) })
+                    .Which.Should().BeVirtual()
+                        .And.Return<ISchemaSink>();
+
             typeof(BlobStorageSchemaSink)
                 .Should().HaveMethod("WithBlobClient", new[] { typeof(CloudBlobClient) })
                     .Which.Should().BeVirtual()
@@ -86,7 +93,7 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob.Tests
             var instance = new BlobStorageSchemaSink();
 
             instance.BaseLocation.Should().BeEmpty();
-            instance.Container.Should().BeEmpty();
+            instance.Container.Should().Be("schemas");
         }
 
         [TestMethod]
@@ -94,17 +101,47 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob.Tests
         {
             var action = default(Action);
 
-            action = () => new BlobStorageSchemaSink(location: null);
+            action = () => new BlobStorageSchemaSink(location: (string)null);
+            action.Should().Throw<ArgumentNullException>();
+
+            action = () => new BlobStorageSchemaSink(location: (Uri)null);
             action.Should().Throw<ArgumentNullException>();
 
             action = () => new BlobStorageSchemaSink(blobClient: null);
             action.Should().Throw<ArgumentNullException>();
 
-            action = () => new BlobStorageSchemaSink(null, null);
+            action = () => new BlobStorageSchemaSink((string)null, null);
             action.Should().Throw<ArgumentNullException>();
 
-            action = () => new BlobStorageSchemaSink("hello-world", null);
+            action = () => new BlobStorageSchemaSink((Uri)null, null);
             action.Should().Throw<ArgumentNullException>();
+
+            action = () => new BlobStorageSchemaSink("http://localhost", null);
+            action.Should().Throw<ArgumentNullException>();
+
+            action = () => new BlobStorageSchemaSink(new Uri("http://localhost"), null);
+            action.Should().Throw<ArgumentNullException>();
+        }
+
+        [TestMethod]
+        public void Given_Null_Uri_When_WithBaseLocation_Invoked_Then_It_Should_Throw_Exception()
+        {
+            var instance = new BlobStorageSchemaSink();
+
+            Action action = () => instance.WithBaseLocation((Uri)null);
+
+            action.Should().Throw<ArgumentNullException>();
+        }
+
+        [DataTestMethod]
+        [DataRow("http://localhost")]
+        public void Given_Uri_When_WithBaseLocation_Invoked_Then_It_Should_Return_Result(string uri)
+        {
+            var instance = new BlobStorageSchemaSink();
+
+            var result = instance.WithBaseLocation(new Uri(uri));
+
+            result.BaseLocation.Trim('/').Should().BeEquivalentTo(uri.Trim('/'));
         }
 
         [TestMethod]

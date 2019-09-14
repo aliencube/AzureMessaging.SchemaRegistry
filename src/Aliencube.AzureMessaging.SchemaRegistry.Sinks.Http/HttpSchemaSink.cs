@@ -13,7 +13,7 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Http
     /// </summary>
     [SuppressMessage("Style", "IDE0021:Use expression body for constructors")]
     [SuppressMessage("Style", "IDE0022:Use expression body for methods")]
-    public class HttpSchemaSink : SchemaSink
+    public class HttpSchemaSink : SchemaSink, IHttpSchemaSink
     {
         private const string MediaType = "application/json";
         private const string HttpClientNotFound = "HttpClient not found";
@@ -39,6 +39,15 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Http
         /// <summary>
         /// Initializes a new instance of the <see cref="HttpSchemaSink"/> class.
         /// </summary>
+        /// <param name="location">Base URL of the HTTP sink.</param>
+        public HttpSchemaSink(Uri location)
+            : this(location.ThrowIfNullOrDefault().ToString())
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HttpSchemaSink"/> class.
+        /// </summary>
         /// <param name="httpClient"><see cref="HttpClient"/> instance.</param>
         public HttpSchemaSink(HttpClient httpClient)
         {
@@ -57,15 +66,28 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Http
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="System.Text.Encoding"/> value.
+        /// Initializes a new instance of the <see cref="HttpSchemaSink"/> class.
         /// </summary>
+        /// <param name="location">Base URL of the HTTP sink.</param>
+        /// <param name="httpClient"><see cref="HttpClient"/> instance.</param>
+        public HttpSchemaSink(Uri location, HttpClient httpClient)
+            : this(location.ThrowIfNullOrDefault().ToString())
+        {
+            this._httpClient = httpClient.ThrowIfNullOrDefault();
+        }
+
+        /// <inheritdoc />
         public virtual Encoding Encoding { get; set; } = Encoding.UTF8;
 
-        /// <summary>
-        /// Adds the <see cref="HttpClient"/> instance to the sink.
-        /// </summary>
-        /// <param name="httpClient"><see cref="HttpClient"/> instance.</param>
-        /// <returns>Returns the <see cref="ISchemaSink"/> instance.</returns>
+        /// <inheritdoc />
+        public virtual ISchemaSink WithBaseLocation(Uri location)
+        {
+            this.BaseLocation = location.ThrowIfNullOrDefault().ToString();
+
+            return this;
+        }
+
+        /// <inheritdoc />
         public virtual ISchemaSink WithHttpClient(HttpClient httpClient)
         {
             this._httpClient = httpClient.ThrowIfNullOrDefault();
@@ -85,7 +107,8 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Http
                 throw new InvalidOperationException(HttpClientNotFound);
             }
 
-            var requestUri = new Uri(string.Join("/", this.BaseLocation.TrimEnd('/'), path.TrimStart('/')).TrimStart('/'));
+            var sanitised = this.SanitisePath(path);
+            var requestUri = new Uri(string.Join("/", this.BaseLocation.TrimEnd('/'), sanitised.TrimStart('/')).TrimStart('/'));
             var result = await this._httpClient.GetStringAsync(requestUri).ConfigureAwait(false);
 
             return result;
@@ -104,7 +127,8 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Http
                 throw new InvalidOperationException(HttpClientNotFound);
             }
 
-            var requestUri = new Uri(string.Join("/", this.BaseLocation.TrimEnd('/'), path.TrimStart('/')).TrimStart('/'));
+            var sanitised = this.SanitisePath(path);
+            var requestUri = new Uri(string.Join("/", this.BaseLocation.TrimEnd('/'), sanitised.TrimStart('/')).TrimStart('/'));
             using (var content = new StringContent(schema, this.Encoding, MediaType))
             using (var response = await this._httpClient.PutAsync(requestUri, content).ConfigureAwait(false))
             {
@@ -112,6 +136,21 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Http
 
                 return true;
             }
+        }
+
+        private string SanitisePath(string path)
+        {
+            if (!path.StartsWithEquivalentOf("http"))
+            {
+                return path;
+            }
+
+            var sanitised = this.BaseLocation.IsNullOrWhiteSpace()
+                            ? path.Trim('/')
+                            : path.Replace($"{this.BaseLocation.TrimEnd('/')}", string.Empty)
+                                  .Trim('/');
+
+            return sanitised;
         }
     }
 }

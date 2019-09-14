@@ -15,7 +15,7 @@ using Microsoft.Extensions.Logging;
 
 using Newtonsoft.Json;
 
-namespace Aliencube.AzureMessaging.SchemaRegistry.FunctionAppV2
+namespace Aliencube.AzureMessaging.SchemaValidation.FunctionAppV2
 {
     [ExcludeFromCodeCoverage]
     [SuppressMessage("Style", "IDE0021:Use expression body for constructors")]
