@@ -183,14 +183,16 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob.Tests
             action.Should().Throw<ArgumentNullException>();
         }
 
-        [TestMethod]
-        public void Given_BlobClient_When_WithBlobClient_Invoked_Then_It_Should_Return_Result()
+        [DataTestMethod]
+        [DataRow("http://localhost")]
+        public void Given_BlobClient_When_WithBlobClient_Invoked_Then_It_Should_Return_Result(string blobUri)
         {
-            var uri = new Uri("http://localhost");
-            var blobClient = new CloudBlobClient(uri);
+            var blobClient = new CloudBlobClient(new Uri(blobUri));
             var instance = new BlobStorageSchemaSink();
 
             var result = instance.WithBlobClient(blobClient);
+
+            result.BaseLocation.Trim('/').Should().Be(blobUri.Trim('/'));
 
             var field = typeof(BlobStorageSchemaSink).GetField("_blobClient", BindingFlags.NonPublic | BindingFlags.Instance);
 
