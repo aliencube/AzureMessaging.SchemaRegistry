@@ -29,7 +29,7 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks
         }
 
         /// <inheritdoc />
-        public virtual string BaseLocation { get; private set; } = string.Empty;
+        public virtual string BaseLocation { get; protected set; } = string.Empty;
 
         /// <inheritdoc />
         public virtual ISchemaSink WithBaseLocation(string location)

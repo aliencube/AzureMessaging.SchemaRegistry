@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 
+using Aliencube.AzureMessaging.SchemaRegistry;
 using Aliencube.AzureMessaging.SchemaRegistry.Sinks;
-using Aliencube.AzureMessaging.SchemaValidation;
 
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,9 +9,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-[assembly: FunctionsStartup(typeof(Aliencube.AzureMessaging.SchemaRegistry.FunctionAppV2.StartUp))]
+[assembly: FunctionsStartup(typeof(Aliencube.AzureMessaging.SchemaValidation.FunctionAppV2.StartUp))]
 
-namespace Aliencube.AzureMessaging.SchemaRegistry.FunctionAppV2
+namespace Aliencube.AzureMessaging.SchemaValidation.FunctionAppV2
 {
     [ExcludeFromCodeCoverage]
     [SuppressMessage("Style", "IDE0022:Use expression body for methods")]

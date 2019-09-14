@@ -33,10 +33,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aliencube.AzureMessaging.Sc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aliencube.AzureMessaging.SchemaValidation.HttpClient.Tests", "test\Aliencube.AzureMessaging.SchemaValidation.HttpClient.Tests\Aliencube.AzureMessaging.SchemaValidation.HttpClient.Tests.csproj", "{6BA0107A-8E44-4D18-8BA7-7CD9B110206C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aliencube.AzureMessaging.SchemaRegistry.FunctionAppV1", "samples\Aliencube.AzureMessaging.SchemaRegistry.FunctionAppV1\Aliencube.AzureMessaging.SchemaRegistry.FunctionAppV1.csproj", "{0F58D9CF-4DF0-40F1-8413-8EBDC1596772}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aliencube.AzureMessaging.SchemaRegistry.FunctionAppV2", "samples\Aliencube.AzureMessaging.SchemaRegistry.FunctionAppV2\Aliencube.AzureMessaging.SchemaRegistry.FunctionAppV2.csproj", "{EF872F8C-4833-446F-8471-D471885FA67D}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aliencube.AzureMessaging.SchemaRegistry.Sinks", "src\Aliencube.AzureMessaging.SchemaRegistry.Sinks\Aliencube.AzureMessaging.SchemaRegistry.Sinks.csproj", "{5570CCC5-CF29-40BB-AD45-D2A122C9A91F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aliencube.AzureMessaging.SchemaRegistry.Sinks.Tests", "test\Aliencube.AzureMessaging.SchemaRegistry.Sinks.Tests\Aliencube.AzureMessaging.SchemaRegistry.Sinks.Tests.csproj", "{D4CB594B-720B-44D7-94C7-B2BC4C338A70}"
@@ -62,6 +58,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "builds", "builds", "{5314F9
 		builds\template-steps-build-test.yaml = builds\template-steps-build-test.yaml
 		builds\template-steps-publish.yaml = builds\template-steps-publish.yaml
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aliencube.AzureMessaging.SchemaValidation.FunctionAppV1", "samples\Aliencube.AzureMessaging.SchemaValidation.FunctionAppV1\Aliencube.AzureMessaging.SchemaValidation.FunctionAppV1.csproj", "{16E81402-06DA-45F6-86DE-FCB7B23E4DAD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aliencube.AzureMessaging.SchemaValidation.FunctionAppV2", "samples\Aliencube.AzureMessaging.SchemaValidation.FunctionAppV2\Aliencube.AzureMessaging.SchemaValidation.FunctionAppV2.csproj", "{360624C9-DF29-4B99-AE3A-73C2B90B3A67}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,14 +117,6 @@ Global
 		{6BA0107A-8E44-4D18-8BA7-7CD9B110206C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BA0107A-8E44-4D18-8BA7-7CD9B110206C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BA0107A-8E44-4D18-8BA7-7CD9B110206C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0F58D9CF-4DF0-40F1-8413-8EBDC1596772}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0F58D9CF-4DF0-40F1-8413-8EBDC1596772}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0F58D9CF-4DF0-40F1-8413-8EBDC1596772}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0F58D9CF-4DF0-40F1-8413-8EBDC1596772}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EF872F8C-4833-446F-8471-D471885FA67D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EF872F8C-4833-446F-8471-D471885FA67D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EF872F8C-4833-446F-8471-D471885FA67D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EF872F8C-4833-446F-8471-D471885FA67D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5570CCC5-CF29-40BB-AD45-D2A122C9A91F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5570CCC5-CF29-40BB-AD45-D2A122C9A91F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5570CCC5-CF29-40BB-AD45-D2A122C9A91F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -157,6 +149,14 @@ Global
 		{8F37700F-C309-4D33-A2AA-0B5E960B1FB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F37700F-C309-4D33-A2AA-0B5E960B1FB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F37700F-C309-4D33-A2AA-0B5E960B1FB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16E81402-06DA-45F6-86DE-FCB7B23E4DAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16E81402-06DA-45F6-86DE-FCB7B23E4DAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16E81402-06DA-45F6-86DE-FCB7B23E4DAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16E81402-06DA-45F6-86DE-FCB7B23E4DAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{360624C9-DF29-4B99-AE3A-73C2B90B3A67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{360624C9-DF29-4B99-AE3A-73C2B90B3A67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{360624C9-DF29-4B99-AE3A-73C2B90B3A67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{360624C9-DF29-4B99-AE3A-73C2B90B3A67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -174,8 +174,6 @@ Global
 		{E67CC654-38D5-4CBB-9543-8FD8420AF011} = {3A18B81C-8FD8-476D-A0CB-9EFFBB579C6E}
 		{23F8056A-6CA0-4712-B807-144F2891886A} = {2DAA3E7B-EDA2-4A05-A94D-888A5F5D8EC4}
 		{6BA0107A-8E44-4D18-8BA7-7CD9B110206C} = {3A18B81C-8FD8-476D-A0CB-9EFFBB579C6E}
-		{0F58D9CF-4DF0-40F1-8413-8EBDC1596772} = {B4CE4C0C-D639-45F0-8676-1502F08C617F}
-		{EF872F8C-4833-446F-8471-D471885FA67D} = {B4CE4C0C-D639-45F0-8676-1502F08C617F}
 		{5570CCC5-CF29-40BB-AD45-D2A122C9A91F} = {2DAA3E7B-EDA2-4A05-A94D-888A5F5D8EC4}
 		{D4CB594B-720B-44D7-94C7-B2BC4C338A70} = {3A18B81C-8FD8-476D-A0CB-9EFFBB579C6E}
 		{DF57B5E6-4D35-41E3-B05A-B6B610BD409A} = {2DAA3E7B-EDA2-4A05-A94D-888A5F5D8EC4}
@@ -184,6 +182,8 @@ Global
 		{2785BD0C-6CFC-454C-A240-29B79C1D5F0B} = {3A18B81C-8FD8-476D-A0CB-9EFFBB579C6E}
 		{C30D6830-919E-48A0-8BD1-88C1128E25A4} = {B4CE4C0C-D639-45F0-8676-1502F08C617F}
 		{8F37700F-C309-4D33-A2AA-0B5E960B1FB4} = {B4CE4C0C-D639-45F0-8676-1502F08C617F}
+		{16E81402-06DA-45F6-86DE-FCB7B23E4DAD} = {B4CE4C0C-D639-45F0-8676-1502F08C617F}
+		{360624C9-DF29-4B99-AE3A-73C2B90B3A67} = {B4CE4C0C-D639-45F0-8676-1502F08C617F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6583D7A0-435E-4EF0-8A60-67815D3843BE}

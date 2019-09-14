@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
@@ -16,6 +17,7 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob
     [SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters")]
     public class BlobStorageSchemaSink : SchemaSink, IBlobStorageSchemaSink
     {
+        private const string DefaultContainerName = "schemas";
         private const string ContentType = "application/json";
 
         private CloudBlobClient _blobClient;
@@ -43,6 +45,7 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob
         public BlobStorageSchemaSink(CloudBlobClient blobClient)
         {
             this._blobClient = blobClient.ThrowIfNullOrDefault();
+            this.BaseLocation = blobClient.BaseUri.ToString();
         }
 
         /// <summary>
@@ -59,7 +62,7 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob
         /// <summary>
         /// Gets the blob container name.
         /// </summary>
-        public virtual string Container { get; private set; } = string.Empty;
+        public virtual string Container { get; private set; } = DefaultContainerName;
 
         /// <summary>
         /// Adds the <see cref="CloudBlobClient"/> instance to the sink.

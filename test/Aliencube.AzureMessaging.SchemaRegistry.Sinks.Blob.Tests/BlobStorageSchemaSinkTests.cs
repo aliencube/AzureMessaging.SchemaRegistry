@@ -86,7 +86,7 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob.Tests
             var instance = new BlobStorageSchemaSink();
 
             instance.BaseLocation.Should().BeEmpty();
-            instance.Container.Should().BeEmpty();
+            instance.Container.Should().Be("schemas");
         }
 
         [TestMethod]
