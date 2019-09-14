@@ -1,3 +1,5 @@
+using System;
+
 using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob
@@ -11,6 +13,13 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob
         /// Gets the blob container name.
         /// </summary>
         string Container { get; }
+
+        /// <summary>
+        /// Adds base sink location.
+        /// </summary>
+        /// <param name="location">Base sink location.</param>
+        /// <returns>Returns <see cref="ISchemaSink"/> instance.</returns>
+        ISchemaSink WithBaseLocation(Uri location);
 
         /// <summary>
         /// Adds the <see cref="CloudBlobClient"/> instance to the sink.
