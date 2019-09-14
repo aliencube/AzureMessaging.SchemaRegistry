@@ -1,3 +1,5 @@
+using System;
+
 using FluentAssertions;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -26,6 +28,10 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob.Tests
         [TestMethod]
         public void Given_Type_Then_It_Should_Have_Methods()
         {
+            typeof(IBlobStorageSchemaSink)
+                .Should().HaveMethod("WithBaseLocation", new[] { typeof(Uri) })
+                    .Which.Should().Return<ISchemaSink>();
+
             typeof(IBlobStorageSchemaSink)
                 .Should().HaveMethod("WithBlobClient", new[] { typeof(CloudBlobClient) })
                     .Which.Should().Return<ISchemaSink>();

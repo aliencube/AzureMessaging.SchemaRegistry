@@ -8,7 +8,7 @@ using Aliencube.AzureMessaging.SchemaValidation.Extensions;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 
-namespace Aliencube.AzureMessaging.SchemaRegistry.FunctionAppV2
+namespace Aliencube.AzureMessaging.SchemaValidation.FunctionAppV2
 {
     [ExcludeFromCodeCoverage]
     [SuppressMessage("Style", "IDE0021:Use expression body for constructors")]
@@ -24,7 +24,7 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.FunctionAppV2
 
         [FunctionName(nameof(ServiceBusTopicSubscriptionTrigger))]
         public async Task Run(
-            [ServiceBusTrigger("%ServiceBusTopic%", "%ServiceBusTopicSubscription%", Connection = "AzureServiceBusConnectionString")]string message,
+            [ServiceBusTrigger("%ServiceBusTopic%", "%ServiceBusTopicSubscription%", Connection = "AzureServiceBusConnectionString")] string message,
             ILogger log)
         {
             log.LogInformation($"C# ServiceBus topic trigger function processed message: {message}");

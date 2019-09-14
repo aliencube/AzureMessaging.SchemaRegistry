@@ -17,6 +17,8 @@ using WorldDomination.Net.Http;
 namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Http.Tests
 {
     [TestClass]
+    [SuppressMessage("Design", "CA1054:Uri parameters should not be strings")]
+    [SuppressMessage("Design", "CA1062:Validate arguments of public methods")]
     [SuppressMessage("Usage", "CA1806:Do not ignore method results")]
     public class HttpSchemaSinkTests
     {
@@ -29,7 +31,10 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Http.Tests
         [TestMethod]
         public void Given_Type_Then_It_Should_Implement_Interfaces()
         {
-            typeof(HttpSchemaSink).Should().Implement<ISchemaSink>();
+            typeof(HttpSchemaSink)
+                .Should().Implement<ISchemaSink>()
+                .And.Implement<IHttpSchemaSink>()
+                ;
         }
 
         [TestMethod]
@@ -38,8 +43,10 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Http.Tests
             typeof(HttpSchemaSink)
                 .Should().HaveDefaultConstructor()
                 .And.HaveConstructor(new[] { typeof(string) })
+                .And.HaveConstructor(new[] { typeof(Uri) })
                 .And.HaveConstructor(new[] { typeof(HttpClient) })
                 .And.HaveConstructor(new[] { typeof(string), typeof(HttpClient) })
+                .And.HaveConstructor(new[] { typeof(Uri), typeof(HttpClient) })
                 ;
         }
 
@@ -57,6 +64,11 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Http.Tests
         [TestMethod]
         public void Given_Type_Then_It_Should_Have_Methods()
         {
+            typeof(HttpSchemaSink)
+                .Should().HaveMethod("WithBaseLocation", new[] { typeof(Uri) })
+                    .Which.Should().BeVirtual()
+                        .And.Return<ISchemaSink>();
+
             typeof(HttpSchemaSink)
                 .Should().HaveMethod("WithHttpClient", new[] { typeof(HttpClient) })
                     .Which.Should().BeVirtual()
@@ -98,17 +110,49 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Http.Tests
         [TestMethod]
         public void Given_Null_Parameters_When_Instantiated_Then_It_Should_Throw_Exception()
         {
-            Action action = () => new HttpSchemaSink(location: null);
+            var action = default(Action);
+
+            action = () => new HttpSchemaSink(location: (string)null);
+            action.Should().Throw<ArgumentNullException>();
+
+            action = () => new HttpSchemaSink(location: (Uri)null);
             action.Should().Throw<ArgumentNullException>();
 
             action = () => new HttpSchemaSink(httpClient: null);
             action.Should().Throw<ArgumentNullException>();
 
-            action = () => new HttpSchemaSink(null, null);
+            action = () => new HttpSchemaSink((string)null, null);
             action.Should().Throw<ArgumentNullException>();
 
-            action = () => new HttpSchemaSink("hello-world", null);
+            action = () => new HttpSchemaSink((Uri)null, null);
             action.Should().Throw<ArgumentNullException>();
+
+            action = () => new HttpSchemaSink("http://localhost", null);
+            action.Should().Throw<ArgumentNullException>();
+
+            action = () => new HttpSchemaSink(new Uri("http://localhost"), null);
+            action.Should().Throw<ArgumentNullException>();
+        }
+
+        [TestMethod]
+        public void Given_Null_Uri_When_WithBaseLocation_Invoked_Then_It_Should_Throw_Exception()
+        {
+            var instance = new HttpSchemaSink();
+
+            Action action = () => instance.WithBaseLocation((Uri)null);
+
+            action.Should().Throw<ArgumentNullException>();
+        }
+
+        [DataTestMethod]
+        [DataRow("http://localhost")]
+        public void Given_Uri_When_WithBaseLocation_Invoked_Then_It_Should_Return_Result(string uri)
+        {
+            var instance = new HttpSchemaSink();
+
+            var result = instance.WithBaseLocation(new Uri(uri));
+
+            result.BaseLocation.Trim('/').Should().BeEquivalentTo(uri.Trim('/'));
         }
 
         [TestMethod]
@@ -177,6 +221,7 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Http.Tests
 
         [DataTestMethod]
         [DataRow("http://localhost", "default.json", HttpStatusCode.BadRequest)]
+        [DataRow("http://localhost", "http://localhost/default.json", HttpStatusCode.BadRequest)]
         public void Given_Location_And_Path_And_ErrorResponse_When_GetSchemaAsync_Invoked_Then_It_Should_Throw_Exception(string location, string path, HttpStatusCode statusCode)
         {
             var response = new HttpResponseMessage(statusCode);
@@ -197,6 +242,7 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Http.Tests
 
         [DataTestMethod]
         [DataRow("http://localhost", "default.json", HttpStatusCode.OK, "{ \"hello\": \"world\" }")]
+        [DataRow("http://localhost", "http://localhost/default.json", HttpStatusCode.OK, "{ \"hello\": \"world\" }")]
         public async Task Given_Location_And_Path_When_GetSchemaAsync_Invoked_Then_It_Should_Return_Result(string location, string path, HttpStatusCode statusCode, string schema)
         {
             var content = new StringContent(schema);
@@ -260,6 +306,7 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Http.Tests
 
         [DataTestMethod]
         [DataRow("{ \"hello\": \"world\" }", "http://localhost", "default.json", HttpStatusCode.BadRequest)]
+        [DataRow("{ \"hello\": \"world\" }", "http://localhost", "http://localhost/default.json", HttpStatusCode.BadRequest)]
         public void Given_Location_And_Path_And_ErrorResponse_When_SetSchemaAsync_Invoked_Then_It_Should_Throw_Exception(string schema, string location, string path, HttpStatusCode statusCode)
         {
             var response = new HttpResponseMessage(statusCode);
@@ -280,6 +327,7 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Http.Tests
 
         [DataTestMethod]
         [DataRow("{ \"hello\": \"world\" }", "http://localhost", "default.json", HttpStatusCode.OK)]
+        [DataRow("{ \"hello\": \"world\" }", "http://localhost", "http://localhost/default.json", HttpStatusCode.OK)]
         public async Task Given_Location_And_Path_When_SetSchemaAsync_Invoked_Then_It_Should_Return_Result(string schema, string location, string path, HttpStatusCode statusCode)
         {
             var content = new StringContent(schema);
