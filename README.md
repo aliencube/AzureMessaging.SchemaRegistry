@@ -1,11 +1,11 @@
 # AzureMessaging.SchemaRegistry #
 
-This provides libraries to enable schema registry features for Azure messaging services, including Azure Service, Bus, Azure Event Hub and Azure Event Grid.
+This provides libraries to enable schema registry features for Azure messaging services, including Azure Service Bus, Azure Event Hub and Azure Event Grid.
 
 
 ## Build Status ##
 
-[![Build Status](https://dev.azure.com/aliencube/AzureMessaging.SchemaRegistry/_apis/build/status/dev%2C%20feature%2C%20hotfix?branchName=dev)](https://dev.azure.com/aliencube/AzureMessaging.SchemaRegistry/_build/latest?definitionId=8&branchName=dev)
+[![Build Status](https://dev.azure.com/aliencube/AzureMessaging.SchemaRegistry/_apis/build/status/dev?branchName=dev)](https://dev.azure.com/aliencube/AzureMessaging.SchemaRegistry/_build/latest?definitionId=11&branchName=dev)
 
 
 ## List of NuGet Packages ##
@@ -29,6 +29,15 @@ This provides libraries to enable schema registry features for Azure messaging s
 * [Schema Validation Azure Function App for Azure Service Bus (v2)](./samples/Aliencube.AzureMessaging.SchemaRegistry.FunctionAppV2)
 * [Schema Validation Console App for Azure Service Bus (.NET Framework)](./samples/Aliencube.AzureMessaging.SchemaValidation.ConsoleAppCore)
 * [Schema Validation Console App for Azure Service Bus (.NET Core)](./samples/Aliencube.AzureMessaging.SchemaValidation.ConsoleAppNet)
+
+
+## Applied Azure Messaging Services ##
+
+| Service | Implementation |
+| ------- | -------------- |
+| Azure Service Bus | :heavy_check_mark: |
+| Azure Event Hub | :x: |
+| Azure Event Grid | :x: |
 
 
 ## Contribution ##
