@@ -25,10 +25,10 @@ This provides libraries to enable schema registry features for Azure messaging s
 ## Sample Codes ##
 
 * [Schema Registry Console App for File System](./samples/Aliencube.AzureMessaging.SchemaRegistry.ConsoleApp)
-* [Schema Validation Azure Function App for Azure Service Bus (v1)](./samples/Aliencube.AzureMessaging.SchemaRegistry.FunctionAppV1)
-* [Schema Validation Azure Function App for Azure Service Bus (v2)](./samples/Aliencube.AzureMessaging.SchemaRegistry.FunctionAppV2)
 * [Schema Validation Console App for Azure Service Bus (.NET Framework)](./samples/Aliencube.AzureMessaging.SchemaValidation.ConsoleAppCore)
 * [Schema Validation Console App for Azure Service Bus (.NET Core)](./samples/Aliencube.AzureMessaging.SchemaValidation.ConsoleAppNet)
+* [Schema Validation Azure Function App for Azure Service Bus (v1)](./samples/Aliencube.AzureMessaging.SchemaValidation.FunctionAppV1)
+* [Schema Validation Azure Function App for Azure Service Bus (v2)](./samples/Aliencube.AzureMessaging.SchemaValidation.FunctionAppV2)
 
 
 ## Applied Azure Messaging Services ##
