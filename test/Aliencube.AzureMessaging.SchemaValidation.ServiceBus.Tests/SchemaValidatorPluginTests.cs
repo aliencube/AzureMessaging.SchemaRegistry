@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,7 +20,6 @@ namespace Aliencube.AzureMessaging.SchemaValidation.ServiceBus.Tests
 {
 #if NETCOREAPP2_1
     [TestClass]
-    [SuppressMessage("Usage", "CA1806:Do not ignore method results")]
     public class SchemaValidatorPluginTests
     {
         [TestMethod]

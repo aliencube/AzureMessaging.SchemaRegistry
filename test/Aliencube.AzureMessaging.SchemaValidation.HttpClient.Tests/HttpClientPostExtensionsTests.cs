@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Net.Http;
 using System.Reflection;
@@ -18,8 +17,6 @@ using Moq;
 namespace Aliencube.AzureMessaging.SchemaValidation.HttpClient.Tests
 {
     [TestClass]
-    [SuppressMessage("Design", "CA1001:Types that own disposable fields should be disposable")]
-    [SuppressMessage("Usage", "CA2234:Pass system uri objects instead of strings")]
     public class HttpClientPostExtensionsTests
     {
         private HttpClientExtensionsFixture _fixture;

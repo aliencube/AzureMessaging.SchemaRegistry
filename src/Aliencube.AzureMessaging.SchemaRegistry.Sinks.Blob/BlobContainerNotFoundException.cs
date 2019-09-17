@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 
 namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob
@@ -8,7 +7,6 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob
     /// This represents the exception entity thrown when blob container does not exist.
     /// </summary>
     [Serializable]
-    [SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters")]
     public class BlobContainerNotFoundException : Exception
     {
         private const string BlobContainerNotFound = "Blob container not found";

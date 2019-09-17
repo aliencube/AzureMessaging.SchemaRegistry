@@ -17,8 +17,6 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.ConsoleApp
     /// This represents the entity for the console app.
     /// </summary>
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters")]
-    [SuppressMessage("Reliability", "CA2008:Do not create tasks without passing a TaskScheduler")]
     public static class Program
     {
         private const string SchemaProduced = "Schema produced to registry";

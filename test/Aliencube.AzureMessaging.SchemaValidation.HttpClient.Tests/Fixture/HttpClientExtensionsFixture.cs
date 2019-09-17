@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
@@ -10,8 +9,6 @@ using WorldDomination.Net.Http;
 
 namespace Aliencube.AzureMessaging.SchemaValidation.HttpClient.Tests.Fixture
 {
-    [SuppressMessage("Design", "CA1054:Uri parameters should not be strings")]
-    [SuppressMessage("Performance", "CA1822:Mark members as static")]
     public class HttpClientExtensionsFixture : IDisposable
     {
         private bool _disposed;

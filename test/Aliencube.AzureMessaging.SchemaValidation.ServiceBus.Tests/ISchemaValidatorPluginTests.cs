@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
 using FluentAssertions;
@@ -14,7 +13,6 @@ namespace Aliencube.AzureMessaging.SchemaValidation.ServiceBus.Tests
 {
 #if NETCOREAPP2_1
     [TestClass]
-    [SuppressMessage("Usage", "CA1806:Do not ignore method results")]
     public class ISchemaValidatorPluginTests
     {
         [TestMethod]

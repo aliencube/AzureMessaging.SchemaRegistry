@@ -4,7 +4,7 @@
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
     "AzureWebJobsDashboard": "UseDevelopmentStorage=true",
 
-    //"AzureServiceBusConnectionString": "[AZURE_SEVICE_BUS_CONNECTION_STRING]",
+    "AzureServiceBusConnectionString": "[AZURE_SEVICE_BUS_CONNECTION_STRING]",
     "ServiceBusTopic": "my-topic",
     "ServiceBusTopicSubscription": "my-topic-subscription"
   }

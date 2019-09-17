@@ -5,7 +5,6 @@ using CommandLine;
 namespace Aliencube.AzureMessaging.SchemaValidation.ConsoleAppCore
 {
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("Design", "CA1056:Uri properties should not be strings")]
     public class Options
     {
         [Option("blob-connectionstring", Required = true, HelpText = "Connection string for Azure Blob Storage")]

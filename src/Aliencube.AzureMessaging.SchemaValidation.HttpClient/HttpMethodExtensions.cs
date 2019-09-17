@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
 
@@ -11,7 +10,6 @@ namespace Aliencube.AzureMessaging.SchemaValidation.HttpClient
     /// <summary>
     /// This represents the extension entity for <see cref="HttpMethod"/>.
     /// </summary>
-    [SuppressMessage("Design", "CA1062:Validate arguments of public methods")]
     internal static class HttpMethodExtensions
     {
         /// <summary>

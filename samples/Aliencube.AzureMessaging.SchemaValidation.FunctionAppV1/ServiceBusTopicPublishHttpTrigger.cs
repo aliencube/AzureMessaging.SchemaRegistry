@@ -18,9 +18,6 @@ using Newtonsoft.Json.Serialization;
 namespace Aliencube.AzureMessaging.SchemaValidation.FunctionAppV1
 {
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("Design", "CA1062:Validate arguments of public methods")]
-    [SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters")]
-    [SuppressMessage("Globalization", "CA1305:Specify IFormatProvider")]
     public static class ServiceBusTopicPublishHttpTrigger
     {
         [FunctionName(nameof(ServiceBusTopicPublishHttpTrigger))]

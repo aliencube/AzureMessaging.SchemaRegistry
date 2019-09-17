@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -14,7 +13,6 @@ using Moq;
 namespace Aliencube.AzureMessaging.SchemaValidation.Tests
 {
     [TestClass]
-    [SuppressMessage("Usage", "CA1806:Do not ignore method results")]
     public class StringExtensionsTests
     {
         [TestMethod]

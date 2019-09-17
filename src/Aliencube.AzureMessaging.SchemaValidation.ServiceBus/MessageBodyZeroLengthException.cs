@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 
 using Aliencube.AzureMessaging.SchemaRegistry.Sinks.Extensions;
@@ -18,7 +17,6 @@ namespace Aliencube.AzureMessaging.SchemaValidation.ServiceBus
     /// This represents the exception entity thrown when message body has zero length.
     /// </summary>
     [Serializable]
-    [SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters")]
     public class MessageBodyZeroLengthException : Exception
     {
         private const string MessageBodyZeroLength = "Message body has zero length";

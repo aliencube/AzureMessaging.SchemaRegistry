@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("Aliencube.AzureMessaging.SchemaRegistry")]
@@ -30,7 +29,6 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Extensions
         /// </summary>
         /// <param name="value">String value.</param>
         /// <returns>Returns <c>True</c>, if the value is null or white-space; otherwise returns <c>False</c>.</returns>
-        [SuppressMessage("Style", "IDE0022:Use expression body for methods")]
         internal static bool IsNullOrWhiteSpace(this string value)
         {
             return string.IsNullOrWhiteSpace(value);

@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
 using Aliencube.AzureMessaging.SchemaRegistry.Sinks;
@@ -12,7 +11,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Tests
 {
     [TestClass]
-    [SuppressMessage("Usage", "CA1806:Do not ignore method results")]
     public class SchemaSinkTests
     {
         [TestMethod]

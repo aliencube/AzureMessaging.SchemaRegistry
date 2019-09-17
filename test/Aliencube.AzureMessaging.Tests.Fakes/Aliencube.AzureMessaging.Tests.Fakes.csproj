@@ -9,8 +9,8 @@
     <CodeAnalysisRuleSet>..\..\AllRulesDefault.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
-  <Import Project="..\..\editorconfig.props" Condition="Exists('..\..\editorconfig.props')" />
-  <Import Project="..\..\Microsoft.CodeAnalysis.FxCopAnalyzers.props" Condition="Exists('..\..\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" />
+  <!-- <Import Project="..\..\editorconfig.props" Condition="Exists('..\..\editorconfig.props')" />
+  <Import Project="..\..\Microsoft.CodeAnalysis.FxCopAnalyzers.props" Condition="Exists('..\..\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" /> -->
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.4">
