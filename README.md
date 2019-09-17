@@ -1,17 +1,17 @@
 # AzureMessaging.SchemaRegistry #
 
-This provides libraries to enable schema registry features for Azure messaging services, including Azure Service, Bus, Azure Event Hub and Azure Event Grid.
+This provides libraries to enable schema registry features for Azure messaging services, including Azure Service Bus, Azure Event Hub and Azure Event Grid.
 
 
 ## Build Status ##
 
-[![Build Status](https://dev.azure.com/aliencube/AzureMessaging.SchemaRegistry/_apis/build/status/dev%2C%20feature%2C%20hotfix?branchName=dev)](https://dev.azure.com/aliencube/AzureMessaging.SchemaRegistry/_build/latest?definitionId=8&branchName=dev)
+[![Build Status](https://dev.azure.com/aliencube/AzureMessaging.SchemaRegistry/_apis/build/status/dev?branchName=dev)](https://dev.azure.com/aliencube/AzureMessaging.SchemaRegistry/_build/latest?definitionId=11&branchName=dev)
 
 
 ## List of NuGet Packages ##
 
-| Package | Document | Download | Version|
-|---|---|---|---|
+| Package | Document | Download | Version |
+| ------- | -------- | -------- | ------- |
 | [Aliencube.AzureMessaging.SchemaRegistry](https://www.nuget.org/packages/Aliencube.AzureMessaging.SchemaRegistry/) | [Document](./docs/schema-registry.md) | [![](https://img.shields.io/nuget/dt/Aliencube.AzureMessaging.SchemaRegistry.svg)](https://www.nuget.org/packages/Aliencube.AzureMessaging.SchemaRegistry/) | [![](https://img.shields.io/nuget/v/Aliencube.AzureMessaging.SchemaRegistry.svg)](https://www.nuget.org/packages/Aliencube.AzureMessaging.SchemaRegistry/) |
 | [Aliencube.AzureMessaging.SchemaRegistry.Sinks](https://www.nuget.org/packages/Aliencube.AzureMessaging.SchemaRegistry.Sinks/) | [Document](./docs/schema-registry-sinks.md) | [![](https://img.shields.io/nuget/dt/Aliencube.AzureMessaging.SchemaRegistry.Sinks.svg)](https://www.nuget.org/packages/Aliencube.AzureMessaging.SchemaRegistry.Sinks/) | [![](https://img.shields.io/nuget/v/Aliencube.AzureMessaging.SchemaRegistry.Sinks.svg)](https://www.nuget.org/packages/Aliencube.AzureMessaging.SchemaRegistry.Sinks/) |
 | [Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob](https://www.nuget.org/packages/Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob/) | [Document](./docs/schema-registry-sinks-blob.md) | [![](https://img.shields.io/nuget/dt/Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob.svg)](https://www.nuget.org/packages/Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob/) | [![](https://img.shields.io/nuget/v/Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob.svg)](https://www.nuget.org/packages/Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob/) |
@@ -25,10 +25,19 @@ This provides libraries to enable schema registry features for Azure messaging s
 ## Sample Codes ##
 
 * [Schema Registry Console App for File System](./samples/Aliencube.AzureMessaging.SchemaRegistry.ConsoleApp)
-* [Schema Validation Azure Function App for Azure Service Bus (v1)](./samples/Aliencube.AzureMessaging.SchemaRegistry.FunctionAppV1)
-* [Schema Validation Azure Function App for Azure Service Bus (v2)](./samples/Aliencube.AzureMessaging.SchemaRegistry.FunctionAppV2)
-* [Schema Validation Console App for Azure Service Bus (.NET Framework)](./samples/Aliencube.AzureMessaging.SchemaValidation.ConsoleAppCore)
-* [Schema Validation Console App for Azure Service Bus (.NET Core)](./samples/Aliencube.AzureMessaging.SchemaValidation.ConsoleAppNet)
+* [Schema Validation Console App for Azure Service Bus (.NET Core)](./samples/Aliencube.AzureMessaging.SchemaValidation.ConsoleAppCore)
+* [Schema Validation Console App for Azure Service Bus (.NET Framework)](./samples/Aliencube.AzureMessaging.SchemaValidation.ConsoleAppNet)
+* [Schema Validation Azure Function App for Azure Service Bus (v1)](./samples/Aliencube.AzureMessaging.SchemaValidation.FunctionAppV1)
+* [Schema Validation Azure Function App for Azure Service Bus (v2)](./samples/Aliencube.AzureMessaging.SchemaValidation.FunctionAppV2)
+
+
+## Applied Azure Messaging Services ##
+
+| Service           | Implementation     |
+| ----------------- | ------------------ |
+| Azure Service Bus | :heavy_check_mark: |
+| Azure Event Hub   | :x:                |
+| Azure Event Grid  | :x:                |
 
 
 ## Contribution ##
@@ -42,7 +51,7 @@ Your contributions are always welcome! All your work should be done in your fork
 
 > The MIT License (MIT)
 >
-> Copyright (c) 2019 [aliencube.org](http://aliencube.org)
+> Copyright (c) 2019 [aliencube.org](https://aliencube.org)
 > 
 > Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 > 

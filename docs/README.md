@@ -6,5 +6,5 @@
 * [Schema Registry Sink for Local File System](./docs/schema-registry-sinks-file-system.md)
 * [Schema Registry Sink over HTTP](./docs/schema-registry-sinks-http.md)
 * [Schema Validation](./docs/schema-validation.md)
-* [Schema Validation over HTTP](./docs/schema-validation-http-client.md)
-* [Schema Validation over Azure Service Bus](./docs/schema-validation-service-bus.md)
+* [Schema Validation via HTTP](./docs/schema-validation-http-client.md)
+* [Schema Validation via Azure Service Bus](./docs/schema-validation-service-bus.md)

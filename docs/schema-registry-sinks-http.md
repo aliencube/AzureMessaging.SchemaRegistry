@@ -1,4 +1,4 @@
-# Schema Registry Sink for File System #
+# Schema Registry Sink over HTTP #
 
 This library provides a sink class to the schema registry over the HTTP connection.
 

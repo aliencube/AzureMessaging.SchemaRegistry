@@ -1,4 +1,4 @@
-# Schema Registry Sink for File System #
+# Schema Registry Sink for Local File System #
 
 This library provides a sink class to local file system that is used for the schema registry.
 
