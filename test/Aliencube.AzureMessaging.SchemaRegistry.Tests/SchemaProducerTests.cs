@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -20,7 +19,6 @@ using NJsonSchema;
 namespace Aliencube.AzureMessaging.SchemaRegistry.Tests
 {
     [TestClass]
-    [SuppressMessage("Usage", "CA1806:Do not ignore method results")]
     public class SchemaProducerTests
     {
         [TestMethod]

@@ -16,7 +16,7 @@
     <Description>This package enables to validate messages against schemas, through HttpClient, for Azure messaging services including Azure Storage Queue, Azure Service Bus, Azure Event Hub, Azure Event Grid, etc.</Description>
     <PackageTags>Azure-Messaging, Schema-Registry, Schema-Validation, Schema-Sink, HttpClient, Azure-Storage-Queue, Azure-Service-Bus, Azure-Event-Hub, Azure-Event-Grid</PackageTags>
     <Copyright>Aliencube Community</Copyright>
-    <PackageLicenseUrl>https://github.com/aliencube/AzureMessaging.SchemaRegistry/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/aliencube/AzureMessaging.SchemaRegistry</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/aliencube/AzureMessaging.SchemaRegistry/master/icons/Aliencube.AzureMessaging.SchemaRegistry.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/aliencube/AzureMessaging.SchemaRegistry</RepositoryUrl>
@@ -27,8 +27,8 @@
     <CodeAnalysisRuleSet>..\..\AllRulesDefault.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
-  <Import Project="..\..\editorconfig.props" Condition="Exists('..\..\editorconfig.props')" />
-  <Import Project="..\..\Microsoft.CodeAnalysis.FxCopAnalyzers.props" Condition="Exists('..\..\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" />
+  <!-- <Import Project="..\..\editorconfig.props" Condition="Exists('..\..\editorconfig.props')" /> -->
+  <!-- <Import Project="..\..\Microsoft.CodeAnalysis.FxCopAnalyzers.props" Condition="Exists('..\..\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" /> -->
 
   <PropertyGroup>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Aliencube.AzureMessaging.SchemaValidation.HttpClient.xml</DocumentationFile>

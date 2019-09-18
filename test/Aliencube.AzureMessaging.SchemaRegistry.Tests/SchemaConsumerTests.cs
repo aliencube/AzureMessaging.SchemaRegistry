@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
 using Aliencube.AzureMessaging.SchemaRegistry.Sinks;
@@ -13,7 +12,6 @@ using Moq;
 namespace Aliencube.AzureMessaging.SchemaRegistry.Tests
 {
     [TestClass]
-    [SuppressMessage("Usage", "CA1806:Do not ignore method results")]
     public class SchemaConsumerTests
     {
         [TestMethod]

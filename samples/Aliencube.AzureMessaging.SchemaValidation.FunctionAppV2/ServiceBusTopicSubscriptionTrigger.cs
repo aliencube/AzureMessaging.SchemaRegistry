@@ -11,8 +11,6 @@ using Microsoft.Extensions.Logging;
 namespace Aliencube.AzureMessaging.SchemaValidation.FunctionAppV2
 {
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("Style", "IDE0021:Use expression body for constructors")]
-    [SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters")]
     public class ServiceBusTopicSubscriptionTrigger
     {
         private readonly ISchemaValidator _validator;

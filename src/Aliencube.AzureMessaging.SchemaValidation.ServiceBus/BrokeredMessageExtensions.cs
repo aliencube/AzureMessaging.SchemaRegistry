@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -17,9 +16,6 @@ namespace Aliencube.AzureMessaging.SchemaValidation.ServiceBus
     /// <summary>
     /// This represents the extension entity for <see cref="BrokeredMessage"/>.
     /// </summary>
-    [SuppressMessage("Style", "IDE0021:Use expression body for constructors")]
-    [SuppressMessage("Style", "IDE0022:Use expression body for methods")]
-    [SuppressMessage("Design", "CA1062:Validate arguments of public methods")]
     public static class BrokeredMessageExtensions
     {
         /// <summary>

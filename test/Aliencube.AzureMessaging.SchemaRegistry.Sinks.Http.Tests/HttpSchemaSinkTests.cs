@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Net.Http;
 using System.Reflection;
@@ -17,9 +16,6 @@ using WorldDomination.Net.Http;
 namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Http.Tests
 {
     [TestClass]
-    [SuppressMessage("Design", "CA1054:Uri parameters should not be strings")]
-    [SuppressMessage("Design", "CA1062:Validate arguments of public methods")]
-    [SuppressMessage("Usage", "CA1806:Do not ignore method results")]
     public class HttpSchemaSinkTests
     {
         [TestMethod]

@@ -12,7 +12,6 @@ using Microsoft.ServiceBus.Messaging;
 namespace Aliencube.AzureMessaging.SchemaValidation.FunctionAppV1
 {
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters")]
     public static class ServiceBusTopicSubscriptionTrigger
     {
         [FunctionName(nameof(ServiceBusTopicSubscriptionTrigger))]

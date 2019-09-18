@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -14,9 +13,6 @@ using Microsoft.WindowsAzure.Storage.Blob;
 namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob.Tests
 {
     [TestClass]
-    [SuppressMessage("Design", "CA1054:Uri parameters should not be strings")]
-    [SuppressMessage("Design", "CA1062:Validate arguments of public methods")]
-    [SuppressMessage("Usage", "CA1806:Do not ignore method results")]
     public class BlobStorageSchemaSinkTests
     {
         [TestMethod]

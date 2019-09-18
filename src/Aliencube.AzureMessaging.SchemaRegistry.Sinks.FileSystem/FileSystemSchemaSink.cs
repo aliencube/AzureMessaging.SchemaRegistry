@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,8 +10,6 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks
     /// <summary>
     /// This represents the schema sink entity for file system.
     /// </summary>
-    [SuppressMessage("Style", "IDE0021:Use expression body for constructors")]
-    [SuppressMessage("Style", "IDE0022:Use expression body for methods")]
     public class FileSystemSchemaSink : SchemaSink, IFileSystemSchemaSink
     {
         /// <summary>

@@ -10,12 +10,8 @@
     <CodeAnalysisRuleSet>..\..\AllRulesDefault.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
-  <PropertyGroup Condition="Exists('..\TestRulesDefault.ruleset')">
-    <CodeAnalysisRuleSet>..\TestRulesDefault.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-
-  <Import Project="..\..\editorconfig.props" Condition="Exists('..\..\editorconfig.props')" />
-  <Import Project="..\..\Microsoft.CodeAnalysis.FxCopAnalyzers.props" Condition="Exists('..\..\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" />
+  <!-- <Import Project="..\..\editorconfig.props" Condition="Exists('..\..\editorconfig.props')" />
+  <Import Project="..\..\Microsoft.CodeAnalysis.FxCopAnalyzers.props" Condition="Exists('..\..\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" /> -->
 
   <ItemGroup>
     <PackageReference Include="coverlet.msbuild" Version="2.6.3">

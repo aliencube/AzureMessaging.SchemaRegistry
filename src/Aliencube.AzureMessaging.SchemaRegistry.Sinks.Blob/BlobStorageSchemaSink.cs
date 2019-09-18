@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
 using Aliencube.AzureMessaging.SchemaRegistry.Sinks.Extensions;
@@ -11,10 +10,6 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob
     /// <summary>
     /// This represents the schema sink entity for Azure Blob Storage.
     /// </summary>
-    [SuppressMessage("Style", "IDE0021:Use expression body for constructors")]
-    [SuppressMessage("Style", "IDE0022:Use expression body for methods")]
-    [SuppressMessage("Design", "CA1062:Validate arguments of public methods")]
-    [SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters")]
     public class BlobStorageSchemaSink : SchemaSink, IBlobStorageSchemaSink
     {
         private const string DefaultContainerName = "schemas";

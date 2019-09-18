@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,8 +13,6 @@ namespace Aliencube.AzureMessaging.SchemaValidation
     /// <summary>
     /// This represents the validator entity against JSON schema.
     /// </summary>
-    [SuppressMessage("Style", "IDE0021:Use expression body for constructors")]
-    [SuppressMessage("Style", "IDE0022:Use expression body for methods")]
     public class SchemaValidator : ISchemaValidator
     {
         private readonly JsonSchemaValidator _validator;

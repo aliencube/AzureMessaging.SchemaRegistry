@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -17,7 +16,6 @@ using NJsonSchema.Validation;
 namespace Aliencube.AzureMessaging.SchemaValidation.Tests
 {
     [TestClass]
-    [SuppressMessage("Usage", "CA1806:Do not ignore method results")]
     public class SchemaValidatorTests
     {
         [TestMethod]

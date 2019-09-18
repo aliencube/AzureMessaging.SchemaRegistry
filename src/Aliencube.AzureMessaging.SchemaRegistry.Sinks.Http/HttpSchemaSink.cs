@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,8 +10,6 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Http
     /// <summary>
     /// This represents the schema sink entity over HTTP.
     /// </summary>
-    [SuppressMessage("Style", "IDE0021:Use expression body for constructors")]
-    [SuppressMessage("Style", "IDE0022:Use expression body for methods")]
     public class HttpSchemaSink : SchemaSink, IHttpSchemaSink
     {
         private const string MediaType = "application/json";
@@ -96,8 +93,6 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Http
         }
 
         /// <inheritdoc />
-        [SuppressMessage("Design", "CA1062:Validate arguments of public methods")]
-        [SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters")]
         public override async Task<string> GetSchemaAsync(string path)
         {
             path.ThrowIfNullOrWhiteSpace();
@@ -115,8 +110,6 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Http
         }
 
         /// <inheritdoc />
-        [SuppressMessage("Design", "CA1062:Validate arguments of public methods")]
-        [SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters")]
         public override async Task<bool> SetSchemaAsync(string schema, string path)
         {
             schema.ThrowIfNullOrWhiteSpace();

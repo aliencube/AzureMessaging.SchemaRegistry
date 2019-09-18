@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 
 using Aliencube.AzureMessaging.SchemaRegistry;
@@ -11,7 +10,6 @@ namespace Aliencube.AzureMessaging.SchemaValidation
     /// This represents the exception entity thrown when schema does not exist.
     /// </summary>
     [Serializable]
-    [SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters")]
     public class SchemaNotFoundException : Exception
     {
         private const string SchemaNotFound = "Schema not found";

@@ -7,7 +7,6 @@ using System.Reflection;
 namespace Aliencube.AzureMessaging.SchemaValidation.FunctionAppV2
 {
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("Globalization", "CA1305:Specify IFormatProvider")]
     internal static class Utility
     {
         internal static string GetBasePath()

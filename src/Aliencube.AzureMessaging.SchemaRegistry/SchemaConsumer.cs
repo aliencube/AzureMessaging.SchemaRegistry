@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
 using Aliencube.AzureMessaging.SchemaRegistry.Sinks;
@@ -10,8 +9,6 @@ namespace Aliencube.AzureMessaging.SchemaRegistry
     /// <summary>
     /// This represents the entity for schema consumer.
     /// </summary>
-    [SuppressMessage("Style", "IDE0021:Use expression body for constructors")]
-    [SuppressMessage("Style", "IDE0022:Use expression body for methods")]
     public class SchemaConsumer : ISchemaConsumer
     {
         private const string SinkNotFound = "Sink not found";
@@ -44,7 +41,6 @@ namespace Aliencube.AzureMessaging.SchemaRegistry
         }
 
         /// <inheritdoc />
-        [SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters")]
         public async Task<string> ConsumeAsync(string path)
         {
             path.ThrowIfNullOrWhiteSpace();

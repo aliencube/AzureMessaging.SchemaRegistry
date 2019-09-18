@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
 using Aliencube.AzureMessaging.SchemaRegistry.Sinks.Extensions;
@@ -8,8 +7,6 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks
     /// <summary>
     /// This represents the entity for schema sink that determines where the schema hosting location is.
     /// </summary>
-    [SuppressMessage("Style", "IDE0021:Use expression body for constructors")]
-    [SuppressMessage("Style", "IDE0022:Use expression body for methods")]
     public abstract class SchemaSink : ISchemaSink
     {
         /// <summary>

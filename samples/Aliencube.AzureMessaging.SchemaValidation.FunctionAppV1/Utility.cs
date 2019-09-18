@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
@@ -7,7 +7,6 @@ using System.Reflection;
 namespace Aliencube.AzureMessaging.SchemaValidation.FunctionAppV1
 {
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("Globalization", "CA1305:Specify IFormatProvider")]
     internal static class Utility
     {
         internal static string GetBasePath()
