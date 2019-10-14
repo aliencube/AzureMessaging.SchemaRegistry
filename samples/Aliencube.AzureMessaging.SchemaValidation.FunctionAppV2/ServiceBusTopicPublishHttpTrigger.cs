@@ -3,7 +3,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Threading.Tasks;
 
-using Aliencube.AzureMessaging.SchemaValidation;
 using Aliencube.AzureMessaging.SchemaValidation.Extensions;
 
 using Microsoft.AspNetCore.Http;

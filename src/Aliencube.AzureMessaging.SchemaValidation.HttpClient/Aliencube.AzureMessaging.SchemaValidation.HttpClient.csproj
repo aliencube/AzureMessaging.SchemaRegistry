@@ -18,7 +18,7 @@
     <Copyright>Aliencube Community</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/aliencube/AzureMessaging.SchemaRegistry</PackageProjectUrl>
-    <PackageIconUrl>https://raw.githubusercontent.com/aliencube/AzureMessaging.SchemaRegistry/master/icons/Aliencube.AzureMessaging.SchemaRegistry.png</PackageIconUrl>
+    <PackageIcon>icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/aliencube/AzureMessaging.SchemaRegistry</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
@@ -47,6 +47,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Aliencube.AzureMessaging.SchemaValidation\Aliencube.AzureMessaging.SchemaValidation.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\icons\icon.png" Pack="true" PackagePath="\"/>
   </ItemGroup>
 
 </Project>
