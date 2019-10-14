@@ -6,7 +6,7 @@ Currently, there are three official sinks available:
 
 * [`BlobStorageSchemaSink`](./schema-registry-sinks-blob.md)
 * [`FileSystemSchemaSink`](./schema-registry-sinks-file-system.md)
-* [`HttpSchemaSink`](./docs/schema-registry-sinks-http.md)
+* [`HttpSchemaSink`](./schema-registry-sinks-http.md)
 
 
 ## NuGet Package Status ##
