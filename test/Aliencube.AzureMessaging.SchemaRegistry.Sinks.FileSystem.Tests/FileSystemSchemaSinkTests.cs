@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -17,7 +16,6 @@ using Moq;
 namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.FileSystem.Tests
 {
     [TestClass]
-    [SuppressMessage("Usage", "CA1806:Do not ignore method results")]
     public class FileSystemSchemaSinkTests
     {
         [TestMethod]
@@ -29,7 +27,10 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.FileSystem.Tests
         [TestMethod]
         public void Given_Type_Then_It_Should_Implement_Interfaces()
         {
-            typeof(FileSystemSchemaSink).Should().Implement<ISchemaSink>();
+            typeof(FileSystemSchemaSink)
+                .Should().Implement<ISchemaSink>()
+                .And.Implement<IFileSystemSchemaSink>()
+                ;
         }
 
         [TestMethod]

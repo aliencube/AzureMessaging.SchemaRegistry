@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
@@ -11,9 +10,6 @@ namespace Aliencube.AzureMessaging.SchemaValidation.HttpClient
     /// <summary>
     /// This represents the extension entity for <see cref="System.Net.Http.HttpClient"/>.
     /// </summary>
-    [SuppressMessage("Design", "CA1054:Uri parameters should not be strings")]
-    [SuppressMessage("Design", "CA1062:Validate arguments of public methods")]
-    [SuppressMessage("Usage", "CA2234:Pass system uri objects instead of strings")]
     public static partial class HttpClientExtensions
     {
         /// <summary>

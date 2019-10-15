@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 
 using Aliencube.AzureMessaging.SchemaRegistry;
@@ -11,7 +10,6 @@ namespace Aliencube.AzureMessaging.SchemaValidation
     /// This represents the exception entity thrown when schema is not formed properly.
     /// </summary>
     [Serializable]
-    [SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters")]
     public class SchemaMalformedException : Exception
     {
         private const string SchemaNotFormed = "Schema is not formed properly";
@@ -57,7 +55,6 @@ namespace Aliencube.AzureMessaging.SchemaValidation
         /// </summary>
         /// <param name="info"><see cref="SerializationInfo"/> instance.</param>
         /// <param name="context"><see cref="StreamingContext"/> instance.</param>
-        [ExcludeFromCodeCoverage]
         protected SchemaMalformedException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {

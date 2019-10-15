@@ -3,8 +3,8 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
+using Aliencube.AzureMessaging.SchemaRegistry;
 using Aliencube.AzureMessaging.SchemaRegistry.Sinks;
-using Aliencube.AzureMessaging.SchemaValidation;
 using Aliencube.AzureMessaging.SchemaValidation.Extensions;
 
 using Microsoft.Azure.WebJobs;
@@ -15,12 +15,9 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace Aliencube.AzureMessaging.SchemaRegistry.FunctionAppV1
+namespace Aliencube.AzureMessaging.SchemaValidation.FunctionAppV1
 {
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("Design", "CA1062:Validate arguments of public methods")]
-    [SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters")]
-    [SuppressMessage("Globalization", "CA1305:Specify IFormatProvider")]
     public static class ServiceBusTopicPublishHttpTrigger
     {
         [FunctionName(nameof(ServiceBusTopicPublishHttpTrigger))]

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,8 +12,6 @@ namespace Aliencube.AzureMessaging.SchemaRegistry
     /// <summary>
     /// This represents the entity for schema producer.
     /// </summary>
-    [SuppressMessage("Style", "IDE0021:Use expression body for constructors")]
-    [SuppressMessage("Style", "IDE0022:Use expression body for methods")]
     public class SchemaProducer : ISchemaProducer
     {
         private const string SinkNotFound = "Sink not found";
@@ -82,7 +79,6 @@ namespace Aliencube.AzureMessaging.SchemaRegistry
         }
 
         /// <inheritdoc />
-        [SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters")]
         public async Task<bool> ProduceAsync(string schema, string path)
         {
             schema.ThrowIfNullOrWhiteSpace();
@@ -95,7 +91,10 @@ namespace Aliencube.AzureMessaging.SchemaRegistry
 
             var exceptions = new ConcurrentQueue<Exception>();
 
-            Parallel.ForEach(this.Sinks, async p => await SetSchema(p, schema, path, exceptions).ConfigureAwait(false));
+            foreach (var sink in this.Sinks)
+            {
+                await SetSchemaAsync(sink, schema, path, exceptions).ConfigureAwait(false);
+            }
 
             if (exceptions.Any())
             {
@@ -119,8 +118,7 @@ namespace Aliencube.AzureMessaging.SchemaRegistry
             return await this.ProduceAsync(typeof(T), path).ConfigureAwait(false);
         }
 
-        [SuppressMessage("Design", "CA1031:Do not catch general exception types")]
-        private static async Task SetSchema(ISchemaSink sink, string schema, string path, ConcurrentQueue<Exception> exceptions)
+        private static async Task SetSchemaAsync(ISchemaSink sink, string schema, string path, ConcurrentQueue<Exception> exceptions)
         {
             try
             {

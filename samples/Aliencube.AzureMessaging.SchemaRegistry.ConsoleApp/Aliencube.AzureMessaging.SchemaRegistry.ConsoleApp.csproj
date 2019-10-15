@@ -9,8 +9,8 @@
     <CodeAnalysisRuleSet>..\..\AllRulesDefault.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
-  <Import Project="..\..\editorconfig.props" Condition="Exists('..\..\editorconfig.props')" />
-  <Import Project="..\..\Microsoft.CodeAnalysis.FxCopAnalyzers.props" Condition="Exists('..\..\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" />
+  <!-- <Import Project="..\..\editorconfig.props" Condition="Exists('..\..\editorconfig.props')" /> -->
+  <!-- <Import Project="..\..\Microsoft.CodeAnalysis.FxCopAnalyzers.props" Condition="Exists('..\..\Microsoft.CodeAnalysis.FxCopAnalyzers.props')" /> -->
 
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.6.0" />
@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob\Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob.csproj" />
     <ProjectReference Include="..\..\src\Aliencube.AzureMessaging.SchemaRegistry.Sinks.FileSystem\Aliencube.AzureMessaging.SchemaRegistry.Sinks.FileSystem.csproj" />
     <ProjectReference Include="..\..\src\Aliencube.AzureMessaging.SchemaRegistry\Aliencube.AzureMessaging.SchemaRegistry.csproj" />
   </ItemGroup>

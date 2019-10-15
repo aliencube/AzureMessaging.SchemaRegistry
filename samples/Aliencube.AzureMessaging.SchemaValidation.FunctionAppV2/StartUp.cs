@@ -1,23 +1,25 @@
+using System;
 using System.Diagnostics.CodeAnalysis;
 
+using Aliencube.AzureMessaging.SchemaRegistry;
 using Aliencube.AzureMessaging.SchemaRegistry.Sinks;
-using Aliencube.AzureMessaging.SchemaValidation;
+using Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob;
 
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.WindowsAzure.Storage;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-[assembly: FunctionsStartup(typeof(Aliencube.AzureMessaging.SchemaRegistry.FunctionAppV2.StartUp))]
-
-namespace Aliencube.AzureMessaging.SchemaRegistry.FunctionAppV2
+[assembly: FunctionsStartup(typeof(Aliencube.AzureMessaging.SchemaValidation.FunctionAppV2.StartUp))]
+namespace Aliencube.AzureMessaging.SchemaValidation.FunctionAppV2
 {
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("Style", "IDE0022:Use expression body for methods")]
-    [SuppressMessage("Design", "CA1062:Validate arguments of public methods")]
     public class StartUp : FunctionsStartup
     {
+        private const string StorageConnectionStringKey = "AzureWebJobsStorage";
+
         public override void Configure(IFunctionsHostBuilder builder)
         {
             this.ConfigureJsonSerialiser(builder.Services);
@@ -38,9 +40,11 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.FunctionAppV2
 
         private void ConfigureSchemaValidation(IServiceCollection services)
         {
-            var location = Utility.GetBasePath();
-            var sink = new FileSystemSchemaSink(location);
-            services.AddSingleton<ISchemaSink, FileSystemSchemaSink>(_ => sink);
+            var blobConnectionString = Environment.GetEnvironmentVariable(StorageConnectionStringKey);
+            var blobClient = CloudStorageAccount.Parse(blobConnectionString)
+                                                .CreateCloudBlobClient();
+            var sink = new BlobStorageSchemaSink(blobClient);
+            services.AddSingleton<ISchemaSink, BlobStorageSchemaSink>(_ => sink);
             services.AddSingleton<ISchemaConsumer, SchemaConsumer>();
             services.AddSingleton<ISchemaValidator, SchemaValidator>();
         }

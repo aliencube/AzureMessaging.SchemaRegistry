@@ -1,11 +1,9 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Aliencube.AzureMessaging.SchemaRegistry.FunctionAppV2
+namespace Aliencube.AzureMessaging.SchemaValidation.FunctionAppV2
 {
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("Naming", "CA1716:Identifiers should not match keywords")]
-    [SuppressMessage("Usage", "CA2227:Collection properties should be read only")]
     public class SampleClass
     {
         public virtual string Text { get; set; } = "hello world";

@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,9 +10,7 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks
     /// <summary>
     /// This represents the schema sink entity for file system.
     /// </summary>
-    [SuppressMessage("Style", "IDE0021:Use expression body for constructors")]
-    [SuppressMessage("Style", "IDE0022:Use expression body for methods")]
-    public class FileSystemSchemaSink : SchemaSink
+    public class FileSystemSchemaSink : SchemaSink, IFileSystemSchemaSink
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FileSystemSchemaSink"/> class.
@@ -31,19 +28,13 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks
         {
         }
 
-        /// <summary>
-        /// Gets or sets the <see cref="IDirectoryWrapper"/> instance.
-        /// </summary>
+        /// <inheritdoc />
         public virtual IDirectoryWrapper Directory { get; set; } = new DirectoryWrapper();
 
-        /// <summary>
-        /// Gets or sets the <see cref="IFileWrapper"/> instance.
-        /// </summary>
+        /// <inheritdoc />
         public virtual IFileWrapper File { get; set; } = new FileWrapper();
 
-        /// <summary>
-        /// Gets or sets the <see cref="System.Text.Encoding"/> value.
-        /// </summary>
+        /// <inheritdoc />
         public virtual Encoding Encoding { get; set; } = Encoding.UTF8;
 
         /// <inheritdoc />

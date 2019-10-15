@@ -1,0 +1,30 @@
+name: $(Version).$(rev:r)
+
+trigger:
+  branches:
+    include:
+    - dev
+
+pr: none
+
+variables:
+- group: Common
+- name: TestRunStatus
+  value: ''
+
+stages:
+- stage: BuildAndTest
+  displayName: 'Build and Test'
+
+  jobs:
+  - job: WindowsLatest
+    displayName: 'Hosted Windows Latest'
+
+    pool:
+      vmImage: 'windows-latest'
+
+    workspace:
+      clean: all
+
+    steps:
+    - template: 'template-steps-build-test.yaml'

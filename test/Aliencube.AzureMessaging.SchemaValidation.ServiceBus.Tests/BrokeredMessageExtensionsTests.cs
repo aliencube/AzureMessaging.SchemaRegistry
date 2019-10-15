@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -23,7 +22,6 @@ namespace Aliencube.AzureMessaging.SchemaValidation.ServiceBus.Tests
 #if NET461
 
     [TestClass]
-    [SuppressMessage("Usage", "CA1806:Do not ignore method results")]
     public class BrokeredMessageExtensionsTests
     {
         [TestMethod]

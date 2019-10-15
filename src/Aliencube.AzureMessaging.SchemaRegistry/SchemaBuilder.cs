@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 
 using Aliencube.AzureMessaging.SchemaRegistry.Sinks.Extensions;
 
@@ -11,8 +10,6 @@ namespace Aliencube.AzureMessaging.SchemaRegistry
     /// <summary>
     /// This represents the entity for JSON schema builder.
     /// </summary>
-    [SuppressMessage("Style", "IDE0021:Use expression body for constructors")]
-    [SuppressMessage("Style", "IDE0022:Use expression body for methods")]
     public class SchemaBuilder : ISchemaBuilder
     {
         private JsonSchemaGeneratorSettings _settings;

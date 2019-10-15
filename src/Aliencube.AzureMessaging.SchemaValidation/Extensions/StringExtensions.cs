@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
 using Aliencube.AzureMessaging.SchemaRegistry.Sinks.Extensions;
@@ -8,7 +7,6 @@ namespace Aliencube.AzureMessaging.SchemaValidation.Extensions
     /// <summary>
     /// This represents the extension entity for <see cref="string"/>.
     /// </summary>
-    [SuppressMessage("Design", "CA1062:Validate arguments of public methods")]
     public static class StringExtensions
     {
         /// <summary>

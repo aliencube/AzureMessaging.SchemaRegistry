@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
 using Aliencube.AzureMessaging.SchemaRegistry.Sinks.Extensions;
@@ -8,8 +7,6 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks
     /// <summary>
     /// This represents the entity for schema sink that determines where the schema hosting location is.
     /// </summary>
-    [SuppressMessage("Style", "IDE0021:Use expression body for constructors")]
-    [SuppressMessage("Style", "IDE0022:Use expression body for methods")]
     public abstract class SchemaSink : ISchemaSink
     {
         /// <summary>
@@ -17,6 +14,7 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks
         /// </summary>
         protected SchemaSink()
         {
+            this.Name = this.GetType().Name;
         }
 
         /// <summary>
@@ -24,12 +22,16 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks
         /// </summary>
         /// <param name="location"></param>
         protected SchemaSink(string location)
+            : this()
         {
             this.BaseLocation = location.ThrowIfNullOrWhiteSpace();
         }
 
         /// <inheritdoc />
-        public virtual string BaseLocation { get; private set; } = string.Empty;
+        public virtual string Name { get; set; }
+
+        /// <inheritdoc />
+        public virtual string BaseLocation { get; protected set; } = string.Empty;
 
         /// <inheritdoc />
         public virtual ISchemaSink WithBaseLocation(string location)

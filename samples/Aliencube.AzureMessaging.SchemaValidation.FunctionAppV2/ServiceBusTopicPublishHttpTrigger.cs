@@ -3,7 +3,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Threading.Tasks;
 
-using Aliencube.AzureMessaging.SchemaValidation;
 using Aliencube.AzureMessaging.SchemaValidation.Extensions;
 
 using Microsoft.AspNetCore.Http;
@@ -15,14 +14,14 @@ using Microsoft.Extensions.Logging;
 
 using Newtonsoft.Json;
 
-namespace Aliencube.AzureMessaging.SchemaRegistry.FunctionAppV2
+namespace Aliencube.AzureMessaging.SchemaValidation.FunctionAppV2
 {
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("Style", "IDE0021:Use expression body for constructors")]
-    [SuppressMessage("Design", "CA1062:Validate arguments of public methods")]
-    [SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters")]
     public class ServiceBusTopicPublishHttpTrigger
     {
+        private const string SchemaVersionKey = "SchemaVersion";
+        private const string SchemaFilenameKey = "SchemaFilename";
+
         private readonly JsonSerializerSettings _settings;
         private readonly ISchemaValidator _validator;
 
@@ -40,7 +39,9 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.FunctionAppV2
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
-            var path = "default.json";
+            var version = Environment.GetEnvironmentVariable(SchemaVersionKey);
+            var filename = Environment.GetEnvironmentVariable(SchemaFilenameKey);
+            var path = $"{version}/{filename}";
 
             var sample = new SampleClass();
             var payload = await JsonConvert.SerializeObject(sample, this._settings)

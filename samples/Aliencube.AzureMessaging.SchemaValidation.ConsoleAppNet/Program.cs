@@ -26,9 +26,6 @@ namespace Aliencube.AzureMessaging.SchemaValidation.ConsoleAppNet
     /// This represents the entity for the console app.
     /// </summary>
     [ExcludeFromCodeCoverage]
-    [SuppressMessage("Style", "IDE0022:Use expression body for methods")]
-    [SuppressMessage("Globalization", "CA1303:Do not pass literals as localized parameters")]
-    [SuppressMessage("Reliability", "CA2008:Do not create tasks without passing a TaskScheduler")]
     public static class Program
     {
         private const string SchemaRegistered = "Schema registered";

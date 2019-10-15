@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -14,7 +13,6 @@ using Microsoft.WindowsAzure.Storage.Blob;
 namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob.Tests
 {
     [TestClass]
-    [SuppressMessage("Usage", "CA1806:Do not ignore method results")]
     public class BlobStorageSchemaSinkTests
     {
         [TestMethod]
@@ -38,8 +36,10 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob.Tests
             typeof(BlobStorageSchemaSink)
                 .Should().HaveDefaultConstructor()
                 .And.HaveConstructor(new[] { typeof(string) })
+                .And.HaveConstructor(new[] { typeof(Uri) })
                 .And.HaveConstructor(new[] { typeof(CloudBlobClient) })
                 .And.HaveConstructor(new[] { typeof(string), typeof(CloudBlobClient) })
+                .And.HaveConstructor(new[] { typeof(Uri), typeof(CloudBlobClient) })
                 ;
         }
 
@@ -57,6 +57,11 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob.Tests
         [TestMethod]
         public void Given_Type_Then_It_Should_Have_Methods()
         {
+            typeof(BlobStorageSchemaSink)
+                .Should().HaveMethod("WithBaseLocation", new[] { typeof(Uri) })
+                    .Which.Should().BeVirtual()
+                        .And.Return<ISchemaSink>();
+
             typeof(BlobStorageSchemaSink)
                 .Should().HaveMethod("WithBlobClient", new[] { typeof(CloudBlobClient) })
                     .Which.Should().BeVirtual()
@@ -86,7 +91,7 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob.Tests
             var instance = new BlobStorageSchemaSink();
 
             instance.BaseLocation.Should().BeEmpty();
-            instance.Container.Should().BeEmpty();
+            instance.Container.Should().Be("schemas");
         }
 
         [TestMethod]
@@ -94,17 +99,74 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob.Tests
         {
             var action = default(Action);
 
-            action = () => new BlobStorageSchemaSink(location: null);
+            action = () => new BlobStorageSchemaSink(location: (string)null);
+            action.Should().Throw<ArgumentNullException>();
+
+            action = () => new BlobStorageSchemaSink(location: (Uri)null);
             action.Should().Throw<ArgumentNullException>();
 
             action = () => new BlobStorageSchemaSink(blobClient: null);
             action.Should().Throw<ArgumentNullException>();
 
-            action = () => new BlobStorageSchemaSink(null, null);
+            action = () => new BlobStorageSchemaSink((string)null, null);
             action.Should().Throw<ArgumentNullException>();
 
-            action = () => new BlobStorageSchemaSink("hello-world", null);
+            action = () => new BlobStorageSchemaSink((Uri)null, null);
             action.Should().Throw<ArgumentNullException>();
+
+            action = () => new BlobStorageSchemaSink("http://localhost", null);
+            action.Should().Throw<ArgumentNullException>();
+
+            action = () => new BlobStorageSchemaSink(new Uri("http://localhost"), null);
+            action.Should().Throw<ArgumentNullException>();
+        }
+
+        [DataTestMethod]
+        [DataRow("http://localhost")]
+        public void Given_Location_When_Instantiated_Then_It_Should_Return_Result(string location)
+        {
+            var instance = default(BlobStorageSchemaSink);
+
+            instance = new BlobStorageSchemaSink(location);
+            instance.BaseLocation.Should().Be(location);
+
+            instance = new BlobStorageSchemaSink(new Uri(location));
+            instance.BaseLocation.Trim('/').Should().Be(location.Trim('/'));
+        }
+
+        [DataTestMethod]
+        [DataRow("http://localhost", "http://lorem-ipsum")]
+        public void Given_Location_With_BlobClient_When_Instantiated_Then_It_Should_Return_Result(string location, string blobUri)
+        {
+            var instance = default(BlobStorageSchemaSink);
+            var blobClient = new CloudBlobClient(new Uri(blobUri));
+
+            instance = new BlobStorageSchemaSink(location, blobClient);
+            instance.BaseLocation.Trim('/').Should().Be(blobUri.Trim('/'));
+
+            instance = new BlobStorageSchemaSink(new Uri(location), blobClient);
+            instance.BaseLocation.Trim('/').Should().Be(blobUri.Trim('/'));
+        }
+
+        [TestMethod]
+        public void Given_Null_Uri_When_WithBaseLocation_Invoked_Then_It_Should_Throw_Exception()
+        {
+            var instance = new BlobStorageSchemaSink();
+
+            Action action = () => instance.WithBaseLocation((Uri)null);
+
+            action.Should().Throw<ArgumentNullException>();
+        }
+
+        [DataTestMethod]
+        [DataRow("http://localhost")]
+        public void Given_Uri_When_WithBaseLocation_Invoked_Then_It_Should_Return_Result(string uri)
+        {
+            var instance = new BlobStorageSchemaSink();
+
+            var result = instance.WithBaseLocation(new Uri(uri));
+
+            result.BaseLocation.Trim('/').Should().BeEquivalentTo(uri.Trim('/'));
         }
 
         [TestMethod]
@@ -117,14 +179,16 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob.Tests
             action.Should().Throw<ArgumentNullException>();
         }
 
-        [TestMethod]
-        public void Given_BlobClient_When_WithBlobClient_Invoked_Then_It_Should_Return_Result()
+        [DataTestMethod]
+        [DataRow("http://localhost")]
+        public void Given_BlobClient_When_WithBlobClient_Invoked_Then_It_Should_Return_Result(string blobUri)
         {
-            var uri = new Uri("http://localhost");
-            var blobClient = new CloudBlobClient(uri);
+            var blobClient = new CloudBlobClient(new Uri(blobUri));
             var instance = new BlobStorageSchemaSink();
 
             var result = instance.WithBlobClient(blobClient);
+
+            result.BaseLocation.Trim('/').Should().Be(blobUri.Trim('/'));
 
             var field = typeof(BlobStorageSchemaSink).GetField("_blobClient", BindingFlags.NonPublic | BindingFlags.Instance);
 
