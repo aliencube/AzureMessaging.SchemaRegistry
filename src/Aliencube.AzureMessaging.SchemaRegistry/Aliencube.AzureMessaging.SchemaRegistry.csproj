@@ -18,7 +18,8 @@
     <Copyright>Aliencube Community</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/aliencube/AzureMessaging.SchemaRegistry</PackageProjectUrl>
-    <PackageIcon>icon.png</PackageIcon>
+    <PackageIconUrl>https://raw.githubusercontent.com/aliencube/AzureMessaging.SchemaRegistry/master/icons/icon.png</PackageIconUrl>
+    <!-- <PackageIcon>icon.png</PackageIcon> -->
     <RepositoryUrl>https://github.com/aliencube/AzureMessaging.SchemaRegistry</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
@@ -54,8 +55,8 @@
     <ProjectReference Include="..\Aliencube.AzureMessaging.SchemaRegistry.Sinks\Aliencube.AzureMessaging.SchemaRegistry.Sinks.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
+  <!-- <ItemGroup>
     <None Include="..\..\icons\icon.png" Pack="true" PackagePath="\"/>
-  </ItemGroup>
+  </ItemGroup> -->
 
 </Project>
