@@ -15,6 +15,9 @@ This sample console application generates a JSON schema and stores it into a loc
            --configuration Debug \
            --framework netcoreapp2.1 \
            -- \
-           --base-location /etc/schema-registry \
+           --blob-connectionstring [STORAGE_ACCOUNT_CONNECTION_STRING] \
+           --blob-baseuri https://[STORAGE_ACCOUNT_INSTANCE_NAME].blob.core.windows.net/ \
+           --blob-container [BLOB_CONTAINER_NAME] \
+           --file-baselocation /etc/schema-registry \
            --file-path v1/schema.json
     ```

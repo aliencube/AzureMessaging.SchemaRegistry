@@ -14,6 +14,7 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks
         /// </summary>
         protected SchemaSink()
         {
+            this.Name = this.GetType().Name;
         }
 
         /// <summary>
@@ -21,9 +22,13 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks
         /// </summary>
         /// <param name="location"></param>
         protected SchemaSink(string location)
+            : this()
         {
             this.BaseLocation = location.ThrowIfNullOrWhiteSpace();
         }
+
+        /// <inheritdoc />
+        public virtual string Name { get; set; }
 
         /// <inheritdoc />
         public virtual string BaseLocation { get; protected set; } = string.Empty;

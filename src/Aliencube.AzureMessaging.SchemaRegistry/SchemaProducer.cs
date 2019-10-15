@@ -91,7 +91,10 @@ namespace Aliencube.AzureMessaging.SchemaRegistry
 
             var exceptions = new ConcurrentQueue<Exception>();
 
-            Parallel.ForEach(this.Sinks, async p => await SetSchema(p, schema, path, exceptions).ConfigureAwait(false));
+            foreach (var sink in this.Sinks)
+            {
+                await SetSchemaAsync(sink, schema, path, exceptions).ConfigureAwait(false);
+            }
 
             if (exceptions.Any())
             {
@@ -115,7 +118,7 @@ namespace Aliencube.AzureMessaging.SchemaRegistry
             return await this.ProduceAsync(typeof(T), path).ConfigureAwait(false);
         }
 
-        private static async Task SetSchema(ISchemaSink sink, string schema, string path, ConcurrentQueue<Exception> exceptions)
+        private static async Task SetSchemaAsync(ISchemaSink sink, string schema, string path, ConcurrentQueue<Exception> exceptions)
         {
             try
             {

@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob\Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob.csproj" />
     <ProjectReference Include="..\..\src\Aliencube.AzureMessaging.SchemaRegistry.Sinks.FileSystem\Aliencube.AzureMessaging.SchemaRegistry.Sinks.FileSystem.csproj" />
     <ProjectReference Include="..\..\src\Aliencube.AzureMessaging.SchemaRegistry\Aliencube.AzureMessaging.SchemaRegistry.csproj" />
   </ItemGroup>

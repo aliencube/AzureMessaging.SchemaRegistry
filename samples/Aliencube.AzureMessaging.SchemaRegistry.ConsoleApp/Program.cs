@@ -3,8 +3,12 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
 using Aliencube.AzureMessaging.SchemaRegistry.Sinks;
+using Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob;
+using Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob.Extensions;
 
 using CommandLine;
+
+using Microsoft.WindowsAzure.Storage;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -55,27 +59,66 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.ConsoleApp
             var builder = new SchemaBuilder()
                               .WithSettings(Settings);
 
-            var schema = builder.Build<SampleClass>()
-                                 .ToJson();
+            var fileSink = GetFileSchemaSink(options);
+            var blobSink = GetBlobSchemaSink(options);
 
+            await ProduceAsync(builder, options, fileSink, blobSink)
+                  .ConfigureAwait(false);
+
+            await ConsumeAsync(options, blobSink)
+                  .ConfigureAwait(false);
+
+            await ConsumeAsync(options, fileSink)
+                  .ConfigureAwait(false);
+        }
+
+        private static ISchemaSink GetFileSchemaSink(Options options)
+        {
             var sink = new FileSystemSchemaSink()
-                           .WithBaseLocation(options.BaseLocation);
+                           .WithBaseLocation(options.FileBaseLocation);
 
+            return sink;
+        }
+
+        private static ISchemaSink GetBlobSchemaSink(Options options)
+        {
+            var blobClient = CloudStorageAccount.Parse(options.BlobConnectionString)
+                                                .CreateCloudBlobClient();
+
+            var sink = new BlobStorageSchemaSink(blobClient)
+                           .WithBaseLocation(options.BlobBaseUri)
+                           .WithContainer(options.Container);
+
+            return sink;
+        }
+
+        private static async Task ProduceAsync(ISchemaBuilder builder, Options options, params ISchemaSink[] sinks)
+        {
             var producer = new SchemaProducer()
-                               .WithBuilder(builder)
-                               .WithSink(sink);
+                               .WithBuilder(builder);
+
+            foreach (var sink in sinks)
+            {
+                producer.WithSink(sink);
+            }
 
             var produced = await producer.ProduceAsync<SampleClass>(options.Filepath).ConfigureAwait(false);
 
-            Console.WriteLine(SchemaProduced);
+            foreach (var sink in sinks)
+            {
+                Console.WriteLine($"{sink.Name}: {SchemaProduced}");
+            }
+        }
 
+        private static async Task ConsumeAsync(Options options, ISchemaSink sink)
+        {
             var consumer = new SchemaConsumer()
                                .WithSink(sink);
 
             var downloaded = await consumer.ConsumeAsync(options.Filepath).ConfigureAwait(false);
 
+            Console.WriteLine($"{sink.Name}: {SchemaConsumed}");
             Console.WriteLine(downloaded);
-            Console.WriteLine(SchemaConsumed);
         }
     }
 }

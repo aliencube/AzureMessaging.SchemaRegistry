@@ -2,7 +2,6 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
-using Aliencube.AzureMessaging.SchemaValidation;
 using Aliencube.AzureMessaging.SchemaValidation.Extensions;
 
 using Microsoft.Azure.WebJobs;
@@ -13,6 +12,9 @@ namespace Aliencube.AzureMessaging.SchemaValidation.FunctionAppV2
     [ExcludeFromCodeCoverage]
     public class ServiceBusTopicSubscriptionTrigger
     {
+        private const string SchemaVersionKey = "SchemaVersion";
+        private const string SchemaFilenameKey = "SchemaFilename";
+
         private readonly ISchemaValidator _validator;
 
         public ServiceBusTopicSubscriptionTrigger(ISchemaValidator validator)
@@ -27,7 +29,9 @@ namespace Aliencube.AzureMessaging.SchemaValidation.FunctionAppV2
         {
             log.LogInformation($"C# ServiceBus topic trigger function processed message: {message}");
 
-            var path = "default.json";
+            var version = Environment.GetEnvironmentVariable(SchemaVersionKey);
+            var filename = Environment.GetEnvironmentVariable(SchemaFilenameKey);
+            var path = $"{version}/{filename}";
 
             var validated = await message.ValidateAsync(this._validator, path).ConfigureAwait(false);
 

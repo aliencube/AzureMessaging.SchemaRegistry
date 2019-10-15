@@ -4,6 +4,9 @@
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
     "FUNCTIONS_WORKER_RUNTIME": "dotnet",
 
+    "SchemaVersion": "v1",
+    "SchemaFilename": "default.json",
+
     "AzureServiceBusConnectionString": "[AZURE_SEVICE_BUS_CONNECTION_STRING]",
     "ServiceBusTopic": "my-topic",
     "ServiceBusTopicSubscription": "my-topic-subscription"
