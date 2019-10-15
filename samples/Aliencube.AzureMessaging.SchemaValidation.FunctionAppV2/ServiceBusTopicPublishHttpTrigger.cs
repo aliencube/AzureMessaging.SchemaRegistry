@@ -19,6 +19,9 @@ namespace Aliencube.AzureMessaging.SchemaValidation.FunctionAppV2
     [ExcludeFromCodeCoverage]
     public class ServiceBusTopicPublishHttpTrigger
     {
+        private const string SchemaVersionKey = "SchemaVersion";
+        private const string SchemaFilenameKey = "SchemaFilename";
+
         private readonly JsonSerializerSettings _settings;
         private readonly ISchemaValidator _validator;
 
@@ -36,7 +39,9 @@ namespace Aliencube.AzureMessaging.SchemaValidation.FunctionAppV2
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
 
-            var path = "default.json";
+            var version = Environment.GetEnvironmentVariable(SchemaVersionKey);
+            var filename = Environment.GetEnvironmentVariable(SchemaFilenameKey);
+            var path = $"{version}/{filename}";
 
             var sample = new SampleClass();
             var payload = await JsonConvert.SerializeObject(sample, this._settings)
