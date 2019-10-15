@@ -11,6 +11,10 @@ jobs:
     runOnce:
       deploy:
         steps:
+        - task: NuGetToolInstaller@1
+          displayName: 'Use NuGet '
+          inputs:
+            checkLatest: true
         - task: NuGetCommand@2
           displayName: 'Push NuGet Packages'
           inputs:
