@@ -8,6 +8,11 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks
     public interface ISchemaSink
     {
         /// <summary>
+        /// Gets or sets the unique name of the sink.
+        /// </summary>
+        string Name { get; set; }
+
+        /// <summary>
         /// Gets the base sink location.
         /// </summary>
         string BaseLocation { get; }

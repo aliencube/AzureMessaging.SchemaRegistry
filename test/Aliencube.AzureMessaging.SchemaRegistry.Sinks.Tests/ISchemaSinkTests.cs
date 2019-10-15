@@ -1,7 +1,5 @@
 using System.Threading.Tasks;
 
-using Aliencube.AzureMessaging.SchemaRegistry.Sinks;
-
 using FluentAssertions;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -14,6 +12,11 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Tests
         [TestMethod]
         public void Given_Type_Then_It_Should_Have_Properties()
         {
+            typeof(ISchemaSink)
+                .Should().HaveProperty<string>("Name")
+                    .Which.Should().BeReadable()
+                        .And.BeWritable();
+
             typeof(ISchemaSink)
                 .Should().HaveProperty<string>("BaseLocation")
                     .Which.Should().BeReadable()

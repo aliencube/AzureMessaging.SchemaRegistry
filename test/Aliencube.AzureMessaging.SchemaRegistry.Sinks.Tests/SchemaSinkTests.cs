@@ -1,7 +1,6 @@
 using System;
 using System.Threading.Tasks;
 
-using Aliencube.AzureMessaging.SchemaRegistry.Sinks;
 using Aliencube.AzureMessaging.Tests.Fakes;
 
 using FluentAssertions;
@@ -36,6 +35,13 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Tests
         public void Given_Type_Then_It_Should_Have_Properties()
         {
             typeof(SchemaSink)
+                .Should().HaveProperty<string>("Name")
+                    .Which.Should().BeReadable()
+                          .And.BeWritable()
+                          .And.BeVirtual()
+                          ;
+
+            typeof(SchemaSink)
                 .Should().HaveProperty<string>("BaseLocation")
                     .Which.Should().BeReadable()
                           .And.BeWritable()
@@ -69,6 +75,7 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Tests
         {
             var instance = new FakeSchemaSink();
 
+            instance.Name.Should().Be(nameof(FakeSchemaSink));
             instance.BaseLocation.Should().BeEmpty();
         }
 
@@ -97,6 +104,15 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Tests
             Action action = () => instance.WithBaseLocation(null);
 
             action.Should().Throw<ArgumentNullException>();
+        }
+
+        [DataTestMethod]
+        [DataRow("hello-world")]
+        public void Given_Name_When_Instantiated_Then_It_Should_Return_Name(string name)
+        {
+            var instance = new FakeSchemaSink() { Name = name };
+
+            instance.Name.Should().Be(name);
         }
 
         [DataTestMethod]
