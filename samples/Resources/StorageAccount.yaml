@@ -1,0 +1,104 @@
+$schema: https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#
+contentVersion: 1.0.0.0
+parameters:
+  location:
+    type: string
+    metadata:
+      description: The region where resources are deployed
+    defaultValue: '[resourceGroup().location]'
+  storageAccountName:
+    type: string
+    metadata:
+      description: Name of Storage Account
+  storageAccountSkuName:
+    type: string
+    metadata:
+      description: SKU Name for the Storage Account
+    allowedValues:
+    - Standard_LRS
+    - Standard_GRS
+    - Standard_ZRS
+    - Standard_RGRS
+    defaultValue: Standard_LRS
+  storageAccountSkuTier:
+    type: string
+    metadata:
+      description: SKU Tier for the Storage Account
+    defaultValue: Standard
+  blobServiceName:
+    type: string
+    metadata:
+      description: Blob service name
+    defaultValue: default
+  blobContainers:
+    type: string
+    metadata:
+      description: Comma delimited list of blob containers
+    defaultValue: 'schemas,backups'
+
+variables:
+  storageAccount:
+    name: "[parameters('storageAccountName')]"
+    apiVersion: "[providers('Microsoft.Storage', 'storageAccounts').apiVersions[0]]"
+    location: "[parameters('location')]"
+    resourceId: "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccountName'))]"
+    sku:
+      name: "[parameters('storageAccountSkuName')]"
+      tier: "[parameters('storageAccountSkuTier')]"
+    blob:
+      name: "[concat(parameters('storageAccountName'), '/', parameters('blobServiceName'))]"
+      apiVersion: "[providers('Microsoft.Storage', 'storageAccounts/blobServices').apiVersions[0]]"
+      resourceId: "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storageAccountName'), parameters('blobServiceName'))]"
+      container:
+        names: "[split(parameters('blobContainers'), ',')]"
+
+  tags:
+    author: Justin Yoo
+    profile: https://twitter.com/justinchronicle
+    projectUrl: https://github.com/aliencube/AzureMessaging.SchemaRegistry
+    repositoryUrl: https://github.com/aliencube/AzureMessaging.SchemaRegistry
+    license: https://raw.githubusercontent.com/aliencube/AzureMessaging.SchemaRegistry/master/LICENSE
+
+resources:
+- comments: '### RESOURCE - STORAGE ACCOUNT ###'
+  apiVersion: "[variables('storageAccount').apiVersion]"
+  type: Microsoft.Storage/storageAccounts
+  name: "[variables('storageAccount').name]"
+  location: "[variables('storageAccount').location]"
+  kind: StorageV2
+  tags: "[variables('tags')]"
+  sku:
+    name: "[variables('storageAccount').sku.name]"
+    tier: "[variables('storageAccount').sku.tier]"
+  properties:
+    encryption:
+      keySource: Microsoft.Storage
+      services:
+        blob:
+          enabled: true
+        file:
+          enabled: true
+
+- comments: '### RESOURCE - STORAGE ACCOUNT - BLOB SERVICE ###'
+  apiVersion: "[variables('storageAccount').blob.apiVersion]"
+  type: Microsoft.Storage/storageAccounts/blobServices
+  name: "[variables('storageAccount').blob.name]"
+  dependsOn:
+  - "[variables('storageAccount').resourceId]"
+  properties:
+    cors:
+      corsRules: []
+      deleteRetentionPolicy:
+        enabled: false
+
+- comments: '### RESOURCE - STORAGE ACCOUNT - BLOB SERVICE - BLOB CONTAINER ###'
+  apiVersion: "[variables('storageAccount').blob.apiVersion]"
+  type: Microsoft.Storage/storageAccounts/blobServices/containers
+  copy:
+    name: containers
+    count: "[length(variables('storageAccount').blob.container.names)]"
+  name: "[concat(variables('storageAccount').blob.name, '/', variables('storageAccount').blob.container.names[copyIndex()])]"
+  dependsOn:
+  - "[variables('storageAccount').blob.resourceId]"
+
+outputs: {}
