@@ -7,7 +7,7 @@ using Aliencube.AzureMessaging.Tests.Fakes;
 
 using FluentAssertions;
 
-#if NETCOREAPP2_1
+#if NETCOREAPP3_1
 using Microsoft.Azure.ServiceBus;
 using Microsoft.Azure.ServiceBus.Core;
 #endif
@@ -18,7 +18,7 @@ using Moq;
 
 namespace Aliencube.AzureMessaging.SchemaValidation.ServiceBus.Tests
 {
-#if NETCOREAPP2_1
+#if NETCOREAPP3_1
     [TestClass]
     public class SchemaValidatorPluginTests
     {

@@ -10,7 +10,7 @@ using FluentAssertions.Common;
 
 using Microsoft.ServiceBus.Messaging;
 
-#elif NETCOREAPP2_1
+#elif NETCOREAPP3_1
 using Microsoft.Azure.ServiceBus;
 #endif
 
@@ -63,7 +63,7 @@ namespace Aliencube.AzureMessaging.SchemaValidation.ServiceBus.Tests
             typeof(MessageBodyZeroLengthException)
 #if NET461
                 .Should().HaveProperty<BrokeredMessage>("ServiceBusMessage")
-#elif NETCOREAPP2_1
+#elif NETCOREAPP3_1
                 .Should().HaveProperty<Message>("ServiceBusMessage")
 #endif
                     .Which.Should().BeReadable()
@@ -77,7 +77,7 @@ namespace Aliencube.AzureMessaging.SchemaValidation.ServiceBus.Tests
             typeof(MessageBodyZeroLengthException)
 #if NET461
                 .Should().HaveMethod("WithServiceBusMessage", new[] { typeof(BrokeredMessage) })
-#elif NETCOREAPP2_1
+#elif NETCOREAPP3_1
                 .Should().HaveMethod("WithServiceBusMessage", new[] { typeof(Message) })
 #endif
                     .Which.Should().Return<MessageBodyZeroLengthException>()
@@ -136,7 +136,7 @@ namespace Aliencube.AzureMessaging.SchemaValidation.ServiceBus.Tests
             var ex = new MessageBodyZeroLengthException();
 #if NET461
             var message = new BrokeredMessage();
-#elif NETCOREAPP2_1
+#elif NETCOREAPP3_1
             var message = new Message();
 #endif
             ex.WithServiceBusMessage(message);

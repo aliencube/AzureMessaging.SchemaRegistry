@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 
 using FluentAssertions;
 
-#if NETCOREAPP2_1
+#if NETCOREAPP3_1
 using Microsoft.Azure.ServiceBus;
 using Microsoft.Azure.ServiceBus.Core;
 #endif
@@ -11,7 +11,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Aliencube.AzureMessaging.SchemaValidation.ServiceBus.Tests
 {
-#if NETCOREAPP2_1
+#if NETCOREAPP3_1
     [TestClass]
     public class ISchemaValidatorPluginTests
     {
