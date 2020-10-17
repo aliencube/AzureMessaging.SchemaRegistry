@@ -226,96 +226,96 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob.Tests
             func.Should().Throw<ArgumentNullException>();
         }
 
-        // [DataTestMethod]
-        // [DataRow("hello", "default.json")]
-        // public async Task Given_Invalid_Container_When_GetSchemaAsync_Invoked_Then_It_Should_Throw_Exception(string container, string path)
-        // {
-        //     var account = CloudStorageAccount.DevelopmentStorageAccount;
-        //     var blobClient = account.CreateCloudBlobClient();
-        //     await blobClient.GetContainerReference(container)
-        //                     .DeleteIfExistsAsync()
-        //                     .ConfigureAwait(false);
+        [DataTestMethod]
+        [DataRow("hello", "default.json")]
+        public async Task Given_Invalid_Container_When_GetSchemaAsync_Invoked_Then_It_Should_Throw_Exception(string container, string path)
+        {
+            var account = CloudStorageAccount.DevelopmentStorageAccount;
+            var blobClient = account.CreateCloudBlobClient();
+            await blobClient.GetContainerReference(container)
+                            .DeleteIfExistsAsync()
+                            .ConfigureAwait(false);
 
-        //     var instance = new BlobStorageSchemaSink(blobClient)
-        //                        .WithContainer(container);
+            var instance = new BlobStorageSchemaSink(blobClient)
+                               .WithContainer(container);
 
-        //     Func<Task> func = async () => await instance.GetSchemaAsync(path).ConfigureAwait(false);
+            Func<Task> func = async () => await instance.GetSchemaAsync(path).ConfigureAwait(false);
 
-        //     func.Should().Throw<BlobContainerNotFoundException>();
-        // }
+            func.Should().Throw<BlobContainerNotFoundException>();
+        }
 
-        // [DataTestMethod]
-        // [DataRow("world", "default.json")]
-        // public async Task Given_Invalid_Blob_When_GetSchemaAsync_Invoked_Then_It_Should_Throw_Exception(string container, string path)
-        // {
-        //     var account = CloudStorageAccount.DevelopmentStorageAccount;
-        //     var blobClient = account.CreateCloudBlobClient();
-        //     await blobClient.GetContainerReference(container)
-        //                     .CreateIfNotExistsAsync()
-        //                     .ConfigureAwait(false);
+        [DataTestMethod]
+        [DataRow("world", "default.json")]
+        public async Task Given_Invalid_Blob_When_GetSchemaAsync_Invoked_Then_It_Should_Throw_Exception(string container, string path)
+        {
+            var account = CloudStorageAccount.DevelopmentStorageAccount;
+            var blobClient = account.CreateCloudBlobClient();
+            await blobClient.GetContainerReference(container)
+                            .CreateIfNotExistsAsync()
+                            .ConfigureAwait(false);
 
-        //     var instance = new BlobStorageSchemaSink(blobClient)
-        //                        .WithContainer(container);
+            var instance = new BlobStorageSchemaSink(blobClient)
+                               .WithContainer(container);
 
-        //     Func<Task> func = async () => await instance.GetSchemaAsync(path).ConfigureAwait(false);
+            Func<Task> func = async () => await instance.GetSchemaAsync(path).ConfigureAwait(false);
 
-        //     func.Should().Throw<BlobNotFoundException>();
+            func.Should().Throw<BlobNotFoundException>();
 
-        //     await blobClient.GetContainerReference(container)
-        //                     .DeleteIfExistsAsync()
-        //                     .ConfigureAwait(false);
-        // }
+            await blobClient.GetContainerReference(container)
+                            .DeleteIfExistsAsync()
+                            .ConfigureAwait(false);
+        }
 
-        // [DataTestMethod]
-        // [DataRow("lorem", "default.json", "{ \"lorem\": \"ipsum\" }")]
-        // public async Task Given_Blob_When_GetSchemaAsync_Invoked_Then_It_Should_Return_Result(string container, string path, string schema)
-        // {
-        //     var account = CloudStorageAccount.DevelopmentStorageAccount;
-        //     var blobClient = account.CreateCloudBlobClient();
-        //     var blobContainer = blobClient.GetContainerReference(container);
-        //     await blobContainer.CreateIfNotExistsAsync().ConfigureAwait(false);
+        [DataTestMethod]
+        [DataRow("lorem", "default.json", "{ \"lorem\": \"ipsum\" }")]
+        public async Task Given_Blob_When_GetSchemaAsync_Invoked_Then_It_Should_Return_Result(string container, string path, string schema)
+        {
+            var account = CloudStorageAccount.DevelopmentStorageAccount;
+            var blobClient = account.CreateCloudBlobClient();
+            var blobContainer = blobClient.GetContainerReference(container);
+            await blobContainer.CreateIfNotExistsAsync().ConfigureAwait(false);
 
-        //     var blob = blobContainer.GetBlockBlobReference(path);
-        //     await blob.UploadTextAsync(schema).ConfigureAwait(false);
+            var blob = blobContainer.GetBlockBlobReference(path);
+            await blob.UploadTextAsync(schema).ConfigureAwait(false);
 
-        //     var instance = new BlobStorageSchemaSink(blobClient)
-        //                        .WithContainer(container);
+            var instance = new BlobStorageSchemaSink(blobClient)
+                               .WithContainer(container);
 
-        //     var result = await instance.GetSchemaAsync(path).ConfigureAwait(false);
+            var result = await instance.GetSchemaAsync(path).ConfigureAwait(false);
 
-        //     result.Should().Be(schema);
+            result.Should().Be(schema);
 
-        //     await blob.DeleteIfExistsAsync().ConfigureAwait(false);
-        //     await blobClient.GetContainerReference(container)
-        //                     .DeleteIfExistsAsync()
-        //                     .ConfigureAwait(false);
-        // }
+            await blob.DeleteIfExistsAsync().ConfigureAwait(false);
+            await blobClient.GetContainerReference(container)
+                            .DeleteIfExistsAsync()
+                            .ConfigureAwait(false);
+        }
 
-        // [DataTestMethod]
-        // [DataRow("https://localhost", "ipsum", "default.json", "{ \"lorem\": \"ipsum\" }")]
-        // public async Task Given_Blob_With_FullPath_When_GetSchemaAsync_Invoked_Then_It_Should_Return_Result(string location, string container, string path, string schema)
-        // {
-        //     var account = CloudStorageAccount.DevelopmentStorageAccount;
-        //     var blobClient = account.CreateCloudBlobClient();
-        //     var blobContainer = blobClient.GetContainerReference(container);
-        //     await blobContainer.CreateIfNotExistsAsync().ConfigureAwait(false);
+        [DataTestMethod]
+        [DataRow("https://localhost", "ipsum", "default.json", "{ \"lorem\": \"ipsum\" }")]
+        public async Task Given_Blob_With_FullPath_When_GetSchemaAsync_Invoked_Then_It_Should_Return_Result(string location, string container, string path, string schema)
+        {
+            var account = CloudStorageAccount.DevelopmentStorageAccount;
+            var blobClient = account.CreateCloudBlobClient();
+            var blobContainer = blobClient.GetContainerReference(container);
+            await blobContainer.CreateIfNotExistsAsync().ConfigureAwait(false);
 
-        //     var blob = blobContainer.GetBlockBlobReference(path);
-        //     await blob.UploadTextAsync(schema).ConfigureAwait(false);
+            var blob = blobContainer.GetBlockBlobReference(path);
+            await blob.UploadTextAsync(schema).ConfigureAwait(false);
 
-        //     var instance = new BlobStorageSchemaSink(blobClient)
-        //                        .WithBaseLocation(location)
-        //                        .WithContainer(container);
+            var instance = new BlobStorageSchemaSink(blobClient)
+                               .WithBaseLocation(location)
+                               .WithContainer(container);
 
-        //     var result = await instance.GetSchemaAsync($"{location}/{container}/{path}").ConfigureAwait(false);
+            var result = await instance.GetSchemaAsync($"{location}/{container}/{path}").ConfigureAwait(false);
 
-        //     result.Should().Be(schema);
+            result.Should().Be(schema);
 
-        //     await blob.DeleteIfExistsAsync().ConfigureAwait(false);
-        //     await blobClient.GetContainerReference(container)
-        //                     .DeleteIfExistsAsync()
-        //                     .ConfigureAwait(false);
-        // }
+            await blob.DeleteIfExistsAsync().ConfigureAwait(false);
+            await blobClient.GetContainerReference(container)
+                            .DeleteIfExistsAsync()
+                            .ConfigureAwait(false);
+        }
 
         [TestMethod]
         public void Given_Null_Parameters_When_SetSchemaAsync_Invoked_Then_It_Should_Throw_Exception()
@@ -332,55 +332,55 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Sinks.Blob.Tests
             func.Should().Throw<ArgumentNullException>();
         }
 
-        // [DataTestMethod]
-        // [DataRow("dolor", "default.json", "{ \"lorem\": \"ipsum\" }")]
-        // public async Task Given_Blob_When_SetSchemaAsync_Invoked_Then_It_Should_Return_Result(string container, string path, string schema)
-        // {
-        //     var account = CloudStorageAccount.DevelopmentStorageAccount;
-        //     var blobClient = account.CreateCloudBlobClient();
-        //     var blobContainer = blobClient.GetContainerReference(container);
-        //     await blobContainer.CreateIfNotExistsAsync().ConfigureAwait(false);
+        [DataTestMethod]
+        [DataRow("dolor", "default.json", "{ \"lorem\": \"ipsum\" }")]
+        public async Task Given_Blob_When_SetSchemaAsync_Invoked_Then_It_Should_Return_Result(string container, string path, string schema)
+        {
+            var account = CloudStorageAccount.DevelopmentStorageAccount;
+            var blobClient = account.CreateCloudBlobClient();
+            var blobContainer = blobClient.GetContainerReference(container);
+            await blobContainer.CreateIfNotExistsAsync().ConfigureAwait(false);
 
-        //     var blob = blobContainer.GetBlockBlobReference(path);
-        //     await blob.UploadTextAsync(schema).ConfigureAwait(false);
+            var blob = blobContainer.GetBlockBlobReference(path);
+            await blob.UploadTextAsync(schema).ConfigureAwait(false);
 
-        //     var instance = new BlobStorageSchemaSink(blobClient)
-        //                        .WithContainer(container);
+            var instance = new BlobStorageSchemaSink(blobClient)
+                               .WithContainer(container);
 
-        //     var result = await instance.SetSchemaAsync(schema, path).ConfigureAwait(false);
+            var result = await instance.SetSchemaAsync(schema, path).ConfigureAwait(false);
 
-        //     result.Should().BeTrue();
+            result.Should().BeTrue();
 
-        //     await blob.DeleteIfExistsAsync().ConfigureAwait(false);
-        //     await blobClient.GetContainerReference(container)
-        //                     .DeleteIfExistsAsync()
-        //                     .ConfigureAwait(false);
-        // }
+            await blob.DeleteIfExistsAsync().ConfigureAwait(false);
+            await blobClient.GetContainerReference(container)
+                            .DeleteIfExistsAsync()
+                            .ConfigureAwait(false);
+        }
 
-        // [DataTestMethod]
-        // [DataRow("https://localhost", "sit", "default.json", "{ \"lorem\": \"ipsum\" }")]
-        // public async Task Given_Blob_With_FullPath_When_SetSchemaAsync_Invoked_Then_It_Should_Return_Result(string location, string container, string path, string schema)
-        // {
-        //     var account = CloudStorageAccount.DevelopmentStorageAccount;
-        //     var blobClient = account.CreateCloudBlobClient();
-        //     var blobContainer = blobClient.GetContainerReference(container);
-        //     await blobContainer.CreateIfNotExistsAsync().ConfigureAwait(false);
+        [DataTestMethod]
+        [DataRow("https://localhost", "sit", "default.json", "{ \"lorem\": \"ipsum\" }")]
+        public async Task Given_Blob_With_FullPath_When_SetSchemaAsync_Invoked_Then_It_Should_Return_Result(string location, string container, string path, string schema)
+        {
+            var account = CloudStorageAccount.DevelopmentStorageAccount;
+            var blobClient = account.CreateCloudBlobClient();
+            var blobContainer = blobClient.GetContainerReference(container);
+            await blobContainer.CreateIfNotExistsAsync().ConfigureAwait(false);
 
-        //     var blob = blobContainer.GetBlockBlobReference(path);
-        //     await blob.UploadTextAsync(schema).ConfigureAwait(false);
+            var blob = blobContainer.GetBlockBlobReference(path);
+            await blob.UploadTextAsync(schema).ConfigureAwait(false);
 
-        //     var instance = new BlobStorageSchemaSink(blobClient)
-        //                        .WithBaseLocation(location)
-        //                        .WithContainer(container);
+            var instance = new BlobStorageSchemaSink(blobClient)
+                               .WithBaseLocation(location)
+                               .WithContainer(container);
 
-        //     var result = await instance.SetSchemaAsync(schema, $"{location}/{container}/{path}").ConfigureAwait(false);
+            var result = await instance.SetSchemaAsync(schema, $"{location}/{container}/{path}").ConfigureAwait(false);
 
-        //     result.Should().BeTrue();
+            result.Should().BeTrue();
 
-        //     await blob.DeleteIfExistsAsync().ConfigureAwait(false);
-        //     await blobClient.GetContainerReference(container)
-        //                     .DeleteIfExistsAsync()
-        //                     .ConfigureAwait(false);
-        // }
+            await blob.DeleteIfExistsAsync().ConfigureAwait(false);
+            await blobClient.GetContainerReference(container)
+                            .DeleteIfExistsAsync()
+                            .ConfigureAwait(false);
+        }
     }
 }

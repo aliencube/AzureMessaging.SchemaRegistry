@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "SampleClass",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "Text": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "Dictionary": {
+      "type": [
+        "null",
+        "object"
+      ],
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "List": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "string"
+      }
+    },
+    "Enum": {
+      "$ref": "#/definitions/SampleEnum"
+    },
+    "SubClass": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/definitions/SampleSubClass"
+        }
+      ]
+    }
+  },
+  "definitions": {
+    "SampleEnum": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Value1",
+        "Value2"
+      ],
+      "enum": [
+        0,
+        1
+      ]
+    },
+    "SampleSubClass": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Number": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    }
+  }
+}

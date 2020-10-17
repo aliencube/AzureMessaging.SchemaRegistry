@@ -173,5 +173,16 @@ namespace Aliencube.AzureMessaging.SchemaRegistry.Tests
                     .WhichValue.SelectToken("type").SingleOrDefault(p => p.Value<string>().IsEquivalentTo("string", StringComparison.CurrentCulture))
                         .Should().NotBeNull();
         }
+
+        [TestMethod]
+        public void Given_SampleClass_When_Build_Invoked_Then_It_Should_Return_Values()
+        {
+            var settings = new JsonSchemaGeneratorSettings();
+            var result = new SchemaBuilder()
+                             .WithSettings(settings)
+                             .Build<SampleClass>();
+
+            var schema = result.ToJson();
+        }
     }
 }

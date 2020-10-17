@@ -331,3 +331,4 @@ ASALocalRun/
 
 *.local.yaml
 **/[Rr]esources/*.json
+**/azurite/

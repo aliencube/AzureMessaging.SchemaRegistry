@@ -3,6 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.779
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "builds", "builds", "{5314F90D-6572-4E9E-AEA0-3A637B248F9B}"
+	ProjectSection(SolutionItems) = preProject
+		builds\build-dev-feature-hotfix..yaml = builds\build-dev-feature-hotfix..yaml
+		builds\build-pr.yaml = builds\build-pr.yaml
+		builds\build-release.yaml = builds\build-release.yaml
+		builds\template-job-release.yaml = builds\template-job-release.yaml
+		builds\template-steps-build-test.yaml = builds\template-steps-build-test.yaml
+		builds\template-steps-publish.yaml = builds\template-steps-publish.yaml
+	EndProjectSection
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2DAA3E7B-EDA2-4A05-A94D-888A5F5D8EC4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aliencube.AzureMessaging.SchemaRegistry", "src\Aliencube.AzureMessaging.SchemaRegistry\Aliencube.AzureMessaging.SchemaRegistry.csproj", "{E33DA03C-120B-45FA-A913-AFCE31534BB3}"
@@ -49,15 +59,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aliencube.AzureMessaging.Sc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Aliencube.AzureMessaging.SchemaValidation.FunctionAppV2", "samples\Aliencube.AzureMessaging.SchemaValidation.FunctionAppV2\Aliencube.AzureMessaging.SchemaValidation.FunctionAppV2.csproj", "{360624C9-DF29-4B99-AE3A-73C2B90B3A67}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "builds", "builds", "{5314F90D-6572-4E9E-AEA0-3A637B248F9B}"
-	ProjectSection(SolutionItems) = preProject
-		builds\build-dev-feature-hotfix..yaml = builds\build-dev-feature-hotfix..yaml
-		builds\build-pr.yaml = builds\build-pr.yaml
-		builds\build-release.yaml = builds\build-release.yaml
-		builds\template-job-release.yaml = builds\template-job-release.yaml
-		builds\template-steps-build-test.yaml = builds\template-steps-build-test.yaml
-		builds\template-steps-publish.yaml = builds\template-steps-publish.yaml
-	EndProjectSection
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aliencube.AzureMessaging.SchemaValidation.FunctionAppV3", "samples\Aliencube.AzureMessaging.SchemaValidation.FunctionAppV3\Aliencube.AzureMessaging.SchemaValidation.FunctionAppV3.csproj", "{EA44EAC0-448B-4BEA-A16E-B9785E70F386}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -145,6 +147,10 @@ Global
 		{360624C9-DF29-4B99-AE3A-73C2B90B3A67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{360624C9-DF29-4B99-AE3A-73C2B90B3A67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{360624C9-DF29-4B99-AE3A-73C2B90B3A67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA44EAC0-448B-4BEA-A16E-B9785E70F386}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA44EAC0-448B-4BEA-A16E-B9785E70F386}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA44EAC0-448B-4BEA-A16E-B9785E70F386}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA44EAC0-448B-4BEA-A16E-B9785E70F386}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -170,6 +176,7 @@ Global
 		{603259B3-775F-4874-AE3F-A0A58BD51C12} = {B4CE4C0C-D639-45F0-8676-1502F08C617F}
 		{8F37700F-C309-4D33-A2AA-0B5E960B1FB4} = {B4CE4C0C-D639-45F0-8676-1502F08C617F}
 		{360624C9-DF29-4B99-AE3A-73C2B90B3A67} = {B4CE4C0C-D639-45F0-8676-1502F08C617F}
+		{EA44EAC0-448B-4BEA-A16E-B9785E70F386} = {B4CE4C0C-D639-45F0-8676-1502F08C617F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6583D7A0-435E-4EF0-8A60-67815D3843BE}

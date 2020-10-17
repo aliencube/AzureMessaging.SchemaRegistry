@@ -2,48 +2,64 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "clean",
+      "command": "dotnet",
+      "args": [
+        "clean",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
+      ],
+      "type": "process",
+      "problemMatcher": "$msCompile"
+    },
+    {
       "label": "build",
       "command": "dotnet",
-      "type": "process",
       "args": [
         "build",
         "/property:GenerateFullPaths=true",
         "/consoleloggerparameters:NoSummary"
       ],
+      "type": "process",
+      "dependsOn": "clean",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
       "problemMatcher": "$msCompile"
     },
     {
-      "label": "publish",
+      "label": "clean release",
       "command": "dotnet",
-      "type": "process",
       "args": [
-        "publish",
-        "${workspaceFolder}/samples/Aliencube.AzureMessaging.SchemaValidation.FunctionAppV3/Aliencube.AzureMessaging.SchemaValidation.FunctionAppV3.csproj",
+        "clean",
         "--configuration",
         "Release",
         "/property:GenerateFullPaths=true",
         "/consoleloggerparameters:NoSummary"
       ],
+      "type": "process",
       "problemMatcher": "$msCompile"
     },
     {
-      "label": "watch",
+      "label": "publish",
       "command": "dotnet",
-      "type": "process",
       "args": [
-        "watch",
-        "run",
-        "${workspaceFolder}/samples/Aliencube.AzureMessaging.SchemaValidation.ConsoleAppCore/Aliencube.AzureMessaging.SchemaValidation.ConsoleAppCore.csproj",
+        "publish",
+        "--configuration",
+        "Release",
         "/property:GenerateFullPaths=true",
         "/consoleloggerparameters:NoSummary"
       ],
+      "type": "process",
+      "dependsOn": "clean release",
       "problemMatcher": "$msCompile"
     },
     {
       "type": "func",
       "dependsOn": "build",
       "options": {
-        "cwd": "${workspaceFolder}/samples/Aliencube.AzureMessaging.SchemaValidation.FunctionAppV3/bin/Debug/netcoreapp3.1"
+        "cwd": "${workspaceFolder}/bin/Debug/netcoreapp3.1"
       },
       "command": "host start",
       "isBackground": true,
